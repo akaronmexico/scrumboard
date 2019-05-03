@@ -3,58 +3,57 @@ export class ScrumboardFakeDb
     public static boards = [
         {
             'id'      : '32gfhaf2',
-            'name'    : 'ACME Frontend Application',
-            'uri'     : 'acme-frontend-application',
+            'name'    : 'Aggregated Partner View',
+            'uri'     : 'aggregated',
             'settings': {
                 'color'          : 'fuse-dark',
                 'subscribed'     : false,
-                'cardCoverImages': true
+                'cardCoverImages': false
             },
             'lists'   : [
                 {
                     'id'     : '56027cf5a2ca3839a5d36103',
-                    'name'   : 'Design',
+                    'name'   : 'New',
                     'idCards': [
-                        '5603a2a3cab0c8300f6096b3',
-                        '44d1.2b51ea6cc2b5d.21f4a3412e857.8ffa2d8b44ad9.ac87215ed53a1.67d4921ad8f8d.9f318bcb2'
+                        'b655a360-6dd8-11e9-a438-97b3ae9f990e',
+                        'b655a361-6dd8-11e9-a438-97b3ae9f990e'
                     ]
                 },
                 {
                     'id'     : '56127cf2a2ca3539g7d36103',
-                    'name'   : 'Development',
+                    'name'   : 'In Work',
                     'idCards': [
-                        '2837273da9b93dd84243s0f9',
-                        '5787b7e4740c57bf0dffd5b6',
-                        '5637273da9b93bb84743a0f9',
-                        '7987.9740ba532b0d4.f9d12243f7362.507c0738dc561.87fba0a03df6e.75e6508cacf10.7a9835b54'
+                        'b655a362-6dd8-11e9-a438-97b3ae9f990e',
+                        'b655a363-6dd8-11e9-a438-97b3ae9f990e',
+                        'b655a364-6dd8-11e9-a438-97b3ae9f990e',
+                        'b655a365-6dd8-11e9-a438-97b3ae9f990e'
                     ]
                 },
                 {
                     'id'     : 'faf244627326f1249525763d',
-                    'name'   : 'Upcoming Features',
+                    'name'   : 'Published',
                     'idCards': [
-                        'd9005a4b89ed2aadca48a6ad',
-                        'f6b9d7a9247e5d794a081927',
-                        '80ed.24ad3b18e2668.f28fbbceeeff9.5a834620a42f1.5909be19a2bf2.6c4a54947ce2d.da356b0c1',
-                        '0ad2.7862f947bc456.f42b446df54cb.d1dd9e93601a1.9deb1406d1404.0b3c278fc7001.733341b42',
-                        'bad3.51be8ad33acaf.9540ecb37f7e8.6bee596cfe7d3.44c68bee289c4.b96ed0b9f0af7.e14846035'
+                        'b655a366-6dd8-11e9-a438-97b3ae9f990e',
+                        'b655a367-6dd8-11e9-a438-97b3ae9f990e',
+                        'b655ca70-6dd8-11e9-a438-97b3ae9f990e',
+                        'b655ca71-6dd8-11e9-a438-97b3ae9f990e',
+                        'b655ca73-6dd8-11e9-a438-97b3ae9f990e'
                     ]
                 },
-                {
-                    'id'     : 'ad7d.9fffac5dff412.c83bca6853767.8fd7549b2b1ca.ceda8a01774c4.a5cf3976e87e4.ce79eeeea',
-                    'name'   : 'Known Bugs',
-                    'idCards': [
-                        'acc6.9c673cd2f5e35.521e91d8d5991.4b2a95e0539d1.027930c0743c5.7ad1ea7bea476.e8fbe6347',
-                        '3279.3d69b40cc0b75.690252b6bea08.1e1789b0b7c2e.2f264b8661ce2.84d5f56910e23.429be5e8a',
-                        'ba01.8e1a43f92a03a.0022bd5cbb9ba.275c64d911d8c.880e0846a3966.f75ff43e53ad.48ad612e7'
-                    ]
-                }
+                
             ],
             'cards'   : [
                 {
-                    'id'               : '2837273da9b93dd84243s0f9',
-                    'name'             : 'Update generators',
-                    'description'      : 'Current generator doesn\'t support Node.js 6 and above.',
+                    "id": "b655a360-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "Libya ‘war crimes’ videos shared on social media",
+        "summary": "BBC Arabic found videos of bodies being desecrated by fighters loyal to strongman Khalifa Haftar.",
+        "target": "Libya",
+        "keywords": "Libya",
+        "link": "https://www.bbc.co.uk/news/world-africa-48105968",
+        "feed": "BBC News - Africa",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556668290000.0",
                     'idAttachmentCover': '',
                     'idMembers'        : [
                         '26027s1930450d8bf7b10828'
@@ -79,8 +78,8 @@ export class ScrumboardFakeDb
                 },
                 {
                     'id'               : '5603a2a3cab0c8300f6096b3',
-                    'name'             : 'Change background colors',
-                    'description'      : '',
+                    'title'             : 'Change background colors',
+                    'summary'      : '',
                     'idAttachmentCover': '67027cahbe3b52ecf2dc631c',
                     'idMembers'        : [
                         '76027g1930450d8bf7b10958'
@@ -184,9 +183,16 @@ export class ScrumboardFakeDb
                     'due'              : '2017-08-29T10:16:34.000Z'
                 },
                 {
-                    'id'               : '5637273da9b93bb84743a0f9',
-                    'name'             : 'Fix splash screen bugs',
-                    'description'      : '',
+                    "id": "b655a361-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "'Bring my grandchildren home from Syria'",
+        "summary": "Fatiha is the grandmother of six children kept in a camp in Syria, but she hopes she'll be able to welcome them back to Belgium soon.",
+        "target": "Nigeria",
+        "keywords": "Syria",
+        "link": "https://www.bbc.co.uk/news/world-europe-48129129",
+        "feed": "BBC News - Middle East",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556759064000.0",
                     'idAttachmentCover': '',
                     'idMembers'        : [
                         '56027c1930450d8bf7b10758'
@@ -205,7 +211,7 @@ export class ScrumboardFakeDb
                 },
                 {
                     'id'               : 'd9005a4b89ed2aadca48a6ad',
-                    'name'             : 'Add alternative authentication pages',
+                    'title'             : 'Add alternative authentication pages',
                     'description'      : '',
                     'idAttachmentCover': '',
                     'idMembers'        : [
@@ -253,9 +259,16 @@ export class ScrumboardFakeDb
                     'due'              : null
                 },
                 {
-                    'id'               : '5787b7e4740c57bf0dffd5b6',
-                    'name'             : 'Fix the console',
-                    'description'      : 'We need to fix the console asap!',
+                    "id": "b655a362-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "Antiquities looted in Syria and Iraq are sold on Facebook",
+        "summary": "'I see my history and culture destroyed in front of my eyes,' says one Syrian archaeologist.",
+        "target": "Iraq",
+        "keywords": "Iraq",
+        "link": "https://www.bbc.co.uk/news/world-middle-east-47628369",
+        "feed": "BBC News - Middle East",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556773220000.0",
                     'idAttachmentCover': '',
                     'idMembers'        : [],
                     'idLabels'         : [
@@ -277,9 +290,16 @@ export class ScrumboardFakeDb
                     'due'              : '2020-09-07T12:00:00.000Z'
                 },
                 {
-                    'id'               : 'f6b9d7a9247e5d794a081927',
-                    'name'             : 'New media player',
-                    'description'      : '',
+                    "id": "b655a363-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "U.S. says military killed 120 civilians abroad in 2018, lower than watchdog estimates",
+        "summary": "WASHINGTON, May 2 (Reuters) - 4United States military actions killed about 120 civilians and injured 65 others in Iraq, Syria, Afghanistan and Somalia last year, the Pentagon said in a report on Thursday, though the figures were far lower than those reported by watchdog groups.    ",
+        "target": "Iraq",
+        "keywords": "Iraq",
+        "link": "http://feeds.reuters.com/~r/reuters/AfricaLibyaNews/~3/z_zjNLF7y68/idAFL1N22E09E",
+        "feed": "Reuters: Libya News",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556800504000.0",
                     'idAttachmentCover': '',
                     'idMembers'        : [
                         '76027g1930450d8bf7b10958',
@@ -299,10 +319,16 @@ export class ScrumboardFakeDb
                     'activities'       : [],
                     'due'              : null
                 },
-                {
-                    'id'               : 'acc6.9c673cd2f5e35.521e91d8d5991.4b2a95e0539d1.027930c0743c5.7ad1ea7bea476.e8fbe6347',
-                    'name'             : 'Memory Leak',
-                    'description'      : '',
+                { "id": "b655a364-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "UPDATE 1-U.S. says military killed 120 civilians abroad in 2018, lower than watchdog estimates",
+        "summary": "WASHINGTON, May 2 (Reuters) - United States military actions killed about 120 civilians and injured 65 others in Iraq, Syria, Afghanistan and Somalia last year, the Pentagon said in a report on Thursday, though the figures were far lower than those reported by watchdog groups.    ",
+        "target": "Iraq",
+        "keywords": "Iraq",
+        "link": "http://feeds.reuters.com/~r/reuters/AfricaLibyaNews/~3/rTOVJWHohuo/idAFL1N22E0TI",
+        "feed": "Reuters: Libya News",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556811427000.0",
                     'idAttachmentCover': '',
                     'idMembers'        : [
                         '36027j1930450d8bf7b10158'
@@ -321,9 +347,16 @@ export class ScrumboardFakeDb
                     'due'              : null
                 },
                 {
-                    'id'               : '3279.3d69b40cc0b75.690252b6bea08.1e1789b0b7c2e.2f264b8661ce2.84d5f56910e23.429be5e8a',
-                    'name'             : 'Broken toolbar on profile page',
-                    'description'      : '',
+                    "id": "b655a365-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "U.S. says military killed 120 civilians abroad in 2018, lower than watchdog estimates",
+        "summary": "WASHINGTON, May 2 (Reuters) - 4United States military actions killed about 120 civilians and injured 65 others in Iraq, Syria, Afghanistan and Somalia last year, the Pentagon said in a report on Thursday, though the figures were far lower than those reported by watchdog groups.    ",
+        "target": "Iraq",
+        "keywords": "Iraq",
+        "link": "http://feeds.reuters.com/~r/reuters/AfricaSomaliaNews/~3/WOB5rPKfAQ4/idAFL1N22E09E",
+        "feed": "Reuters: Somalia News",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556800504000.0",
                     'idAttachmentCover': '',
                     'idMembers'        : [
                         '26027s1930450d8bf7b10828'
@@ -347,9 +380,16 @@ export class ScrumboardFakeDb
                     'due'              : null
                 },
                 {
-                    'id'               : 'ba01.8e1a43f92a03a.0022bd5cbb9ba.275c64d911d8c.880e0846a3966.f75ff43e53ad.48ad612e7',
-                    'name'             : 'Button hover style',
-                    'description'      : 'If there are 3 or more buttons in certain page, weird flashing happens when you hover over the red ones.',
+                     "id": "b655a366-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "UPDATE 1-U.S. says military killed 120 civilians abroad in 2018, lower than watchdog estimates",
+        "summary": "WASHINGTON, May 2 (Reuters) - United States military actions killed about 120 civilians and injured 65 others in Iraq, Syria, Afghanistan and Somalia last year, the Pentagon said in a report on Thursday, though the figures were far lower than those reported by watchdog groups.    ",
+        "target": "Iraq",
+        "keywords": "Iraq",
+        "link": "http://feeds.reuters.com/~r/reuters/AfricaSomaliaNews/~3/RHtoZwZi8s4/idAFL1N22E0TI",
+        "feed": "Reuters: Somalia News",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556811427000.0",
                     'idAttachmentCover': '',
                     'idMembers'        : [
                         '26027s1930450d8bf7b10828'
@@ -367,10 +407,16 @@ export class ScrumboardFakeDb
                     'activities'       : [],
                     'due'              : '2017-03-08T09:00:00.000Z'
                 },
-                {
-                    'id'               : '80ed.24ad3b18e2668.f28fbbceeeff9.5a834620a42f1.5909be19a2bf2.6c4a54947ce2d.da356b0c1',
-                    'name'             : 'New header designs',
-                    'description'      : '',
+                { "id": "b655a367-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "India election 2019: The killer air no one's talking about",
+        "summary": "Pollution killed 1.2 million Indians in 2017, but is fixing the bad air any party or politician's priority?",
+        "target": "Congo",
+        "keywords": "India",
+        "link": "https://www.bbc.co.uk/news/world-asia-india-48102417",
+        "feed": "BBC News - World",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556846646000.0",
                     'idAttachmentCover': '12027cafbe3b52ecf2ef632c',
                     'idMembers'        : [],
                     'idLabels'         : [
@@ -409,9 +455,16 @@ export class ScrumboardFakeDb
                     'due'              : null
                 },
                 {
-                    'id'               : '0ad2.7862f947bc456.f42b446df54cb.d1dd9e93601a1.9deb1406d1404.0b3c278fc7001.733341b42',
-                    'name'             : 'Fixed footer',
-                    'description'      : '',
+                     "id": "b655ca70-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "Cyclone Fani: Powerful storm slams into eastern India coast",
+        "summary": "More than a million people shelter from Cyclone Fani, one of the region's most powerful storms in years.",
+        "target": "Congo",
+        "keywords": "India",
+        "link": "https://www.bbc.co.uk/news/world-asia-india-48121606",
+        "feed": "BBC News - World",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556882683000.0",
                     'idAttachmentCover': '',
                     'idMembers'        : [
                         '26027s1930450d8bf7b10828',
@@ -430,9 +483,16 @@ export class ScrumboardFakeDb
                     'due'              : null
                 },
                 {
-                    'id'               : 'bad3.51be8ad33acaf.9540ecb37f7e8.6bee596cfe7d3.44c68bee289c4.b96ed0b9f0af7.e14846035',
-                    'name'             : 'Collapsable navigation',
-                    'description'      : '',
+                     "id": "b655ca71-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "U.N. blacklists founder of Pakistan-based militant group Jaish-e-Mohammed",
+        "summary": "A U.N. Security Council committee blacklisted the head of the Pakistan-based militant group Jaish-e-Mohammed (JeM) on Wednesday after China dropped its objection to the move, ending a decade-long diplomatic impasse.    ",
+        "target": "Libya",
+        "keywords": "China",
+        "link": "http://feeds.reuters.com/~r/reuters/INsouthAsiaNews/~3/7KEJd1ruN2E/u-n-blacklists-founder-of-pakistan-based-militant-group-jaish-e-mohammed-idINKCN1S73XJ",
+        "feed": "Reuters: South Asia News",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556736560000.0",
                     'idAttachmentCover': '',
                     'idMembers'        : [],
                     'idLabels'         : [
@@ -453,10 +513,16 @@ export class ScrumboardFakeDb
                     'activities'       : [],
                     'due'              : null
                 },
-                {
-                    'id'               : '44d1.2b51ea6cc2b5d.21f4a3412e857.8ffa2d8b44ad9.ac87215ed53a1.67d4921ad8f8d.9f318bcb2',
-                    'name'             : 'Mail app new layout',
-                    'description'      : 'Current layout has lots of flaws in mobile. Outlook view should help with that.',
+                {"id": "b655ca73-6dd8-11e9-a438-97b3ae9f990e",
+        "title": "China is stealing tech to rapidly modernize its military, Pentagon warns",
+        "summary": "China is continuing to modernize its armed forces in order to transform its military into a major global power and using espionage to steal cutting edge technology for military purposes, according to a newly released Pentagon report on China's military.      ",
+        "target": "Libya",
+        "keywords": "China",
+        "link": "http://rss.cnn.com/~r/rss/cnn_world/~3/3_-XA4u--0I/index.html",
+        "feed": "CNN.com - RSS Channel - World",
+        "score": 0.2876821,
+        "status": "new",
+        "published": "1556866139000.0",
                     'idAttachmentCover': '',
                     'idMembers'        : [
                         '56027c1930450d8bf7b10758',
@@ -479,7 +545,7 @@ export class ScrumboardFakeDb
                 },
                 {
                     'id'               : '7987.9740ba532b0d4.f9d12243f7362.507c0738dc561.87fba0a03df6e.75e6508cacf10.7a9835b54',
-                    'name'             : 'API recover and monitoring',
+                    'title'             : 'API recover and monitoring',
                     'description'      : 'We need a service to monitor and recover failed APIs.',
                     'idAttachmentCover': '',
                     'idMembers'        : [
@@ -586,8 +652,8 @@ export class ScrumboardFakeDb
         },
         {
             'id'      : '27cfcbe1',
-            'name'    : 'ACME Backend Application',
-            'uri'     : 'acme-backend-application',
+            'name'    : 'Liaison Partner View',
+            'uri'     : 'liaison',
             'settings': {
                 'color'          : 'blue-grey',
                 'subscribed'     : false,
@@ -612,7 +678,7 @@ export class ScrumboardFakeDb
             'cards'   : [
                 {
                     'id'               : '5603a2a3cab0c8300f6096b3',
-                    'name'             : 'Calendar App Design',
+                    'title'             : 'Calendar App Design',
                     'description'      : '',
                     'idAttachmentCover': '56027cfcbe1b72ecf1fc452a',
                     'idMembers'        : [
@@ -718,7 +784,7 @@ export class ScrumboardFakeDb
                 },
                 {
                     'id'               : '5637273da9b93bb84743a0f9',
-                    'name'             : 'Fix Splash Screen bugs',
+                    'title'             : 'Fix Splash Screen bugs',
                     'description'      : '',
                     'idAttachmentCover': '5603a2ae2bbd55bb2db57478',
                     'idMembers'        : [

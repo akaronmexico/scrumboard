@@ -87,6 +87,12 @@
                         }
                     }
 
+                    &.keyword {
+                        background-color: mat-color(mat-palette($mat-green));
+
+                        
+                    }
+
                     &.check-items {
 
                         &.completed {

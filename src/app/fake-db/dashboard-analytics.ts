@@ -268,7 +268,7 @@ export class AnalyticsDashboardDb
             datasets : {
                 'yesterday': [
                     {
-                        label: 'Visitors',
+                        label: 'Articles',
                         data : [190, 300, 340, 220, 290, 390, 250, 380, 410, 380, 320, 290],
                         fill : 'start'
 
@@ -281,7 +281,7 @@ export class AnalyticsDashboardDb
                 ],
                 'today'    : [
                     {
-                        label: 'Visitors',
+                        label: 'Articles',
                         data : [410, 380, 320, 290, 190, 390, 250, 380, 300, 340, 220, 290],
                         fill : 'start'
                     },
@@ -572,27 +572,27 @@ export class AnalyticsDashboardDb
         widget9: {
             rows: [
                 {
-                    title     : 'Holiday Travel',
+                    title     : 'Russia',
                     clicks    : 3621,
                     conversion: 90
                 },
                 {
-                    title     : 'Get Away Deals',
+                    title     : 'Brexit',
                     clicks    : 703,
                     conversion: 7
                 },
                 {
-                    title     : 'Airfare',
+                    title     : 'Putin',
                     clicks    : 532,
                     conversion: 0
                 },
                 {
-                    title     : 'Vacation',
+                    title     : 'South China Sea',
                     clicks    : 201,
                     conversion: 8
                 },
                 {
-                    title     : 'Hotels',
+                    title     : 'Aeroflot',
                     clicks    : 94,
                     conversion: 4
                 }

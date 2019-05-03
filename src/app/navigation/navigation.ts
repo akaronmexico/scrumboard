@@ -16,7 +16,7 @@ export const navigation: FuseNavigation[] = [
       },
       {
         id: 'project',
-        title: 'Project',
+        title: 'Partner Stats',
         type: 'item',
         url: '/apps/dashboards/project'
       }
@@ -40,7 +40,7 @@ export const navigation: FuseNavigation[] = [
   },
   {
     id: 'contacts',
-    title: 'Contacts',
+    title: 'Partner Configuration',
     translate: 'NAV.CONTACTS',
     type: 'item',
     icon: 'account_box',

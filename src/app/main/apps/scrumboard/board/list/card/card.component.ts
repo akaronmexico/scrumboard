@@ -56,4 +56,8 @@ export class ScrumboardBoardCardComponent implements OnInit
     {
         return moment() > moment(new Date(cardDate));
     }
+
+    viewArticle(url) {
+        window.open(url, "_blank");
+    }
 }

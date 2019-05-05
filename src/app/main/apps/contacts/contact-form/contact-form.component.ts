@@ -39,10 +39,10 @@ export class ContactsContactFormDialogComponent {
     this.action = _data.action;
 
     if (this.action === 'edit') {
-      this.dialogTitle = 'Edit Contact';
+      this.dialogTitle = 'Edit Partner Configuration';
       this.contact = _data.contact;
     } else {
-      this.dialogTitle = 'New Contact';
+      this.dialogTitle = 'New Partner Configuration';
       this.contact = new Contact({});
     }
 

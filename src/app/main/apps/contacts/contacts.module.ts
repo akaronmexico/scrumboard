@@ -1,7 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
-    MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatRippleModule, MatTableModule, MatToolbarModule
+  MatButtonModule,
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatMenuModule,
+  MatRippleModule,
+  MatTableModule,
+  MatChipsModule,
+  MatToolbarModule
 } from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -13,50 +23,46 @@ import { ContactsContactListComponent } from 'app/main/apps/contacts/contact-lis
 import { ContactsSelectedBarComponent } from 'app/main/apps/contacts/selected-bar/selected-bar.component';
 import { ContactsMainSidebarComponent } from 'app/main/apps/contacts/sidebars/main/main.component';
 import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
-    {
-        path     : '**',
-        component: ContactsComponent,
-        resolve  : {
-            contacts: ContactsService
-        }
+  {
+    path: '**',
+    component: ContactsComponent,
+    resolve: {
+      contacts: ContactsService
     }
+  }
 ];
 
 @NgModule({
-    declarations   : [
-        ContactsComponent,
-        ContactsContactListComponent,
-        ContactsSelectedBarComponent,
-        ContactsMainSidebarComponent,
-        ContactsContactFormDialogComponent
-    ],
-    imports        : [
-        RouterModule.forChild(routes),
+  declarations: [
+    ContactsComponent,
+    ContactsContactListComponent,
+    ContactsSelectedBarComponent,
+    ContactsMainSidebarComponent,
+    ContactsContactFormDialogComponent
+  ],
+  imports: [
+    RouterModule.forChild(routes),
+    CommonModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    MatRippleModule,
+    MatTableModule,
+    MatToolbarModule,
 
-        MatButtonModule,
-        MatCheckboxModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatMenuModule,
-        MatRippleModule,
-        MatTableModule,
-        MatToolbarModule,
-
-        FuseSharedModule,
-        FuseConfirmDialogModule,
-        FuseSidebarModule
-    ],
-    providers      : [
-        ContactsService
-    ],
-    entryComponents: [
-        ContactsContactFormDialogComponent
-    ]
+    FuseSharedModule,
+    FuseConfirmDialogModule,
+    FuseSidebarModule
+  ],
+  providers: [ContactsService],
+  entryComponents: [ContactsContactFormDialogComponent]
 })
-export class ContactsModule
-{
-}
+export class ContactsModule {}

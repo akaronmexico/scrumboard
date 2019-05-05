@@ -216,7 +216,7 @@ export class ContactsService implements Resolve<any> {
   updateContact(contact): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient.post('api/contacts-contacts/' + contact.id, { ...contact }).subscribe(response => {
-        this.getContacts();
+        this.getPartners();
         resolve(response);
       });
     });
@@ -232,7 +232,7 @@ export class ContactsService implements Resolve<any> {
     return new Promise((resolve, reject) => {
       this._httpClient.post('api/contacts-user/' + this.user.id, { ...userData }).subscribe(response => {
         this.getUserData();
-        this.getContacts();
+        this.getPartners();
         resolve(response);
       });
     });

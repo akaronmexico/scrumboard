@@ -1,8 +1,9 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef, MatChipInputEvent } from '@angular/material';
 
 import { Contact } from 'app/main/apps/contacts/contact.model';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'contacts-contact-form-dialog',
@@ -16,6 +17,12 @@ export class ContactsContactFormDialogComponent {
   contactForm: FormGroup;
   dialogTitle: string;
 
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  // Enter, comma
+  separatorKeysCodes = [ENTER, COMMA];
   /**
    * Constructor
    *
@@ -42,21 +49,64 @@ export class ContactsContactFormDialogComponent {
     this.contactForm = this.createContactForm();
   }
 
+  addTarget(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our requirement
+    if ((value || '').trim()) {
+      const tempTargets = Array.from(this.contactForm.controls['targets'].value);
+
+      tempTargets.push(value.trim());
+
+      this.contactForm.controls['targets'].setValue(tempTargets);
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  removeTarget(index: number): void {
+    const tempTargets = Array.from(this.contactForm.controls['targets'].value);
+
+    if (tempTargets && index > -1) {
+      tempTargets.splice(index, 1);
+      this.contactForm.controls['targets'].setValue(tempTargets);
+    }
+  }
+
+  addKeyword(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our requirement
+    if ((value || '').trim()) {
+      const tempKeywords = this.contactForm.controls['keywords'].value;
+      tempKeywords.push(value.trim());
+
+      this.contactForm.controls['keywords'].setValue(tempKeywords);
+    }
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  removeKeyword(index: number): void {
+    const tempKeywords = this.contactForm.controls['keywords'].value;
+
+    if (tempKeywords && index > -1) {
+      tempKeywords.splice(index, 1);
+      this.contactForm.controls['keywords'].setValue(tempKeywords);
+    }
+  }
+
   // -----------------------------------------------------------------------------------------------------
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
-  /**
-     * Create contact form
-     * this.nativeName = contact.nativeName || '';
-      this.avatar = contact.avatar || 'assets/images/avatars/profile.jpg';
-      this.capital = contact.capital || '';
-      this.subregion = contact.subregion || '';
-      this.region = contact.region || '';
-      this.population = contact.population || '';
-      this.latlng = contact.latlng || '';
-     * @returns {FormGroup}
-     */
   createContactForm(): FormGroup {
     return this._formBuilder.group({
       id: [this.contact.id],
@@ -67,7 +117,9 @@ export class ContactsContactFormDialogComponent {
       subregion: [this.contact.subregion],
       latlng: [this.contact.latlng],
       avatar: [this.contact.avatar],
-      population: [this.contact.population]
+      population: [this.contact.population],
+      keywords: [this.contact.keywords],
+      targets: [this.contact.targets]
     });
   }
 }

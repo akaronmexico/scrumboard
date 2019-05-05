@@ -43,7 +43,7 @@ export const navigation: FuseNavigation[] = [
     title: 'Partner Configuration',
     translate: 'NAV.CONTACTS',
     type: 'item',
-    icon: 'account_box',
+    icon: 'settings',
     url: '/apps/contacts'
   }
 ];

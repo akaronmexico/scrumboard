@@ -15,51 +15,88 @@
 
   <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
     <form [formGroup]="contactForm">
-      <div fxLayout="row" fxLayoutAlign="start start">
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Name</mat-label>
-          <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
           <input name="name" formControlName="name" matInput required />
         </mat-form-field>
-      </div>
-
-      <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Native Name</mat-label>
-          <mat-icon matSuffix class="secondary-text">face</mat-icon>
           <input name="nativeName" formControlName="nativeName" matInput />
         </mat-form-field>
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="start start">
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Capital</mat-label>
           <mat-icon matSuffix class="secondary-text">pin_drop</mat-icon>
           <input name="capital" formControlName="capital" matInput />
         </mat-form-field>
-      </div>
-
-      <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Population</mat-label>
-          <mat-icon matSuffix class="secondary-text">work</mat-icon>
+          <mat-icon matSuffix class="secondary-text">people</mat-icon>
           <input name="population" formControlName="population" matInput />
         </mat-form-field>
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="start start">
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Region</mat-label>
           <mat-icon matSuffix class="secondary-text">place</mat-icon>
           <input name="region" formControlName="region" matInput />
         </mat-form-field>
-      </div>
-
-      <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Subregion</mat-label>
           <mat-icon matSuffix class="secondary-text">place</mat-icon>
           <input formControlName="subregion" matInput />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Targets</mat-label>
+          <mat-chip-list #targetChipList>
+            <mat-chip
+              class="target-badge"
+              *ngFor="let target of contactForm.get('targets').value; let i = index"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="removeTarget(i)"
+            >
+              {{ target }}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="New Target..."
+              [matChipInputFor]="targetChipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addTarget($event)"
+            />
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Keywords</mat-label>
+          <mat-chip-list #keywordChipList>
+            <mat-chip
+              class="keyword-badge"
+              *ngFor="let keyword of contactForm.get('keywords').value; let i = index"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="removeKeyword(i)"
+            >
+              {{ keyword }}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="New Keyword..."
+              [matChipInputFor]="keywordChipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addKeyword($event)"
+            />
+          </mat-chip-list>
         </mat-form-field>
       </div>
     </form>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -11,7 +12,8 @@ import {
   MatRippleModule,
   MatTableModule,
   MatChipsModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MAT_CHIPS_DEFAULT_OPTIONS
 } from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
@@ -62,7 +64,15 @@ const routes: Routes = [
     FuseConfirmDialogModule,
     FuseSidebarModule
   ],
-  providers: [ContactsService],
+  providers: [
+    ContactsService,
+    {
+      provide: MAT_CHIPS_DEFAULT_OPTIONS,
+      useValue: {
+        separatorKeyCodes: [ENTER, COMMA]
+      }
+    }
+  ],
   entryComponents: [ContactsContactFormDialogComponent]
 })
 export class ContactsModule {}

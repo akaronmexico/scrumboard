@@ -45,6 +45,12 @@ contacts-contact-list {
           fill: mat-color(mat-palette($mat-green)) !important;
           border-radius: 8px !important;
         }
+
+        .target-badge {
+          background: mat-color(mat-palette($mat-blue)) !important;
+          fill: mat-color(mat-palette($mat-blue)) !important;
+          border-radius: 8px !important;
+        }
       }
     }
   }

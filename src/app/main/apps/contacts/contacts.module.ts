@@ -25,6 +25,7 @@ import { ContactsContactListComponent } from 'app/main/apps/contacts/contact-lis
 import { ContactsSelectedBarComponent } from 'app/main/apps/contacts/selected-bar/selected-bar.component';
 import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
 import { CommonModule } from '@angular/common';
+import { TargetsModule } from '../targets/targets.module';
 
 const routes: Routes = [
   {
@@ -45,6 +46,7 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forChild(routes),
+    TargetsModule,
     CommonModule,
     MatButtonModule,
     MatCheckboxModule,

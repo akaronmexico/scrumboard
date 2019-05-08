@@ -28,28 +28,8 @@
 
      <h4>Targets</h4>
       <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
-        <mat-form-field appearance="outline" fxFlex>
-          <mat-label>Targets</mat-label>
-          <mat-chip-list #targetChipList>
-            <mat-chip
-              class="target-badge"
-              *ngFor="let target of contactForm.get('targets').value; let i = index"
-              [selectable]="selectable"
-              [removable]="removable"
-              (removed)="removeTarget(i)"
-            >
-              {{ target }}
-              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-            </mat-chip>
-            <input
-              placeholder="New Target..."
-              [matChipInputFor]="targetChipList"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="addOnBlur"
-              (matChipInputTokenEnd)="addTarget($event)"
-            />
-          </mat-chip-list>
-        </mat-form-field>
+        <targets-target-list></targets-target-list>
+       
       </div>
       <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
         <mat-form-field appearance="outline" fxFlex>

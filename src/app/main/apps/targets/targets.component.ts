@@ -7,13 +7,12 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
-import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
+import { TargetsService } from 'app/main/apps/targets/targets.service';
 
 @Component({
-  selector: 'contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss'],
+  selector: 'targets',
+  templateUrl: './targets.component.html',
+  styleUrls: ['./targets.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: fuseAnimations
 })
@@ -27,11 +26,10 @@ export class TargetsComponent implements OnInit, OnDestroy {
   /**
    * Constructor
    *
-   * @param {ContactsService} _targetsService
+   * @param {TargetsService} _targetsService
    * @param {FuseSidebarService} _fuseSidebarService
-   * @param {MatDialog} _matDialog
    */
-  constructor(private _targetsService: ContactsService, private _fuseSidebarService: FuseSidebarService, private _matDialog: MatDialog) {
+  constructor(private _targetsService: TargetsService, private _fuseSidebarService: FuseSidebarService) {
 
 
     // Set the private defaults
@@ -46,7 +44,7 @@ export class TargetsComponent implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
-    this._targetsService.onSelectedContactsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(selectedTargets => {
+    this._targetsService.onSelectedTargetsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(selectedTargets => {
       this.hasSelectedTargets = selectedTargets.length > 0;
     });
   }
@@ -65,32 +63,11 @@ export class TargetsComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   /**
-   * New contact
+   * New target
    */
-  newContact(): void {
-    this.dialogRef = this._matDialog.open(ContactsContactFormDialogComponent, {
-      panelClass: 'contact-form-dialog',
-      width: '50vw',
-      data: {
-        action: 'new'
-      }
-    });
-
-    this.dialogRef.afterClosed().subscribe((response: FormGroup) => {
-      if (!response) {
-        return;
-      }
-
-      this._targetsService.updateContact(response.getRawValue());
-    });
+  newTarget(): void {
+   // notify service of new object...
   }
 
-  /**
-   * Toggle the sidebar
-   *
-   * @param name
-   */
-  toggleSidebar(name): void {
-    this._fuseSidebarService.getSidebar(name).toggleOpen();
-  }
+
 }

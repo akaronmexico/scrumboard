@@ -4,9 +4,8 @@ export const navigation: FuseNavigation[] = [
   {
     id: 'dashboards',
     title: 'Dashboards',
-    translate: 'NAV.DASHBOARDS',
     type: 'collapsable',
-    icon: 'dashboard',
+    icon: 'apps',
     children: [
       {
         id: 'analytics',
@@ -25,25 +24,39 @@ export const navigation: FuseNavigation[] = [
   {
     id: 'scrumboard',
     title: 'Scrumboard',
-    translate: 'NAV.SCRUMBOARD',
     type: 'item',
-    icon: 'assessment',
+    icon: 'widgets',
     url: '/apps/scrumboard'
   },
   {
     id: 'file-manager',
     title: 'File Manager',
-    translate: 'NAV.FILE_MANAGER',
     type: 'item',
     icon: 'folder',
     url: '/apps/file-manager'
   },
   {
-    id: 'contacts',
-    title: 'Partner Configuration',
-    translate: 'NAV.CONTACTS',
-    type: 'item',
+    id: 'configuration',
+    title: 'Configuration',
+    type: 'group',
     icon: 'settings',
-    url: '/apps/contacts'
+    url: '/apps/partners',
+    children: [
+      {
+        id: 'contacts',
+        title: 'Partners',
+        type: 'item',
+        icon: 'people',
+        url: '/apps/partners'
+      },
+      {
+        id: 'bins',
+        title: 'Bins',
+        type: 'item',
+        icon: 'inbox',
+        url: '/apps/bins'
+      }
+    ]
   }
+ 
 ];

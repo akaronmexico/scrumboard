@@ -8,6 +8,7 @@ import { MailFakeDb } from 'app/fake-db/mail';
 import { ProfileFakeDb } from 'app/fake-db/profile';
 import { ScrumboardFakeDb } from 'app/fake-db/scrumboard';
 import { TodoFakeDb } from 'app/fake-db/todo';
+import { BinsFakeDb } from './bins';
 
 export class FakeDbService implements InMemoryDbService {
   createDb(): any {
@@ -25,6 +26,9 @@ export class FakeDbService implements InMemoryDbService {
 
       // File Manager
       'file-manager': FileManagerFakeDb.files,
+
+      // Bins
+      'bins-bins': BinsFakeDb.bins,
 
       // Contacts
       'contacts-contacts': ContactsFakeDb.contacts,

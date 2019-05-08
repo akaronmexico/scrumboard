@@ -37,6 +37,7 @@ export class Contact {
   population: string;
   region: string;
   flag: string;
+  bins: any[];
 
   buildKeywords(): any[] {
     const k = [];

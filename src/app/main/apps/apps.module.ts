@@ -24,8 +24,12 @@ const routes = [
     loadChildren: './file-manager/file-manager.module#FileManagerModule'
   },
   {
-    path: 'contacts',
+    path: 'partners',
     loadChildren: './contacts/contacts.module#ContactsModule'
+  },
+  {
+    path: 'bins',
+    loadChildren: './bins/bins.module#BinsModule'
   },
   {
     path: 'scrumboard',

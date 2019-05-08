@@ -19,32 +19,18 @@ import {
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseConfirmDialogModule, FuseSidebarModule } from '@fuse/components';
 
-import { ContactsComponent } from 'app/main/apps/contacts/contacts.component';
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
-import { ContactsContactListComponent } from 'app/main/apps/contacts/contact-list/contact-list.component';
-import { ContactsSelectedBarComponent } from 'app/main/apps/contacts/selected-bar/selected-bar.component';
-import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
 import { CommonModule } from '@angular/common';
+import { TargetsService } from './targets.service';
 
-const routes: Routes = [
-  {
-    path: '**',
-    component: ContactsComponent,
-    resolve: {
-      contacts: ContactsService
-    }
-  }
-];
 
 @NgModule({
   declarations: [
-    ContactsComponent,
-    ContactsContactListComponent,
-    ContactsSelectedBarComponent,
-    ContactsContactFormDialogComponent
+    TargetsComponent,
+    TargetsTargetListComponent,
+   TargetsSelectedBarComponent,
+   TargetsTargetFormDialogComponent
   ],
   imports: [
-    RouterModule.forChild(routes),
     CommonModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -63,7 +49,7 @@ const routes: Routes = [
     FuseSidebarModule
   ],
   providers: [
-    ContactsService,
+    TargetsService,
     {
       provide: MAT_CHIPS_DEFAULT_OPTIONS,
       useValue: {
@@ -71,6 +57,6 @@ const routes: Routes = [
       }
     }
   ],
-  entryComponents: [ContactsContactFormDialogComponent]
+  entryComponents: [TargetsTargetFormDialogComponent]
 })
-export class ContactsModule {}
+export class TargetsModule {}

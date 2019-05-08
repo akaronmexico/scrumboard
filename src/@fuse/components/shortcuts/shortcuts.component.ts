@@ -91,10 +91,10 @@ export class FuseShortcutsComponent implements OnInit, OnDestroy
                     'url'  : '/apps/mail'
                 },
                 {
-                    'title': 'Contacts',
+                    'title': 'Partners',
                     'type' : 'item',
                     'icon' : 'account_box',
-                    'url'  : '/apps/contacts'
+                    'url'  : '/apps/partners'
                 },
                 {
                     'title': 'To-Do',

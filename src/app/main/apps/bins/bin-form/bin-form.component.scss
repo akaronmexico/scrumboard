@@ -1,0 +1,44 @@
+@import "src/@fuse/scss/fuse";
+
+.bin-form-dialog {
+  @include media-breakpoint ('xs') {
+    width: 100%;
+  }
+
+  @include media-breakpoint ('gt-xs') {
+    width: 400px;
+  }
+
+  .mat-dialog-container {
+    padding: 0;
+
+    .mat-toolbar {
+      flex: 1 0 auto;
+      min-height: initial;
+    }
+
+    .toolbar-bottom {
+      height: auto;
+    }
+
+    .keyword-badge {
+      background: mat-color(mat-palette($mat-green)) !important;
+      fill: mat-color(mat-palette($mat-green)) !important;
+      border-radius: 8px !important;
+      color: #fff !important;
+    }
+
+    .target-badge {
+      background: mat-color(mat-palette($mat-blue)) !important;
+      fill: mat-color(mat-palette($mat-blue)) !important;
+      border-radius: 8px !important;
+      color: #fff !important;
+    }
+  }
+
+  .dialog-content-wrapper {
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+  }
+}

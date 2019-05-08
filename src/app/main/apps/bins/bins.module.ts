@@ -19,29 +19,30 @@ import {
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseConfirmDialogModule, FuseSidebarModule } from '@fuse/components';
 
-import { ContactsComponent } from 'app/main/apps/contacts/contacts.component';
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
-import { ContactsContactListComponent } from 'app/main/apps/contacts/contact-list/contact-list.component';
-import { ContactsSelectedBarComponent } from 'app/main/apps/contacts/selected-bar/selected-bar.component';
-import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
+
 import { CommonModule } from '@angular/common';
+import { BinsService } from './bins.service';
+import { BinsComponent } from './bins.component';
+import { BinsBinFormDialogComponent } from './bin-form/bin-form.component';
+import { BinsBinListComponent } from './bin-list/bin-list.component';
+import { BinsSelectedBarComponent } from './selected-bar/selected-bar.component';
 
 const routes: Routes = [
   {
     path: '**',
-    component: ContactsComponent,
+    component: BinsComponent,
     resolve: {
-      contacts: ContactsService
+      bins: BinsService
     }
   }
 ];
 
 @NgModule({
   declarations: [
-    ContactsComponent,
-    ContactsContactListComponent,
-    ContactsSelectedBarComponent,
-    ContactsContactFormDialogComponent
+    BinsComponent, 
+    BinsBinListComponent,
+    BinsSelectedBarComponent,
+    BinsBinFormDialogComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -63,7 +64,7 @@ const routes: Routes = [
     FuseSidebarModule
   ],
   providers: [
-    ContactsService,
+    BinsService,
     {
       provide: MAT_CHIPS_DEFAULT_OPTIONS,
       useValue: {
@@ -71,6 +72,6 @@ const routes: Routes = [
       }
     }
   ],
-  entryComponents: [ContactsContactFormDialogComponent]
+  entryComponents: [BinsBinFormDialogComponent]
 })
-export class ContactsModule {}
+export class BinsModule {}

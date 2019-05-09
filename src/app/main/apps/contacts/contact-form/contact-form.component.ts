@@ -1,9 +1,14 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatChipInputEvent } from '@angular/material';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatChipInputEvent
+} from '@angular/material';
 
 import { Contact } from 'app/main/apps/contacts/contact.model';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { Target } from '../../targets/target.model';
 
 @Component({
   selector: 'contacts-contact-form-dialog',
@@ -49,23 +54,8 @@ export class ContactsContactFormDialogComponent {
     this.contactForm = this.createContactForm();
   }
 
-  addTarget(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add our requirement
-    if ((value || '').trim()) {
-      const tempTargets = Array.from(this.contactForm.controls['targets'].value);
-
-      tempTargets.push(value.trim());
-
-      this.contactForm.controls['targets'].setValue(tempTargets);
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
+  addTarget(): void {
+    this.contact.targets.push(new Target({}));
   }
 
   removeTarget(index: number): void {

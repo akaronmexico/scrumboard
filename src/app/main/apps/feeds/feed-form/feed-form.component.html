@@ -16,46 +16,24 @@
       fxLayout="column"
       fxLayoutAlign="center center"
     >
-      <img
-        [src]="contact.avatar"
-        class="avatar contact-avatar huge m-0"
-        [alt]="contact.name"
-      />
-      <div class="contact-name mt-8">
-        {{ contact.name }} ({{ contact.nativeName }})
-      </div>
+      <div class="feed-name mt-8">{{ feed.name }}</div>
     </mat-toolbar-row>
   </mat-toolbar>
 
   <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
-    <form [formGroup]="contactForm">
-      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+    <form [formGroup]="feedForm">
+      <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Name</mat-label>
           <input name="name" formControlName="name" matInput required />
         </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
-          <mat-label>Native Name</mat-label>
-          <input name="nativeName" formControlName="nativeName" matInput />
+          <mat-label>URL</mat-label>
+          <input name="name" formControlName="url" matInput required />
         </mat-form-field>
-      </div>
-
-      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
-        <span class="heading">Targets</span>
-        <button
-          *ngIf="action === 'edit'"
-          mat-button
-          class="mr-8"
-          (click)="addTarget()"
-          aria-label="Add Target"
-          matTooltip="Add Target"
-        >
-          Add Target
-        </button>
-      </div>
-
-      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
-        <targets-target-list [targets]="contact.targets"></targets-target-list>
       </div>
     </form>
   </div>
@@ -70,7 +48,7 @@
       *ngIf="action === 'edit'"
       mat-button
       class="mr-8"
-      (click)="matDialogRef.close(['delete', contactForm])"
+      (click)="matDialogRef.close(['delete', feedForm])"
       aria-label="Delete"
       matTooltip="Delete"
     >
@@ -81,8 +59,8 @@
       *ngIf="action !== 'edit'"
       mat-button
       class="save-button"
-      (click)="matDialogRef.close(contactForm)"
-      [disabled]="contactForm.invalid"
+      (click)="matDialogRef.close(feedForm)"
+      [disabled]="feedForm.invalid"
       aria-label="SAVE"
     >
       ADD
@@ -92,8 +70,8 @@
       *ngIf="action === 'edit'"
       mat-button
       class="save-button"
-      (click)="matDialogRef.close(['save', contactForm])"
-      [disabled]="contactForm.invalid"
+      (click)="matDialogRef.close(['save', feedForm])"
+      [disabled]="feedForm.invalid"
       aria-label="SAVE"
     >
       SAVE

@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Resolve,
+  RouterStateSnapshot
+} from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { FuseUtils } from '@fuse/utils';
 
 import { Bin } from 'app/main/apps/bins/bin.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BinsService implements Resolve<any> {
   onBinsChanged: BehaviorSubject<any>;
   onSelectedBinsChanged: BehaviorSubject<any>;
@@ -45,7 +51,10 @@ export class BinsService implements Resolve<any> {
    * @param {RouterStateSnapshot} state
    * @returns {Observable<any> | Promise<any> | any}
    */
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any> | Promise<any> | any {
     return new Promise((resolve, reject) => {
       Promise.all([this.getBins()]).then(([files]) => {
         this.onSearchTextChanged.subscribe(searchText => {
@@ -167,10 +176,12 @@ export class BinsService implements Resolve<any> {
    */
   updateBin(bin): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.post('api/bins-bins/' + bin.id, { ...bin }).subscribe(response => {
-        this.getBins();
-        resolve(response);
-      });
+      this._httpClient
+        .post('api/bins-bins/' + bin.id, { ...bin })
+        .subscribe(response => {
+          this.getBins();
+          resolve(response);
+        });
     });
   }
 

@@ -1,5 +1,5 @@
 <div
-  id="bins"
+  id="feeds"
   class="page-layout simple left-sidebar inner-sidebar inner-scroll"
 >
   <!-- HEADER -->
@@ -16,7 +16,7 @@
         mat-icon-button
         class="sidebar-toggle mr-12"
         fxHide.gt-sm
-        (click)="toggleSidebar('bins-main-sidebar')"
+        (click)="toggleSidebar('feeds-main-sidebar')"
       >
         <mat-icon>menu</mat-icon>
       </button>
@@ -31,7 +31,7 @@
           class="logo-text h1"
           [@animate]="{ value: '*', params: { delay: '100ms', x: '-25px' } }"
         >
-          Bins Configuration
+          Feeds Configuration
         </span>
       </div>
     </div>
@@ -42,7 +42,7 @@
       <div class="search-wrapper accent mt-16 mt-sm-0">
         <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
           <mat-icon>search</mat-icon>
-          <input [formControl]="searchInput" placeholder="Search for a bin" />
+          <input [formControl]="searchInput" placeholder="Search Feeds" />
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@
   <!-- SELECTED BAR -->
   <selected-bar
     class="accent-600"
-    *ngIf="hasSelectedBins"
+    *ngIf="hasSelectedFeeds"
     [@slideInTop]
   ></selected-bar>
   <!-- / SELECTED BAR -->
@@ -64,7 +64,7 @@
     <div class="center p-24 pb-56 pr-sm-92" fusePerfectScrollbar>
       <!-- CONTENT -->
       <div class="content">
-        <bins-bin-list></bins-bin-list>
+        <feeds-feed-list></feeds-feed-list>
       </div>
       <!-- / CONTENT -->
     </div>
@@ -77,11 +77,11 @@
 <button
   mat-fab
   class="accent"
-  id="add-bin-button"
-  (click)="newBin()"
-  aria-label="add bin"
+  id="add-feed-button"
+  (click)="newFeed()"
+  aria-label="add feed"
   [@animate]="{ value: '*', params: { delay: '300ms', scale: '.2' } }"
 >
-  <mat-icon>inbox</mat-icon>
+  <mat-icon>rss_feed</mat-icon>
 </button>
 <!-- / ADD CONTACT BUTTON -->

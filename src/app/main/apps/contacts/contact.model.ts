@@ -75,8 +75,7 @@ export class Contact {
       this.region = contact.region || '';
       this.population = contact.population || '';
       this.latlng = contact.latlng || '';
-      this.keywords = this.buildKeywords();
-      this.targets = this.buildTargets();
+      this.targets = [];
     }
   }
 }

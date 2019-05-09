@@ -1,11 +1,11 @@
 import { FuseUtils } from '@fuse/utils';
-import { Bin } from '../bins/bin.model';
+import { Bin, TargetBin } from '../bins/bin.model';
 
 
 export class Target {
   id: string;
   name: string;
-  bins: Bin[];
+  bins: TargetBin[];
 
   
   /**

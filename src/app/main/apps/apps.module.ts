@@ -5,7 +5,8 @@ import { FuseSharedModule } from '@fuse/shared.module';
 const routes = [
   {
     path: 'dashboards/analytics',
-    loadChildren: './dashboards/analytics/analytics.module#AnalyticsDashboardModule'
+    loadChildren:
+      './dashboards/analytics/analytics.module#AnalyticsDashboardModule'
   },
   {
     path: 'dashboards/project',
@@ -22,6 +23,10 @@ const routes = [
   {
     path: 'file-manager',
     loadChildren: './file-manager/file-manager.module#FileManagerModule'
+  },
+  {
+    path: 'feeds',
+    loadChildren: './feeds/feeds.module#FeedsModule'
   },
   {
     path: 'partners',

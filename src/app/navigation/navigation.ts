@@ -43,6 +43,13 @@ export const navigation: FuseNavigation[] = [
     url: '/apps/partners',
     children: [
       {
+        id: 'feeds',
+        title: 'RSS Feeds',
+        type: 'item',
+        icon: 'rss_feed',
+        url: '/apps/feeds'
+      },
+      {
         id: 'contacts',
         title: 'Partners',
         type: 'item',
@@ -58,5 +65,4 @@ export const navigation: FuseNavigation[] = [
       }
     ]
   }
- 
 ];

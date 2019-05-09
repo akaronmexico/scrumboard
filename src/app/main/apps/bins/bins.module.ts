@@ -19,7 +19,6 @@ import {
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseConfirmDialogModule, FuseSidebarModule } from '@fuse/components';
 
-
 import { CommonModule } from '@angular/common';
 import { BinsService } from './bins.service';
 import { BinsComponent } from './bins.component';
@@ -39,7 +38,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    BinsComponent, 
+    BinsComponent,
     BinsBinListComponent,
     BinsSelectedBarComponent,
     BinsBinFormDialogComponent
@@ -64,7 +63,6 @@ const routes: Routes = [
     FuseSidebarModule
   ],
   providers: [
-    BinsService,
     {
       provide: MAT_CHIPS_DEFAULT_OPTIONS,
       useValue: {

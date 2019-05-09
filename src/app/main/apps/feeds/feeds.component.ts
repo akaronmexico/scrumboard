@@ -7,19 +7,19 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
-import { BinsService } from 'app/main/apps/bins/bins.service';
-import { BinsBinFormDialogComponent } from 'app/main/apps/bins/bin-form/bin-form.component';
+import { FeedsService } from 'app/main/apps/feeds/feeds.service';
+import { FeedsFeedFormDialogComponent } from 'app/main/apps/feeds/feed-form/feed-form.component';
 
 @Component({
-  selector: 'bins',
-  templateUrl: './bins.component.html',
-  styleUrls: ['./bins.component.scss'],
+  selector: 'feeds',
+  templateUrl: './feeds.component.html',
+  styleUrls: ['./feeds.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: fuseAnimations
 })
-export class BinsComponent implements OnInit, OnDestroy {
+export class FeedsComponent implements OnInit, OnDestroy {
   dialogRef: any;
-  hasSelectedBins: boolean;
+  hasSelectedFeeds: boolean;
   searchInput: FormControl;
 
   // Private
@@ -28,12 +28,12 @@ export class BinsComponent implements OnInit, OnDestroy {
   /**
    * Constructor
    *
-   * @param {ContactsService} _binsService
+   * @param {ContactsService} _feedsService
    * @param {FuseSidebarService} _fuseSidebarService
    * @param {MatDialog} _matDialog
    */
   constructor(
-    private _binsService: BinsService,
+    private _feedsService: FeedsService,
     private _fuseSidebarService: FuseSidebarService,
     private _matDialog: MatDialog
   ) {
@@ -52,10 +52,10 @@ export class BinsComponent implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
-    this._binsService.onSelectedBinsChanged
+    this._feedsService.onSelectedFeedsChanged
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(selectedBins => {
-        this.hasSelectedBins = selectedBins.length > 0;
+      .subscribe(selectedFeeds => {
+        this.hasSelectedFeeds = selectedFeeds.length > 0;
       });
 
     this.searchInput.valueChanges
@@ -65,7 +65,7 @@ export class BinsComponent implements OnInit, OnDestroy {
         distinctUntilChanged()
       )
       .subscribe(searchText => {
-        this._binsService.onSearchTextChanged.next(searchText);
+        this._feedsService.onSearchTextChanged.next(searchText);
       });
   }
 
@@ -83,11 +83,11 @@ export class BinsComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   /**
-   * New bin
+   * New feed
    */
-  newBin(): void {
-    this.dialogRef = this._matDialog.open(BinsBinFormDialogComponent, {
-      panelClass: 'bin-form-dialog',
+  newFeed(): void {
+    this.dialogRef = this._matDialog.open(FeedsFeedFormDialogComponent, {
+      panelClass: 'feed-form-dialog',
       width: '50vw',
       data: {
         action: 'new'
@@ -99,7 +99,7 @@ export class BinsComponent implements OnInit, OnDestroy {
         return;
       }
 
-      this._binsService.updateBin(response.getRawValue());
+      this._feedsService.updateFeed(response.getRawValue());
     });
   }
 

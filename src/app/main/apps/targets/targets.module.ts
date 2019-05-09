@@ -13,18 +13,19 @@ import {
   MatTableModule,
   MatChipsModule,
   MatToolbarModule,
-  MAT_CHIPS_DEFAULT_OPTIONS
+  MAT_CHIPS_DEFAULT_OPTIONS,
+  MatSelectModule,
+  MatListModule,
+  MatCardModule
 } from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseConfirmDialogModule, FuseSidebarModule } from '@fuse/components';
 
 import { CommonModule } from '@angular/common';
-import { TargetsService } from './targets.service';
 import { TargetsComponent } from './targets.component';
 import { TargetsTargetListComponent } from './target-list/target-list.component';
 import { TargetsTargetFormComponent } from './target-form/target-form.component';
-
 
 @NgModule({
   declarations: [
@@ -38,14 +39,16 @@ import { TargetsTargetFormComponent } from './target-form/target-form.component'
     MatCheckboxModule,
     MatDatepickerModule,
     MatChipsModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatMenuModule,
     MatRippleModule,
     MatTableModule,
+    MatCardModule,
     MatToolbarModule,
-
+    MatListModule,
     FuseSharedModule,
     FuseConfirmDialogModule,
     FuseSidebarModule
@@ -56,7 +59,6 @@ import { TargetsTargetFormComponent } from './target-form/target-form.component'
     TargetsTargetFormComponent
   ],
   providers: [
-    TargetsService,
     {
       provide: MAT_CHIPS_DEFAULT_OPTIONS,
       useValue: {

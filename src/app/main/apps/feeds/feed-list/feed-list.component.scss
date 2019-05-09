@@ -1,6 +1,6 @@
 @import 'src/@fuse/scss/fuse';
 
-bins-bin-list {
+feeds-feed-list {
   display: flex;
   flex: 1 1 auto;
   width: 100%;
@@ -16,6 +16,10 @@ bins-bin-list {
     }
 
     .mat-column-avatar {
+      flex: 0 1 64px;
+    }
+
+    .mat-column-name {
       flex: 0 1 64px;
     }
 
@@ -39,12 +43,24 @@ bins-bin-list {
             display: none;
           }
         }
+
+        .keyword-badge {
+          background: mat-color(mat-palette($mat-green)) !important;
+          fill: mat-color(mat-palette($mat-green)) !important;
+          border-radius: 8px !important;
+        }
+
+        .target-badge {
+          background: mat-color(mat-palette($mat-blue)) !important;
+          fill: mat-color(mat-palette($mat-blue)) !important;
+          border-radius: 8px !important;
+        }
       }
     }
   }
 }
 
-#add-bin-button {
+#add-feed-button {
   position: absolute;
   bottom: 12px;
   right: 12px;

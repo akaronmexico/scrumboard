@@ -1,6 +1,6 @@
 @import 'src/@fuse/scss/fuse';
 
-.contact-form-dialog {
+.feed-form-dialog {
   @include media-breakpoint('xs') {
     width: 100%;
   }
@@ -15,11 +15,6 @@
     .mat-toolbar {
       flex: 1 0 auto;
       min-height: initial;
-    }
-
-    .heading {
-      font: 500 20px/32px Roboto, 'Helvetica Neue', sans-serif;
-      color: rgba(0, 0, 0, 0.47);
     }
 
     .toolbar-bottom {

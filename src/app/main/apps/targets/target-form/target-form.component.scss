@@ -1,44 +1,31 @@
-@import "src/@fuse/scss/fuse";
+@import 'src/@fuse/scss/fuse';
 
-.contact-form-dialog {
-  @include media-breakpoint ('xs') {
+targets-target-form {
+  margin: 1em;
+
+  .mat-card {
+    background: #f9f9f9 !important;
+  }
+}
+
+.target-form {
+  @include media-breakpoint('xs') {
     width: 100%;
   }
 
-  @include media-breakpoint ('gt-xs') {
-    width: 400px;
+  @include media-breakpoint('gt-xs') {
+    width: 100%;
   }
 
-  .mat-dialog-container {
-    padding: 0;
-
-    .mat-toolbar {
-      flex: 1 0 auto;
-      min-height: initial;
-    }
-
-    .toolbar-bottom {
-      height: auto;
-    }
-
-    .keyword-badge {
-      background: mat-color(mat-palette($mat-green)) !important;
-      fill: mat-color(mat-palette($mat-green)) !important;
-      border-radius: 8px !important;
-      color: #fff !important;
-    }
-
-    .target-badge {
-      background: mat-color(mat-palette($mat-blue)) !important;
-      fill: mat-color(mat-palette($mat-blue)) !important;
-      border-radius: 8px !important;
-      color: #fff !important;
-    }
+  .sub-heading {
+    font: 500 16px/20px Roboto, 'Helvetica Neue', sans-serif;
+    color: rgba(0, 0, 0, 0.47);
   }
 
-  .dialog-content-wrapper {
-    max-height: 85vh;
-    display: flex;
-    flex-direction: column;
+  .keyword-badge {
+    background: mat-color(mat-palette($mat-green)) !important;
+    fill: mat-color(mat-palette($mat-green)) !important;
+    border-radius: 8px !important;
+    color: #fff !important;
   }
 }

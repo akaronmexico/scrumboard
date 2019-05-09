@@ -5,7 +5,9 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { FuseUtils } from '@fuse/utils';
 import { Target } from './target.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TargetsService {
   onTargetsChanged: BehaviorSubject<any>;
   onSelectedTargetsChanged: BehaviorSubject<any>;
@@ -47,7 +49,6 @@ export class TargetsService {
       }, reject);
     });
   }
-
 
   /**
    * Toggle selected target by id
@@ -117,13 +118,14 @@ export class TargetsService {
    */
   updateTarget(target): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.post('api/targets-targets/' + target.id, { ...target }).subscribe(response => {
-        this.getTargets();
-        resolve(response);
-      });
+      this._httpClient
+        .post('api/targets-targets/' + target.id, { ...target })
+        .subscribe(response => {
+          this.getTargets();
+          resolve(response);
+        });
     });
   }
-
 
   /**
    * Deselect targets

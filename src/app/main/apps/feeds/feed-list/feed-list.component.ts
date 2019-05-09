@@ -15,34 +15,25 @@ import { takeUntil } from 'rxjs/operators';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
-import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
+import { FeedsFeedFormDialogComponent } from 'app/main/apps/feeds/feed-form/feed-form.component';
+import { FeedsService } from '../feeds.service';
 
 @Component({
-  selector: 'contacts-contact-list',
-  templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.scss'],
+  selector: 'feeds-feed-list',
+  templateUrl: './feed-list.component.html',
+  styleUrls: ['./feed-list.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: fuseAnimations
 })
-export class ContactsContactListComponent implements OnInit, OnDestroy {
+export class FeedsFeedListComponent implements OnInit, OnDestroy {
   @ViewChild('dialogContent')
   dialogContent: TemplateRef<any>;
 
-  contacts: any;
+  feeds: any;
   user: any;
   dataSource: FilesDataSource | null;
-  displayedColumns = [
-    'checkbox',
-    'avatar',
-    'name',
-    'nativeName',
-    'region',
-    'targets',
-    'keywords',
-    'buttons'
-  ];
-  selectedContacts: any[];
+  displayedColumns = ['checkbox', 'name', 'url'];
+  selectedFeeds: any[];
   checkboxes: {};
   dialogRef: any;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
@@ -53,11 +44,11 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
   /**
    * Constructor
    *
-   * @param {ContactsService} _contactsService
+   * @param {FeedsService} _feedsService
    * @param {MatDialog} _matDialog
    */
   constructor(
-    private _contactsService: ContactsService,
+    private _feedsService: FeedsService,
     public _matDialog: MatDialog
   ) {
     // Set the private defaults
@@ -72,42 +63,36 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
-    this.dataSource = new FilesDataSource(this._contactsService);
+    this.dataSource = new FilesDataSource(this._feedsService);
 
-    this._contactsService.onContactsChanged
+    this._feedsService.onFeedsChanged
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(contacts => {
-        this.contacts = contacts;
+      .subscribe(feeds => {
+        this.feeds = feeds;
 
         this.checkboxes = {};
-        contacts.map(contact => {
-          this.checkboxes[contact.id] = false;
+        feeds.map(contact => {
+          this.checkboxes[feeds.id] = false;
         });
       });
 
-    this._contactsService.onSelectedContactsChanged
+    this._feedsService.onSelectedFeedsChanged
       .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(selectedContacts => {
+      .subscribe(selectedFeeds => {
         for (const id in this.checkboxes) {
           if (!this.checkboxes.hasOwnProperty(id)) {
             continue;
           }
 
-          this.checkboxes[id] = selectedContacts.includes(id);
+          this.checkboxes[id] = selectedFeeds.includes(id);
         }
-        this.selectedContacts = selectedContacts;
+        this.selectedFeeds = selectedFeeds;
       });
 
-    this._contactsService.onUserDataChanged
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(user => {
-        this.user = user;
-      });
-
-    this._contactsService.onFilterChanged
+    this._feedsService.onFilterChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(() => {
-        this._contactsService.deselectContacts();
+        this._feedsService.deselectFeeds();
       });
   }
 
@@ -129,12 +114,12 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
    *
    * @param contact
    */
-  editContact(contact): void {
-    this.dialogRef = this._matDialog.open(ContactsContactFormDialogComponent, {
-      panelClass: 'contact-form-dialog',
-      width: '80vw',
+  editFeed(feed): void {
+    this.dialogRef = this._matDialog.open(FeedsFeedFormDialogComponent, {
+      panelClass: 'feed-form-dialog',
+      width: '50vw',
       data: {
-        contact: contact,
+        feed: feed,
         action: 'edit'
       }
     });
@@ -150,14 +135,14 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
          * Save
          */
         case 'save':
-          this._contactsService.updateContact(formData.getRawValue());
+          this._feedsService.updateFeed(formData.getRawValue());
 
           break;
         /**
          * Delete
          */
         case 'delete':
-          this.deleteContact(contact);
+          this.deleteFeed(feed);
 
           break;
       }
@@ -165,9 +150,9 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Delete Contact
+   * Delete Feed
    */
-  deleteContact(contact): void {
+  deleteFeed(feed): void {
     this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
       disableClose: false
     });
@@ -177,7 +162,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
 
     this.confirmDialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this._contactsService.deleteContact(contact);
+        this._feedsService.deleteFeed(feed);
       }
       this.confirmDialogRef = null;
     });
@@ -189,22 +174,7 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
    * @param contactId
    */
   onSelectedChange(contactId): void {
-    this._contactsService.toggleSelectedContact(contactId);
-  }
-
-  /**
-   * Toggle star
-   *
-   * @param contactId
-   */
-  toggleStar(contactId): void {
-    if (this.user.starred.includes(contactId)) {
-      this.user.starred.splice(this.user.starred.indexOf(contactId), 1);
-    } else {
-      this.user.starred.push(contactId);
-    }
-
-    this._contactsService.updateUserData(this.user);
+    this._feedsService.toggleSelectedFeed(contactId);
   }
 }
 
@@ -212,9 +182,9 @@ export class FilesDataSource extends DataSource<any> {
   /**
    * Constructor
    *
-   * @param {ContactsService} _contactsService
+   * @param {FeedsService} _feedsService
    */
-  constructor(private _contactsService: ContactsService) {
+  constructor(private _feedsService: FeedsService) {
     super();
   }
 
@@ -223,7 +193,7 @@ export class FilesDataSource extends DataSource<any> {
    * @returns {Observable<any[]>}
    */
   connect(): Observable<any[]> {
-    return this._contactsService.onContactsChanged;
+    return this._feedsService.onFeedsChanged;
   }
 
   /**

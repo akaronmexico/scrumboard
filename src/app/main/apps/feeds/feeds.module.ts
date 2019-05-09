@@ -19,36 +19,32 @@ import {
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseConfirmDialogModule, FuseSidebarModule } from '@fuse/components';
 
-import { ContactsComponent } from 'app/main/apps/contacts/contacts.component';
-import { ContactsService } from 'app/main/apps/contacts/contacts.service';
-import { ContactsContactListComponent } from 'app/main/apps/contacts/contact-list/contact-list.component';
-import { ContactsSelectedBarComponent } from 'app/main/apps/contacts/selected-bar/selected-bar.component';
-import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/contact-form/contact-form.component';
 import { CommonModule } from '@angular/common';
-import { TargetsModule } from '../targets/targets.module';
-import { BinsService } from '../bins/bins.service';
+import { FeedsSelectedBarComponent } from './selected-bar/selected-bar.component';
+import { FeedsService } from './feeds.service';
+import { FeedsComponent } from './feeds.component';
+import { FeedsFeedListComponent } from './feed-list/feed-list.component';
+import { FeedsFeedFormDialogComponent } from './feed-form/feed-form.component';
 
 const routes: Routes = [
   {
     path: '**',
-    component: ContactsComponent,
+    component: FeedsComponent,
     resolve: {
-      contacts: ContactsService,
-      bins: BinsService
+      feeds: FeedsService
     }
   }
 ];
 
 @NgModule({
   declarations: [
-    ContactsComponent,
-    ContactsContactListComponent,
-    ContactsSelectedBarComponent,
-    ContactsContactFormDialogComponent
+    FeedsComponent,
+    FeedsFeedListComponent,
+    FeedsSelectedBarComponent,
+    FeedsFeedFormDialogComponent
   ],
   imports: [
     RouterModule.forChild(routes),
-    TargetsModule,
     CommonModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -74,6 +70,6 @@ const routes: Routes = [
       }
     }
   ],
-  entryComponents: [ContactsContactFormDialogComponent]
+  entryComponents: [FeedsFeedFormDialogComponent]
 })
-export class ContactsModule {}
+export class FeedsModule {}

@@ -1,9 +1,13 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatChipInputEvent } from '@angular/material';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material';
 
 import { Target } from 'app/main/apps/targets/target.model';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { Bin, TargetBin } from '../../bins/bin.model';
+import { BinsService } from '../../bins/bins.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'targets-target-form',
@@ -13,7 +17,9 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 })
 export class TargetsTargetFormComponent {
   action: string;
-  target: Target;
+
+  @Input() target: Target;
+  bins: Bin[];
   targetForm: FormGroup;
   dialogTitle: string;
 
@@ -21,60 +27,46 @@ export class TargetsTargetFormComponent {
   selectable = true;
   removable = true;
   addOnBlur = true;
+
+  private _unsubscribeAll: Subject<any>;
+
   // Enter, comma
   separatorKeysCodes = [ENTER, COMMA];
   /**
    * Constructor
    *
-   * @param {MatDialogRef<ContactsContactFormDialogComponent>} matDialogRef
-   * @param _data
    * @param {FormBuilder} _formBuilder
    */
-  constructor(private _formBuilder: FormBuilder
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _binsService: BinsService
   ) {
-    
+    this._unsubscribeAll = new Subject();
+    this._binsService.onBinsChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(bins => {
+        this.bins = bins;
+      });
+  }
 
+  ngOnInit(): void {
     this.targetForm = this.createTargetForm();
   }
 
-  addTarget(event: MatChipInputEvent): void {
+  addTargetBin(): void {
+    if (!this.target.bins) {
+      this.target.bins = [];
+    }
+    this.target.bins.push(new TargetBin({}));
+  }
+
+  addKeyword(event: MatChipInputEvent, targetBin: TargetBin): void {
     const input = event.input;
     const value = event.value;
 
     // Add our requirement
     if ((value || '').trim()) {
-      const tempTargets = Array.from(this.targetForm.controls['targets'].value);
-
-      tempTargets.push(value.trim());
-
-      this.targetForm.controls['targets'].setValue(tempTargets);
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  removeTarget(index: number): void {
-    const tempTargets = Array.from(this.targetForm.controls['targets'].value);
-
-    if (tempTargets && index > -1) {
-      tempTargets.splice(index, 1);
-      this.targetForm.controls['targets'].setValue(tempTargets);
-    }
-  }
-
-  addKeyword(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add our requirement
-    if ((value || '').trim()) {
-      const tempKeywords = this.targetForm.controls['keywords'].value;
-      tempKeywords.push(value.trim());
-
-      this.targetForm.controls['keywords'].setValue(tempKeywords);
+      targetBin.keywords.push(value.trim());
     }
     // Reset the input value
     if (input) {
@@ -82,12 +74,9 @@ export class TargetsTargetFormComponent {
     }
   }
 
-  removeKeyword(index: number): void {
-    const tempKeywords = this.targetForm.controls['keywords'].value;
-
-    if (tempKeywords && index > -1) {
-      tempKeywords.splice(index, 1);
-      this.targetForm.controls['keywords'].setValue(tempKeywords);
+  removeKeyword(index: number, targetBin: TargetBin): void {
+    if (targetBin.keywords && index > -1) {
+      targetBin.keywords.splice(index, 1);
     }
   }
 

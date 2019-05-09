@@ -32,7 +32,11 @@ export class ContactsComponent implements OnInit, OnDestroy {
    * @param {FuseSidebarService} _fuseSidebarService
    * @param {MatDialog} _matDialog
    */
-  constructor(private _contactsService: ContactsService, private _fuseSidebarService: FuseSidebarService, private _matDialog: MatDialog) {
+  constructor(
+    private _contactsService: ContactsService,
+    private _fuseSidebarService: FuseSidebarService,
+    private _matDialog: MatDialog
+  ) {
     // Set the defaults
     this.searchInput = new FormControl('');
 
@@ -48,9 +52,11 @@ export class ContactsComponent implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
-    this._contactsService.onSelectedContactsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(selectedContacts => {
-      this.hasSelectedContacts = selectedContacts.length > 0;
-    });
+    this._contactsService.onSelectedContactsChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(selectedContacts => {
+        this.hasSelectedContacts = selectedContacts.length > 0;
+      });
 
     this.searchInput.valueChanges
       .pipe(
@@ -82,7 +88,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   newContact(): void {
     this.dialogRef = this._matDialog.open(ContactsContactFormDialogComponent, {
       panelClass: 'contact-form-dialog',
-      width: '50vw',
+      width: '80vw',
       data: {
         action: 'new'
       }

@@ -1,0 +1,65 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{ value: '50' }">
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="checkbox">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let feed">
+      <mat-checkbox
+        [(ngModel)]="checkboxes[feed.id]"
+        (ngModelChange)="onSelectedChange(feed.id)"
+        (click)="$event.stopPropagation()"
+      >
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef fxFlex="20">Name</mat-header-cell>
+    <mat-cell *matCellDef="let feed" fxFlex="20">
+      <p class="name text-truncate font-weight-600">{{ feed.name }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- URL Column -->
+  <ng-container matColumnDef="url">
+    <mat-header-cell *matHeaderCellDef>URL</mat-header-cell>
+    <mat-cell *matCellDef="let feed">
+      <p class="url text-truncate font-weight-600">{{ feed.url }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Buttons Column -->
+  <ng-container matColumnDef="buttons">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let feed">
+      <div fxFlex="row" fxLayoutAlign="end center">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="moreMenu"
+          aria-label="More"
+          (click)="$event.stopPropagation()"
+        >
+          <mat-icon class="secondary-text">more_vert</mat-icon>
+        </button>
+
+        <mat-menu #moreMenu="matMenu">
+          <button mat-menu-item aria-label="remove" (click)="deleteFeed(feed)">
+            <mat-icon>delete</mat-icon>
+            <span>Remove</span>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row
+    *matRowDef="let feed; columns: displayedColumns"
+    class="feed"
+    (click)="editFeed(feed)"
+    [ngClass]="{ 'accent-50': checkboxes[feed.id] }"
+    matRipple
+    [@animate]="{ value: '*', params: { y: '100%' } }"
+  >
+  </mat-row>
+</mat-table>

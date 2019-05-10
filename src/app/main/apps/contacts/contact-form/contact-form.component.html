@@ -2,27 +2,15 @@
   <mat-toolbar matDialogTitle class="mat-accent m-0">
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <span class="title dialog-title">{{ dialogTitle }}</span>
-      <button
-        mat-icon-button
-        (click)="matDialogRef.close()"
-        aria-label="Close dialog"
-      >
+      <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
         <mat-icon>close</mat-icon>
       </button>
     </mat-toolbar-row>
 
-    <mat-toolbar-row
-      class="toolbar-bottom py-16"
-      fxLayout="column"
-      fxLayoutAlign="center center"
-    >
-      <img
-        [src]="contact.avatar"
-        class="avatar contact-avatar huge m-0"
-        [alt]="contact.name"
-      />
+    <mat-toolbar-row class="toolbar-bottom py-16" fxLayout="column" fxLayoutAlign="center center">
+      <img [src]="contact.avatar" class="avatar contact-avatar huge m-0" [alt]="contact.name" />
       <div class="contact-name mt-8">
-        {{ contact.name }} ({{ contact.nativeName }})
+        {{ contact.name }}
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -34,16 +22,13 @@
           <mat-label>Name</mat-label>
           <input name="name" formControlName="name" matInput required />
         </mat-form-field>
-        <mat-form-field appearance="outline" fxFlex>
-          <mat-label>Native Name</mat-label>
-          <input name="nativeName" formControlName="nativeName" matInput />
-        </mat-form-field>
       </div>
 
-      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="start center">
         <span class="heading">Targets</span>
         <button
           *ngIf="action === 'edit'"
+          color="accent"
           mat-button
           class="mr-8"
           (click)="addTarget()"
@@ -55,21 +40,17 @@
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
-        <targets-target-list [targets]="contact.targets"></targets-target-list>
+        <targets-target-list [targets]="targets"></targets-target-list>
       </div>
     </form>
   </div>
 
-  <div
-    mat-dialog-actions
-    class="m-0 p-16"
-    fxLayout="row"
-    fxLayoutAlign="end center"
-  >
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
     <button
       *ngIf="action === 'edit'"
       mat-button
       class="mr-8"
+      color="warn"
       (click)="matDialogRef.close(['delete', contactForm])"
       aria-label="Delete"
       matTooltip="Delete"
@@ -79,7 +60,8 @@
 
     <button
       *ngIf="action !== 'edit'"
-      mat-button
+      mat-raised-button
+      color="accent"
       class="save-button"
       (click)="matDialogRef.close(contactForm)"
       [disabled]="contactForm.invalid"
@@ -90,9 +72,10 @@
 
     <button
       *ngIf="action === 'edit'"
-      mat-button
+      mat-raised-button
+      color="accent"
       class="save-button"
-      (click)="matDialogRef.close(['save', contactForm])"
+      (click)="save()"
       [disabled]="contactForm.invalid"
       aria-label="SAVE"
     >

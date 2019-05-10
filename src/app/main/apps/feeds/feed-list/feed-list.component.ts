@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
@@ -47,10 +40,7 @@ export class FeedsFeedListComponent implements OnInit, OnDestroy {
    * @param {FeedsService} _feedsService
    * @param {MatDialog} _matDialog
    */
-  constructor(
-    private _feedsService: FeedsService,
-    public _matDialog: MatDialog
-  ) {
+  constructor(private _feedsService: FeedsService, public _matDialog: MatDialog) {
     // Set the private defaults
     this._unsubscribeAll = new Subject();
   }
@@ -65,35 +55,29 @@ export class FeedsFeedListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.dataSource = new FilesDataSource(this._feedsService);
 
-    this._feedsService.onFeedsChanged
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(feeds => {
-        this.feeds = feeds;
+    this._feedsService.onFeedsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(feeds => {
+      this.feeds = feeds;
 
-        this.checkboxes = {};
-        feeds.map(contact => {
-          this.checkboxes[feeds.id] = false;
-        });
+      this.checkboxes = {};
+      feeds.map(feed => {
+        this.checkboxes[feed.id] = false;
       });
+    });
 
-    this._feedsService.onSelectedFeedsChanged
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(selectedFeeds => {
-        for (const id in this.checkboxes) {
-          if (!this.checkboxes.hasOwnProperty(id)) {
-            continue;
-          }
-
-          this.checkboxes[id] = selectedFeeds.includes(id);
+    this._feedsService.onSelectedFeedsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(selectedFeeds => {
+      for (const id in this.checkboxes) {
+        if (!this.checkboxes.hasOwnProperty(id)) {
+          continue;
         }
-        this.selectedFeeds = selectedFeeds;
-      });
 
-    this._feedsService.onFilterChanged
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(() => {
-        this._feedsService.deselectFeeds();
-      });
+        this.checkboxes[id] = selectedFeeds.includes(id);
+      }
+      this.selectedFeeds = selectedFeeds;
+    });
+
+    this._feedsService.onFilterChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
+      this._feedsService.deselectFeeds();
+    });
   }
 
   /**
@@ -157,8 +141,7 @@ export class FeedsFeedListComponent implements OnInit, OnDestroy {
       disableClose: false
     });
 
-    this.confirmDialogRef.componentInstance.confirmMessage =
-      'Are you sure you want to delete?';
+    this.confirmDialogRef.componentInstance.confirmMessage = 'Are you sure you want to delete?';
 
     this.confirmDialogRef.afterClosed().subscribe(result => {
       if (result) {

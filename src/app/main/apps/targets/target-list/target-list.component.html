@@ -1,6 +1,9 @@
 <div class="mt-2" fxFlex fxLayoutGap="20px" fusePerfectScrollbar>
   <targets-target-form
-    *ngFor="let target of targets"
+    *ngFor="let target of targets; let i = index"
     [target]="target"
+    [targetIndex]="i"
+    (remove)="onTargetRemove($event)"
+    @fadeIn
   ></targets-target-form>
 </div>

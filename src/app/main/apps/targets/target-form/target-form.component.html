@@ -1,64 +1,60 @@
-<mat-card fxFlex class="target-form mt-2">
+<mat-card fxFlex class="auto-width target-form mt-2">
   <mat-card-content>
     <form [formGroup]="targetForm">
       <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Target Name</mat-label>
-          <input name="name" formControlName="name" matInput required />
+          <input name="name" placeholder="Target Name" [(ngModel)]="target.name" [ngModelOptions]="{ standalone: true }" matInput required />
         </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
         <span class="sub-heading">Bins & Keywords</span>
-        <button mat-button class="mr-8" (click)="addTargetBin()">
-          Add
+        <button mat-button color="accent" class="mr-8" (click)="addTargetBin()">
+          Add Bin/Keywords
         </button>
       </div>
-      <div
-        fxLayout="row"
-        *ngFor="let targetBin of target.bins"
-        fxLayoutAlign="start center"
-        fxLayoutGap="20px"
-      >
-        <mat-form-field appearance="outline" fxFlex="20">
-          <mat-label>Bin</mat-label>
-          <mat-select
-            [(ngModel)]="targetBin.bin"
-            [ngModelOptions]="{ standalone: true }"
-          >
-            <mat-option *ngFor="let bin of bins" [value]="bin">
-              {{ bin.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="bin-group" fusePerfectScrollbar>
+        <div fxLayout="row" *ngFor="let targetBin of target.bins; let i = index" fxLayoutGap="20px" fxLayoutAlign="start center" @fadeIn>
+          <mat-form-field appearance="outline" fxFlex="20">
+            <mat-label>Bin</mat-label>
+            <mat-select [(ngModel)]="targetBin.bin" [ngModelOptions]="{ standalone: true }">
+              <mat-option *ngFor="let bin of bins" [value]="bin">
+                {{ bin.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field appearance="outline" fxFlex>
-          <mat-label>Keywords</mat-label>
-          <mat-chip-list #keywordChipList>
-            <mat-chip
-              class="keyword-badge"
-              *ngFor="let keyword of targetBin.keywords; let i = index"
-              [selectable]="selectable"
-              [removable]="removable"
-              (removed)="removeKeyword(i, targetBin)"
-            >
-              {{ keyword }}
-              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-            </mat-chip>
-            <input
-              placeholder="New Keyword..."
-              [matChipInputFor]="keywordChipList"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-              [matChipInputAddOnBlur]="addOnBlur"
-              (matChipInputTokenEnd)="addKeyword($event, targetBin)"
-            />
-          </mat-chip-list>
-        </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Keywords</mat-label>
+            <mat-chip-list #keywordChipList>
+              <mat-chip
+                class="keyword-badge"
+                *ngFor="let keyword of targetBin.keywords; let i = index"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="removeKeyword(i, targetBin)"
+              >
+                {{ keyword }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="New Keyword..."
+                [matChipInputFor]="keywordChipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="addKeyword($event, targetBin)"
+              />
+            </mat-chip-list>
+          </mat-form-field>
+          <div class="button-group">
+            <button mat-icon-button color="warn" (click)="deleteBin(i)"><mat-icon>clear</mat-icon></button>
+          </div>
+        </div>
       </div>
     </form>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button color="warn" (click)="delete()">DELETE</button>
   </mat-card-actions>
 </mat-card>

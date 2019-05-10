@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 
@@ -8,17 +8,21 @@ import { Bin, TargetBin } from '../../bins/bin.model';
 import { BinsService } from '../../bins/bins.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { fuseAnimations } from '@fuse/animations';
 
 @Component({
   selector: 'targets-target-form',
   templateUrl: './target-form.component.html',
   styleUrls: ['./target-form.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: fuseAnimations
 })
-export class TargetsTargetFormComponent {
+export class TargetsTargetFormComponent implements OnInit {
   action: string;
 
   @Input() target: Target;
+  @Input() targetIndex: number;
+  @Output() remove = new EventEmitter();
   bins: Bin[];
   targetForm: FormGroup;
   dialogTitle: string;
@@ -37,20 +41,19 @@ export class TargetsTargetFormComponent {
    *
    * @param {FormBuilder} _formBuilder
    */
-  constructor(
-    private _formBuilder: FormBuilder,
-    private _binsService: BinsService
-  ) {
+  constructor(private _formBuilder: FormBuilder, private _binsService: BinsService) {
     this._unsubscribeAll = new Subject();
-    this._binsService.onBinsChanged
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe(bins => {
-        this.bins = bins;
-      });
+    this._binsService.onBinsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(bins => {
+      this.bins = bins;
+    });
   }
 
   ngOnInit(): void {
     this.targetForm = this.createTargetForm();
+  }
+
+  delete(): void {
+    this.remove.emit({ index: this.targetIndex });
   }
 
   addTargetBin(): void {
@@ -58,6 +61,10 @@ export class TargetsTargetFormComponent {
       this.target.bins = [];
     }
     this.target.bins.push(new TargetBin({}));
+  }
+
+  deleteBin(index): void {
+    this.target.bins.splice(index, 1);
   }
 
   addKeyword(event: MatChipInputEvent, targetBin: TargetBin): void {

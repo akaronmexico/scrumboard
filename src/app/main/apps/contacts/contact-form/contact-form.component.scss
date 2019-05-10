@@ -1,11 +1,11 @@
 @import 'src/@fuse/scss/fuse';
 
 .contact-form-dialog {
-  @include media-breakpoint('xs') {
+  @include media-breakpoint ('xs') {
     width: 100%;
   }
 
-  @include media-breakpoint('gt-xs') {
+  @include media-breakpoint ('gt-xs') {
     width: 400px;
   }
 
@@ -18,7 +18,7 @@
     }
 
     .heading {
-      font: 500 20px/32px Roboto, 'Helvetica Neue', sans-serif;
+      font: 500 16px/28px Roboto, 'Helvetica Neue', sans-serif;
       color: rgba(0, 0, 0, 0.47);
     }
 

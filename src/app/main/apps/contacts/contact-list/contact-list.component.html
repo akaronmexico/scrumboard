@@ -58,19 +58,7 @@
     <mat-cell *matCellDef="let contact" fxHide fxShow.gt-md>
       <mat-chip-list class="mat-chip-list-stacked">
         <mat-chip *ngFor="let target of contact.targets" class="target-badge" selected>
-          {{ target }}
-        </mat-chip>
-      </mat-chip-list>
-    </mat-cell>
-  </ng-container>
-
-  <!-- Keywords Column -->
-  <ng-container matColumnDef="keywords">
-    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Keywords</mat-header-cell>
-    <mat-cell *matCellDef="let contact" fxHide fxShow.gt-md>
-      <mat-chip-list class="mat-chip-list-stacked">
-        <mat-chip *ngFor="let keyword of contact.keywords" class="keyword-badge" selected>
-          {{ keyword }}
+          {{ target.name }}
         </mat-chip>
       </mat-chip-list>
     </mat-cell>

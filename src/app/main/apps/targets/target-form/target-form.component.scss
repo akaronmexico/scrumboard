@@ -4,16 +4,16 @@ targets-target-form {
   margin: 1em;
 
   .mat-card {
-    background: #f9f9f9 !important;
+    border: 1px solid #ccc;
   }
 }
 
 .target-form {
-  @include media-breakpoint('xs') {
+  @include media-breakpoint ('xs') {
     width: 100%;
   }
 
-  @include media-breakpoint('gt-xs') {
+  @include media-breakpoint ('gt-xs') {
     width: 100%;
   }
 
@@ -21,6 +21,8 @@ targets-target-form {
     font: 500 16px/20px Roboto, 'Helvetica Neue', sans-serif;
     color: rgba(0, 0, 0, 0.47);
   }
+
+  .bin-group {}
 
   .keyword-badge {
     background: mat-color(mat-palette($mat-green)) !important;

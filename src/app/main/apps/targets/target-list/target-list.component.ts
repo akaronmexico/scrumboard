@@ -1,27 +1,19 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-  ViewEncapsulation,
-  Input
-} from "@angular/core";
-import { FormGroup } from "@angular/forms";
-import { MatDialog, MatDialogRef } from "@angular/material";
-import { DataSource } from "@angular/cdk/collections";
-import { Observable, Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { DataSource } from '@angular/cdk/collections';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-import { fuseAnimations } from "@fuse/animations";
-import { FuseConfirmDialogComponent } from "@fuse/components/confirm-dialog/confirm-dialog.component";
-import { Target } from "@angular/compiler";
-import { TargetsService } from "../targets.service";
+import { fuseAnimations } from '@fuse/animations';
+import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
+import { Target } from '@angular/compiler';
+import { TargetsService } from '../targets.service';
 
 @Component({
-  selector: "targets-target-list",
-  templateUrl: "./target-list.component.html",
-  styleUrls: ["./target-list.component.scss"],
+  selector: 'targets-target-list',
+  templateUrl: './target-list.component.html',
+  styleUrls: ['./target-list.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: fuseAnimations
 })
@@ -62,23 +54,8 @@ export class TargetsTargetListComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  // -----------------------------------------------------------------------------------------------------
-  // @ Public methods
-  // -----------------------------------------------------------------------------------------------------
-
-  /**
-   * Delete Contact
-   */
-  deleteContact(target): void {
-    this._targetsService.deleteTarget(target);
-  }
-
-  /**
-   * On selected change
-   *
-   * @param targetId
-   */
-  onSelectedChange(targetId): void {
-    this._targetsService.toggleSelectedTarget(targetId);
+  onTargetRemove(event: any): void {
+    const index = event.index;
+    this.targets.splice(index, 1);
   }
 }

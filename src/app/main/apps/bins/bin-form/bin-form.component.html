@@ -27,8 +27,6 @@
           <textarea matInput cdkTextareaAutosize formControlName="description" placeholder="Bin Description"></textarea>
         </mat-form-field>
       </div>
-
-     
     </form>
   </div>
 
@@ -36,6 +34,7 @@
     <button
       *ngIf="action === 'edit'"
       mat-button
+      color="warn"
       class="mr-8"
       (click)="matDialogRef.close(['delete', binForm])"
       aria-label="Delete"
@@ -46,7 +45,8 @@
 
     <button
       *ngIf="action !== 'edit'"
-      mat-button
+      mat-raised-button
+      color="accent"
       class="save-button"
       (click)="matDialogRef.close(binForm)"
       [disabled]="binForm.invalid"
@@ -57,7 +57,8 @@
 
     <button
       *ngIf="action === 'edit'"
-      mat-button
+      mat-raised-button
+      color="accent"
       class="save-button"
       (click)="matDialogRef.close(['save', binForm])"
       [disabled]="binForm.invalid"

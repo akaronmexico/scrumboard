@@ -1,10 +1,6 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatChipInputEvent
-} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatChipInputEvent } from '@angular/material';
 
 import { Contact } from 'app/main/apps/contacts/contact.model';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
@@ -21,7 +17,7 @@ export class ContactsContactFormDialogComponent {
   contact: Contact;
   contactForm: FormGroup;
   dialogTitle: string;
-
+  targets: Target[];
   visible = true;
   selectable = true;
   removable = true;
@@ -46,51 +42,22 @@ export class ContactsContactFormDialogComponent {
     if (this.action === 'edit') {
       this.dialogTitle = 'Edit Partner Configuration';
       this.contact = _data.contact;
+      this.targets = Array.from(this.contact.targets);
     } else {
       this.dialogTitle = 'New Partner Configuration';
       this.contact = new Contact({});
+      this.targets = [];
     }
 
     this.contactForm = this.createContactForm();
   }
 
   addTarget(): void {
-    this.contact.targets.push(new Target({}));
+    this.targets.push(new Target({}));
   }
 
-  removeTarget(index: number): void {
-    const tempTargets = Array.from(this.contactForm.controls['targets'].value);
-
-    if (tempTargets && index > -1) {
-      tempTargets.splice(index, 1);
-      this.contactForm.controls['targets'].setValue(tempTargets);
-    }
-  }
-
-  addKeyword(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add our requirement
-    if ((value || '').trim()) {
-      const tempKeywords = this.contactForm.controls['keywords'].value;
-      tempKeywords.push(value.trim());
-
-      this.contactForm.controls['keywords'].setValue(tempKeywords);
-    }
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  removeKeyword(index: number): void {
-    const tempKeywords = this.contactForm.controls['keywords'].value;
-
-    if (tempKeywords && index > -1) {
-      tempKeywords.splice(index, 1);
-      this.contactForm.controls['keywords'].setValue(tempKeywords);
-    }
+  save(): void {
+    this.matDialogRef.close({ action: this.action, form: this.contactForm, targets: this.targets });
   }
 
   // -----------------------------------------------------------------------------------------------------

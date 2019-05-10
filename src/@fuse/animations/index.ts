@@ -63,6 +63,17 @@ export const fuseAnimations = [
         transition('0 => 1', animate('300ms ease-in'))
     ]),
 
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: '0' }),
+        animate('.5s ease-out', style({ opacity: '1' })),
+      ]),
+       transition(':leave', [
+        style({ opacity: '1' }),
+        animate('.25s ease-out', style({ opacity: '0' })),
+      ]),
+    ]),
+
     trigger('slideInOut', [
         state('0', style({
             height : '0px',

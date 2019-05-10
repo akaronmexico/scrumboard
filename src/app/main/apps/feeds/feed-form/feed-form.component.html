@@ -2,20 +2,12 @@
   <mat-toolbar matDialogTitle class="mat-accent m-0">
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <span class="title dialog-title">{{ dialogTitle }}</span>
-      <button
-        mat-icon-button
-        (click)="matDialogRef.close()"
-        aria-label="Close dialog"
-      >
+      <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
         <mat-icon>close</mat-icon>
       </button>
     </mat-toolbar-row>
 
-    <mat-toolbar-row
-      class="toolbar-bottom py-16"
-      fxLayout="column"
-      fxLayoutAlign="center center"
-    >
+    <mat-toolbar-row class="toolbar-bottom py-16" fxLayout="column" fxLayoutAlign="center center">
       <div class="feed-name mt-8">{{ feed.name }}</div>
     </mat-toolbar-row>
   </mat-toolbar>
@@ -38,15 +30,11 @@
     </form>
   </div>
 
-  <div
-    mat-dialog-actions
-    class="m-0 p-16"
-    fxLayout="row"
-    fxLayoutAlign="end center"
-  >
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
     <button
       *ngIf="action === 'edit'"
       mat-button
+      color="warn"
       class="mr-8"
       (click)="matDialogRef.close(['delete', feedForm])"
       aria-label="Delete"
@@ -57,7 +45,8 @@
 
     <button
       *ngIf="action !== 'edit'"
-      mat-button
+      mat-raised-button
+      color="accent"
       class="save-button"
       (click)="matDialogRef.close(feedForm)"
       [disabled]="feedForm.invalid"
@@ -68,7 +57,8 @@
 
     <button
       *ngIf="action === 'edit'"
-      mat-button
+      mat-raised-button
+      color="accent"
       class="save-button"
       (click)="matDialogRef.close(['save', feedForm])"
       [disabled]="feedForm.invalid"

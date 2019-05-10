@@ -59,8 +59,8 @@ export class BinsBinListComponent implements OnInit, OnDestroy {
       this.bins = bins;
 
       this.checkboxes = {};
-      bins.map(contact => {
-        this.checkboxes[bins.id] = false;
+      bins.map(bin => {
+        this.checkboxes[bin.id] = false;
       });
     });
 
@@ -154,10 +154,10 @@ export class BinsBinListComponent implements OnInit, OnDestroy {
   /**
    * On selected change
    *
-   * @param contactId
+   * @param binId
    */
-  onSelectedChange(contactId): void {
-    this._binsService.toggleSelectedBin(contactId);
+  onSelectedChange(binId): void {
+    this._binsService.toggleSelectedBin(binId);
   }
 }
 

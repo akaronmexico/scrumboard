@@ -1,10 +1,21 @@
 <div class="list mat-elevation-z1" fxLayout="column">
   <!-- LIST HEADER -->
-  <div class="list-header" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
-    <scrumboard-board-edit-list-name fxFlex="1 0 auto" [list]="list" (listNameChanged)="onListNameChanged($event)"> </scrumboard-board-edit-list-name>
-
+  <div
+    class="list-header"
+    fxFlex
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <h3>
+      <strong>{{ list.name }}</strong
+      >&nbsp;({{ list.idCards.length }})
+    </h3>
     <div fxFlex="0 1 auto">
-      <button mat-icon-button class="list-header-option-button" [matMenuTriggerFor]="listMenu">
+      <button
+        mat-icon-button
+        class="list-header-option-button"
+        [matMenuTriggerFor]="listMenu"
+      >
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #listMenu="matMenu">
@@ -16,7 +27,14 @@
 
   <!-- LIST CONTENT -->
   <div class="list-content" fxLayout="column">
-    <div class="list-cards ngx-dnd-container" [model]="list.idCards" ngxDroppable="card" (out)="onDrop($event)" fusePerfectScrollbar #listScroll>
+    <div
+      class="list-cards ngx-dnd-container"
+      [model]="list.idCards"
+      ngxDroppable="card"
+      (out)="onDrop($event)"
+      fusePerfectScrollbar
+      #listScroll
+    >
       <scrumboard-board-card
         ngxDraggable
         class="scrumboard-board-card ngx-dnd-item"

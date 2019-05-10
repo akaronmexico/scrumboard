@@ -57,7 +57,7 @@ export class ScrumboardService implements Resolve<any> {
   getBoards(): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient
-        .get('api/scrumboard-boards')
+        .get('http://192.168.20.110:4000/api/partnerboards')
         .subscribe((response: any) => {
           this.boards = response;
           this.onBoardsChanged.next(this.boards);
@@ -69,13 +69,13 @@ export class ScrumboardService implements Resolve<any> {
   /**
    * Get board
    *
-   * @param boardId
+   * @param boardUri
    * @returns {Promise<any>}
    */
-  getBoard(boardId): Promise<any> {
+  getBoard(boardUri): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient
-        .get('api/scrumboard-boards/' + boardId)
+        .get('http://192.168.20.110:4000/api/partnerdata/' + boardUri)
         .subscribe((response: any) => {
           this.board = response;
           this.onBoardChanged.next(this.board);
@@ -224,6 +224,6 @@ export class BoardResolve implements Resolve<any> {
    * @returns {Promise<any>}
    */
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
-    return this._scrumboardService.getBoard(route.paramMap.get('boardId'));
+    return this._scrumboardService.getBoard(route.paramMap.get('boardUri'));
   }
 }

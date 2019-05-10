@@ -5,7 +5,6 @@ export class Bin {
   name: string;
   description: string;
 
-
   /**
    * Constructor
    *
@@ -14,7 +13,7 @@ export class Bin {
   constructor(bin) {
     {
       this.id = bin.id || FuseUtils.generateGUID();
-      this.name = bin.name || '';
+      this.name = bin.name || bin.bin || '';
       this.description = bin.description || '';
     }
   }
@@ -24,7 +23,6 @@ export class TargetBin {
   id: string;
   bin: Bin;
   keywords: string[];
-
 
   /**
    * Constructor

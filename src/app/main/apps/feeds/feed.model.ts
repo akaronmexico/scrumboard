@@ -2,19 +2,19 @@ import { FuseUtils } from '@fuse/utils';
 
 export class Feed {
   id: string;
-  name: string;
+  rssname: string;
   url: string;
 
   /**
    * Constructor
    *
-   * @param bin
+   * @param feed
    */
-  constructor(bin) {
+  constructor(feed) {
     {
-      this.id = bin.id || FuseUtils.generateGUID();
-      this.name = bin.name || '';
-      this.url = bin.url || '';
+      this.id = feed.id || FuseUtils.generateGUID();
+      this.rssname = feed.rssname || '';
+      this.url = feed.url || '';
     }
   }
 }

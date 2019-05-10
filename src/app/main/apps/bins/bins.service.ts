@@ -79,32 +79,25 @@ export class BinsService implements Resolve<any> {
    */
   getBins(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get('api/bins-bins').subscribe((response: any) => {
-        this.bins = response;
+      this._httpClient
+        .get('http://192.168.20.110:4000/api/bins')
+        .subscribe((response: any) => {
+          this.bins = response;
 
-        if (this.filterBy === 'starred') {
-          this.bins = this.bins.filter(_bin => {
-            return this.user.starred.includes(_bin.id);
+          if (this.searchText && this.searchText !== '') {
+            this.bins = FuseUtils.filterArrayByString(
+              this.bins,
+              this.searchText
+            );
+          }
+
+          this.bins = this.bins.map(bin => {
+            return new Bin(bin);
           });
-        }
 
-        if (this.filterBy === 'frequent') {
-          this.bins = this.bins.filter(_bin => {
-            return this.user.frequentContacts.includes(_bin.id);
-          });
-        }
-
-        if (this.searchText && this.searchText !== '') {
-          this.bins = FuseUtils.filterArrayByString(this.bins, this.searchText);
-        }
-
-        this.bins = this.bins.map(bin => {
-          return new Bin(bin);
-        });
-
-        this.onBinsChanged.next(this.bins);
-        resolve(this.bins);
-      }, reject);
+          this.onBinsChanged.next(this.bins);
+          resolve(this.bins);
+        }, reject);
     });
   }
 

@@ -2,13 +2,21 @@
   <mat-toolbar matDialogTitle class="mat-accent m-0">
     <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
       <span class="title dialog-title">{{ dialogTitle }}</span>
-      <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+      <button
+        mat-icon-button
+        (click)="matDialogRef.close()"
+        aria-label="Close dialog"
+      >
         <mat-icon>close</mat-icon>
       </button>
     </mat-toolbar-row>
 
-    <mat-toolbar-row class="toolbar-bottom py-16" fxLayout="column" fxLayoutAlign="center center">
-      <div class="feed-name mt-8">{{ feed.name }}</div>
+    <mat-toolbar-row
+      class="toolbar-bottom py-16"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
+      <div class="feed-name mt-8">{{ feed.rssname }}</div>
     </mat-toolbar-row>
   </mat-toolbar>
 
@@ -17,20 +25,25 @@
       <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Name</mat-label>
-          <input name="name" formControlName="name" matInput required />
+          <input name="rssname" formControlName="rssname" matInput required />
         </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start start">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>URL</mat-label>
-          <input name="name" formControlName="url" matInput required />
+          <input name="url" formControlName="url" matInput required />
         </mat-form-field>
       </div>
     </form>
   </div>
 
-  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+  <div
+    mat-dialog-actions
+    class="m-0 p-16"
+    fxLayout="row"
+    fxLayoutAlign="end center"
+  >
     <button
       *ngIf="action === 'edit'"
       mat-button

@@ -79,35 +79,25 @@ export class FeedsService implements Resolve<any> {
    */
   getFeeds(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get('api/feeds-feeds').subscribe((response: any) => {
-        this.feeds = response;
+      this._httpClient
+        .get('http://192.168.20.110:4000/api/feeds')
+        .subscribe((response: any) => {
+          this.feeds = response;
 
-        if (this.filterBy === 'starred') {
-          this.feeds = this.feeds.filter(_bin => {
-            return this.user.starred.includes(_bin.id);
+          if (this.searchText && this.searchText !== '') {
+            this.feeds = FuseUtils.filterArrayByString(
+              this.feeds,
+              this.searchText
+            );
+          }
+
+          this.feeds = this.feeds.map(feed => {
+            return new Feed(feed);
           });
-        }
 
-        if (this.filterBy === 'frequent') {
-          this.feeds = this.feeds.filter(_bin => {
-            return this.user.frequentContacts.includes(_bin.id);
-          });
-        }
-
-        if (this.searchText && this.searchText !== '') {
-          this.feeds = FuseUtils.filterArrayByString(
-            this.feeds,
-            this.searchText
-          );
-        }
-
-        this.feeds = this.feeds.map(feed => {
-          return new Feed(feed);
-        });
-
-        this.onFeedsChanged.next(this.feeds);
-        resolve(this.feeds);
-      }, reject);
+          this.onFeedsChanged.next(this.feeds);
+          resolve(this.feeds);
+        }, reject);
     });
   }
 

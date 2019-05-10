@@ -4,7 +4,14 @@
       <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
         <mat-form-field appearance="outline" fxFlex>
           <mat-label>Target Name</mat-label>
-          <input name="name" placeholder="Target Name" [(ngModel)]="target.name" [ngModelOptions]="{ standalone: true }" matInput required />
+          <input
+            name="name"
+            placeholder="Target Name"
+            [(ngModel)]="target.name"
+            [ngModelOptions]="{ standalone: true }"
+            matInput
+            required
+          />
         </mat-form-field>
       </div>
 
@@ -15,10 +22,20 @@
         </button>
       </div>
       <div class="bin-group" fusePerfectScrollbar>
-        <div fxLayout="row" *ngFor="let targetBin of target.bins; let i = index" fxLayoutGap="20px" fxLayoutAlign="start center" @fadeIn>
+        <div
+          fxLayout="row"
+          *ngFor="let targetBin of target.bins; let i = index"
+          fxLayoutGap="20px"
+          fxLayoutAlign="start center"
+          @fadeIn
+        >
           <mat-form-field appearance="outline" fxFlex="20">
             <mat-label>Bin</mat-label>
-            <mat-select [(ngModel)]="targetBin.bin" [ngModelOptions]="{ standalone: true }">
+            <mat-select
+              [compareWith]="compareBins"
+              [(ngModel)]="targetBin.bin"
+              [ngModelOptions]="{ standalone: true }"
+            >
               <mat-option *ngFor="let bin of bins" [value]="bin">
                 {{ bin.name }}
               </mat-option>
@@ -48,7 +65,9 @@
             </mat-chip-list>
           </mat-form-field>
           <div class="button-group">
-            <button mat-icon-button color="warn" (click)="deleteBin(i)"><mat-icon>clear</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="deleteBin(i)">
+              <mat-icon>clear</mat-icon>
+            </button>
           </div>
         </div>
       </div>

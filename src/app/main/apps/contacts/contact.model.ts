@@ -69,7 +69,7 @@ export class Contact {
       this.id = contact.id || FuseUtils.generateGUID();
       this.name = contact.name || '';
       this.nativeName = contact.nativeName || '';
-      this.avatar = contact.flag || 'assets/images/avatars/profile.jpg';
+      this.avatar = contact.avatar || 'assets/images/avatars/profile.jpg';
       this.capital = contact.capital || '';
       this.subregion = contact.subregion || '';
       this.region = contact.region || '';

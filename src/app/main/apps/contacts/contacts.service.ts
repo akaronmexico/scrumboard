@@ -58,15 +58,15 @@ export class ContactsService implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
     return new Promise((resolve, reject) => {
-      Promise.all([this.getPartners(), this.getUserData()]).then(([files]) => {
+      Promise.all([this.getContacts(), this.getUserData()]).then(([files]) => {
         this.onSearchTextChanged.subscribe(searchText => {
           this.searchText = searchText;
-          this.getPartners();
+          this.getContacts();
         });
 
         this.onFilterChanged.subscribe(filter => {
           this.filterBy = filter;
-          this.getPartners();
+          this.getContacts();
         });
 
         resolve();
@@ -118,7 +118,7 @@ export class ContactsService implements Resolve<any> {
   getContacts(): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient
-        .get('api/contacts-contacts')
+        .get('http://192.168.20.110:4000/api/partnerconfig')
         .subscribe((response: any) => {
           this.contacts = response;
 

@@ -1,4 +1,11 @@
-import { Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material';
 
@@ -41,11 +48,16 @@ export class TargetsTargetFormComponent implements OnInit {
    *
    * @param {FormBuilder} _formBuilder
    */
-  constructor(private _formBuilder: FormBuilder, private _binsService: BinsService) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _binsService: BinsService
+  ) {
     this._unsubscribeAll = new Subject();
-    this._binsService.onBinsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(bins => {
-      this.bins = bins;
-    });
+    this._binsService.onBinsChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(bins => {
+        this.bins = bins;
+      });
   }
 
   ngOnInit(): void {
@@ -85,6 +97,10 @@ export class TargetsTargetFormComponent implements OnInit {
     if (targetBin.keywords && index > -1) {
       targetBin.keywords.splice(index, 1);
     }
+  }
+
+  compareBins(o1: any, o2: any): boolean {
+    return o1.name === o2.name;
   }
 
   // -----------------------------------------------------------------------------------------------------

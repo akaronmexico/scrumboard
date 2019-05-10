@@ -1,6 +1,10 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatChipInputEvent } from '@angular/material';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatChipInputEvent
+} from '@angular/material';
 
 import { Contact } from 'app/main/apps/contacts/contact.model';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
@@ -57,7 +61,11 @@ export class ContactsContactFormDialogComponent {
   }
 
   save(): void {
-    this.matDialogRef.close({ action: this.action, form: this.contactForm, targets: this.targets });
+    this.matDialogRef.close({
+      action: 'save',
+      form: this.contactForm,
+      targets: this.targets
+    });
   }
 
   // -----------------------------------------------------------------------------------------------------

@@ -14,7 +14,7 @@ import { FeedsService } from '../feeds.service';
 })
 export class FeedsSelectedBarComponent implements OnInit, OnDestroy {
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
-  hasSelectedfeeds: boolean;
+  hasSelectedFeeds: boolean;
   isIndeterminate: boolean;
   selectedFeeds: string[];
 
@@ -27,7 +27,10 @@ export class FeedsSelectedBarComponent implements OnInit, OnDestroy {
    * @param {feedsService} _feedsService
    * @param {MatDialog} _matDialog
    */
-  constructor(private _feedsService: FeedsService, public _matDialog: MatDialog) {
+  constructor(
+    private _feedsService: FeedsService,
+    public _matDialog: MatDialog
+  ) {
     // Set the private defaults
     this._unsubscribeAll = new Subject();
   }
@@ -40,13 +43,17 @@ export class FeedsSelectedBarComponent implements OnInit, OnDestroy {
    * On init
    */
   ngOnInit(): void {
-    this._feedsService.onSelectedFeedsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(selectedFeeds => {
-      this.selectedFeeds = selectedFeeds;
-      setTimeout(() => {
-        this.hasSelectedfeeds = selectedFeeds.length > 0;
-        this.isIndeterminate = selectedFeeds.length !== this._feedsService.feeds.length && selectedFeeds.length > 0;
-      }, 0);
-    });
+    this._feedsService.onSelectedFeedsChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(selectedFeeds => {
+        this.selectedFeeds = selectedFeeds;
+        setTimeout(() => {
+          this.hasSelectedFeeds = selectedFeeds.length > 0;
+          this.isIndeterminate =
+            selectedFeeds.length !== this._feedsService.feeds.length &&
+            selectedFeeds.length > 0;
+        }, 0);
+      });
   }
 
   /**
@@ -79,12 +86,13 @@ export class FeedsSelectedBarComponent implements OnInit, OnDestroy {
   /**
    * Delete selected feeds
    */
-  deleteSelectedfeeds(): void {
+  deleteSelectedFeeds(): void {
     this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
       disableClose: false
     });
 
-    this.confirmDialogRef.componentInstance.confirmMessage = 'Are you sure you want to delete all selected feeds?';
+    this.confirmDialogRef.componentInstance.confirmMessage =
+      'Are you sure you want to delete all selected feeds?';
 
     this.confirmDialogRef.afterClosed().subscribe(result => {
       if (result) {

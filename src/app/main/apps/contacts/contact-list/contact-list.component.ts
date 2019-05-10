@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
@@ -27,7 +34,15 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
   contacts: any;
   user: any;
   dataSource: FilesDataSource | null;
-  displayedColumns = ['checkbox', 'avatar', 'name', 'nativeName', 'region', 'targets', 'buttons'];
+  displayedColumns = [
+    'checkbox',
+    'avatar',
+    'name',
+    'nativeName',
+    'region',
+    'targets',
+    'buttons'
+  ];
   selectedContacts: any[];
   checkboxes: {};
   dialogRef: any;
@@ -42,7 +57,10 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
    * @param {ContactsService} _contactsService
    * @param {MatDialog} _matDialog
    */
-  constructor(private _contactsService: ContactsService, public _matDialog: MatDialog) {
+  constructor(
+    private _contactsService: ContactsService,
+    public _matDialog: MatDialog
+  ) {
     // Set the private defaults
     this._unsubscribeAll = new Subject();
   }
@@ -57,33 +75,41 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.dataSource = new FilesDataSource(this._contactsService);
 
-    this._contactsService.onContactsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(contacts => {
-      this.contacts = contacts;
+    this._contactsService.onContactsChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(contacts => {
+        this.contacts = contacts;
 
-      this.checkboxes = {};
-      contacts.map(contact => {
-        this.checkboxes[contact.id] = false;
+        this.checkboxes = {};
+        contacts.map(contact => {
+          this.checkboxes[contact.id] = false;
+        });
       });
-    });
 
-    this._contactsService.onSelectedContactsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(selectedContacts => {
-      for (const id in this.checkboxes) {
-        if (!this.checkboxes.hasOwnProperty(id)) {
-          continue;
+    this._contactsService.onSelectedContactsChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(selectedContacts => {
+        for (const id in this.checkboxes) {
+          if (!this.checkboxes.hasOwnProperty(id)) {
+            continue;
+          }
+
+          this.checkboxes[id] = selectedContacts.includes(id);
         }
+        this.selectedContacts = selectedContacts;
+      });
 
-        this.checkboxes[id] = selectedContacts.includes(id);
-      }
-      this.selectedContacts = selectedContacts;
-    });
+    this._contactsService.onUserDataChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(user => {
+        this.user = user;
+      });
 
-    this._contactsService.onUserDataChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(user => {
-      this.user = user;
-    });
-
-    this._contactsService.onFilterChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
-      this._contactsService.deselectContacts();
-    });
+    this._contactsService.onFilterChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(() => {
+        this._contactsService.deselectContacts();
+      });
   }
 
   /**
@@ -122,8 +148,8 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
       const formData: FormGroup = response.form;
       const targets: Target[] = response.targets;
       contact.name = formData.get('name').value;
+      console.log('actionType: ' + actionType);
       contact.targets = targets;
-      const updatedContact = new Contact(contact);
       switch (actionType) {
         /**
          * Save
@@ -151,7 +177,8 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
       disableClose: false
     });
 
-    this.confirmDialogRef.componentInstance.confirmMessage = 'Are you sure you want to delete?';
+    this.confirmDialogRef.componentInstance.confirmMessage =
+      'Are you sure you want to delete?';
 
     this.confirmDialogRef.afterClosed().subscribe(result => {
       if (result) {

@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Resolve,
+  RouterStateSnapshot
+} from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { FuseUtils } from '@fuse/utils';
@@ -49,7 +53,10 @@ export class ContactsService implements Resolve<any> {
    * @param {RouterStateSnapshot} state
    * @returns {Observable<any> | Promise<any> | any}
    */
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any> | Promise<any> | any {
     return new Promise((resolve, reject) => {
       Promise.all([this.getPartners(), this.getUserData()]).then(([files]) => {
         this.onSearchTextChanged.subscribe(searchText => {
@@ -69,32 +76,37 @@ export class ContactsService implements Resolve<any> {
 
   getPartners(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get('http://restcountries.eu/rest/v2/regionalbloc/eu').subscribe((response: any) => {
-        this.contacts = response;
+      this._httpClient
+        .get('http://restcountries.eu/rest/v2/regionalbloc/eu')
+        .subscribe((response: any) => {
+          this.contacts = response;
 
-        this.contacts = this.contacts.map(contact => {
-          return new Contact(contact);
-        });
-
-        if (this.filterBy === 'starred') {
-          this.contacts = this.contacts.filter(_contact => {
-            return this.user.starred.includes(_contact.id);
+          this.contacts = this.contacts.map(contact => {
+            return new Contact(contact);
           });
-        }
 
-        if (this.filterBy === 'frequent') {
-          this.contacts = this.contacts.filter(_contact => {
-            return this.user.frequentContacts.includes(_contact.id);
-          });
-        }
+          if (this.filterBy === 'starred') {
+            this.contacts = this.contacts.filter(_contact => {
+              return this.user.starred.includes(_contact.id);
+            });
+          }
 
-        if (this.searchText && this.searchText !== '') {
-          this.contacts = FuseUtils.filterArrayByString(this.contacts, this.searchText);
-        }
+          if (this.filterBy === 'frequent') {
+            this.contacts = this.contacts.filter(_contact => {
+              return this.user.frequentContacts.includes(_contact.id);
+            });
+          }
 
-        this.onContactsChanged.next(this.contacts);
-        resolve(this.contacts);
-      }, reject);
+          if (this.searchText && this.searchText !== '') {
+            this.contacts = FuseUtils.filterArrayByString(
+              this.contacts,
+              this.searchText
+            );
+          }
+
+          this.onContactsChanged.next(this.contacts);
+          resolve(this.contacts);
+        }, reject);
     });
   }
 
@@ -105,32 +117,37 @@ export class ContactsService implements Resolve<any> {
    */
   getContacts(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get('api/contacts-contacts').subscribe((response: any) => {
-        this.contacts = response;
+      this._httpClient
+        .get('api/contacts-contacts')
+        .subscribe((response: any) => {
+          this.contacts = response;
 
-        if (this.filterBy === 'starred') {
-          this.contacts = this.contacts.filter(_contact => {
-            return this.user.starred.includes(_contact.id);
+          if (this.filterBy === 'starred') {
+            this.contacts = this.contacts.filter(_contact => {
+              return this.user.starred.includes(_contact.id);
+            });
+          }
+
+          if (this.filterBy === 'frequent') {
+            this.contacts = this.contacts.filter(_contact => {
+              return this.user.frequentContacts.includes(_contact.id);
+            });
+          }
+
+          if (this.searchText && this.searchText !== '') {
+            this.contacts = FuseUtils.filterArrayByString(
+              this.contacts,
+              this.searchText
+            );
+          }
+
+          this.contacts = this.contacts.map(contact => {
+            return new Contact(contact);
           });
-        }
 
-        if (this.filterBy === 'frequent') {
-          this.contacts = this.contacts.filter(_contact => {
-            return this.user.frequentContacts.includes(_contact.id);
-          });
-        }
-
-        if (this.searchText && this.searchText !== '') {
-          this.contacts = FuseUtils.filterArrayByString(this.contacts, this.searchText);
-        }
-
-        this.contacts = this.contacts.map(contact => {
-          return new Contact(contact);
-        });
-
-        this.onContactsChanged.next(this.contacts);
-        resolve(this.contacts);
-      }, reject);
+          this.onContactsChanged.next(this.contacts);
+          resolve(this.contacts);
+        }, reject);
     });
   }
 
@@ -141,11 +158,13 @@ export class ContactsService implements Resolve<any> {
    */
   getUserData(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.get('api/contacts-user/5725a6802d10e277a0f35724').subscribe((response: any) => {
-        this.user = response;
-        this.onUserDataChanged.next(this.user);
-        resolve(this.user);
-      }, reject);
+      this._httpClient
+        .get('api/contacts-user/5725a6802d10e277a0f35724')
+        .subscribe((response: any) => {
+          this.user = response;
+          this.onUserDataChanged.next(this.user);
+          resolve(this.user);
+        }, reject);
     });
   }
 
@@ -216,11 +235,16 @@ export class ContactsService implements Resolve<any> {
    * @returns {Promise<any>}
    */
   updateContact(contact): Promise<any> {
+    console.log('updating contact...');
     return new Promise((resolve, reject) => {
-      this._httpClient.post('api/contacts-contacts/' + contact.id, { ...contact }).subscribe(response => {
-        this.getPartners();
-        resolve(response);
-      });
+      this._httpClient
+        .post('http://192.168.20.110:4000/api/partnerconfig/' + contact.id, {
+          ...contact
+        })
+        .subscribe(response => {
+          this.getPartners();
+          resolve(response);
+        });
     });
   }
 
@@ -232,11 +256,13 @@ export class ContactsService implements Resolve<any> {
    */
   updateUserData(userData): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient.post('api/contacts-user/' + this.user.id, { ...userData }).subscribe(response => {
-        this.getUserData();
-        this.getPartners();
-        resolve(response);
-      });
+      this._httpClient
+        .post('api/contacts-user/' + this.user.id, { ...userData })
+        .subscribe(response => {
+          this.getUserData();
+          this.getPartners();
+          resolve(response);
+        });
     });
   }
 

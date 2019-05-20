@@ -3,7 +3,11 @@
   <ng-container matColumnDef="checkbox">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let contact">
-      <mat-checkbox [(ngModel)]="checkboxes[contact.id]" (ngModelChange)="onSelectedChange(contact.id)" (click)="$event.stopPropagation()">
+      <mat-checkbox
+        [(ngModel)]="checkboxes[contact.id]"
+        (ngModelChange)="onSelectedChange(contact.id)"
+        (click)="$event.stopPropagation()"
+      >
       </mat-checkbox>
     </mat-cell>
   </ng-container>
@@ -12,7 +16,12 @@
   <ng-container matColumnDef="avatar">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let contact">
-      <img class="avatar" *ngIf="contact.avatar" [alt]="contact.name" [src]="contact.avatar" />
+      <img
+        class="avatar"
+        *ngIf="contact.avatar"
+        [alt]="contact.name"
+        [src]="contact.avatar"
+      />
     </mat-cell>
   </ng-container>
 
@@ -34,7 +43,9 @@
 
   <!-- Region Column -->
   <ng-container matColumnDef="region">
-    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Region</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm
+      >Region</mat-header-cell
+    >
     <mat-cell *matCellDef="let contact" fxHide fxShow.gt-sm>
       <p class="bins">
         {{ contact.subregion }}
@@ -44,7 +55,9 @@
 
   <!-- Captial Column -->
   <ng-container matColumnDef="capital">
-    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Capital</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md
+      >Capital</mat-header-cell
+    >
     <mat-cell *matCellDef="let contact" fxHide fxShow.gt-md>
       <p class="capital text-truncate">
         {{ contact.capital }}
@@ -54,10 +67,16 @@
 
   <!-- Target Column -->
   <ng-container matColumnDef="targets">
-    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Targets</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md
+      >Targets</mat-header-cell
+    >
     <mat-cell *matCellDef="let contact" fxHide fxShow.gt-md>
       <mat-chip-list class="mat-chip-list-stacked">
-        <mat-chip *ngFor="let target of contact.targets" class="target-badge" selected>
+        <mat-chip
+          *ngFor="let target of contact.targets"
+          class="target-badge"
+          selected
+        >
           {{ target.name }}
         </mat-chip>
       </mat-chip-list>
@@ -69,17 +88,21 @@
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let contact">
       <div fxFlex="row" fxLayoutAlign="end center">
-        <button mat-icon-button (click)="$event.stopPropagation(); toggleStar(contact.id)" aria-label="Toggle star">
-          <mat-icon class="amber-fg" *ngIf="user.starred.includes(contact.id)">star</mat-icon>
-          <mat-icon class="secondary-text" *ngIf="!user.starred.includes(contact.id)">star_border</mat-icon>
-        </button>
-
-        <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More" (click)="$event.stopPropagation()">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="moreMenu"
+          aria-label="More"
+          (click)="$event.stopPropagation()"
+        >
           <mat-icon class="secondary-text">more_vert</mat-icon>
         </button>
 
         <mat-menu #moreMenu="matMenu">
-          <button mat-menu-item aria-label="remove" (click)="deleteContact(contact)">
+          <button
+            mat-menu-item
+            aria-label="remove"
+            (click)="deleteContact(contact)"
+          >
             <mat-icon>delete</mat-icon>
             <span>Remove</span>
           </button>

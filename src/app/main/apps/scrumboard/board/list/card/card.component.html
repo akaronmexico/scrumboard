@@ -32,11 +32,11 @@
   <!-- / CARD LABELS -->
 
   <!-- CARD NAME -->
-  <h3>
-    <strong>{{ card.feed }}</strong>
-  </h3>
+
   <div class="list-card-name">{{ card.title }}</div>
-  <div class="list-card-name">{{ card.summary }}</div>
+
+  <div class="list-card-summary">{{ card.summary }}</div>
+
   <!-- / CARD NAME -->
 
   <div
@@ -51,7 +51,9 @@
       <span>{{ card.keywords }}</span>
     </span>
   </div>
-
+  <div class="list-card-date">
+    {{ card.timestamp | date: 'dd MMM yyyy HH:mm' }}
+  </div>
   <!-- CARD MEMBERS -->
   <div
     *ngIf="card.idMembers.length > 0"

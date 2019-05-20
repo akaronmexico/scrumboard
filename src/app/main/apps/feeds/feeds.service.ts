@@ -10,6 +10,8 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { FuseUtils } from '@fuse/utils';
 
 import { Feed } from 'app/main/apps/feeds/feed.model';
+import { environment } from 'environments/environment';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class FeedsService implements Resolve<any> {
   onSelectedFeedsChanged: BehaviorSubject<any>;
   onSearchTextChanged: Subject<any>;
   onFilterChanged: Subject<any>;
-
+  baseURL = environment.baseUrl;
   feeds: Feed[];
   user: any;
   selectedFeeds: string[] = [];
@@ -32,7 +34,10 @@ export class FeedsService implements Resolve<any> {
    *
    * @param {HttpClient} _httpClient
    */
-  constructor(private _httpClient: HttpClient) {
+  constructor(
+    private _httpClient: HttpClient,
+    private loaderService: FuseProgressBarService
+  ) {
     // Set the defaults
     this.onFeedsChanged = new BehaviorSubject([]);
     this.onSelectedFeedsChanged = new BehaviorSubject([]);
@@ -78,9 +83,10 @@ export class FeedsService implements Resolve<any> {
    * @returns {Promise<any>}
    */
   getFeeds(): Promise<any> {
+    this.showLoader();
     return new Promise((resolve, reject) => {
       this._httpClient
-        .get('http://192.168.20.110:4000/api/feeds')
+        .get(this.baseURL + '/feeds')
         .subscribe((response: any) => {
           this.feeds = response;
 
@@ -96,6 +102,7 @@ export class FeedsService implements Resolve<any> {
           });
 
           this.onFeedsChanged.next(this.feeds);
+          this.hideLoader();
           resolve(this.feeds);
         }, reject);
     });
@@ -190,19 +197,28 @@ export class FeedsService implements Resolve<any> {
   }
 
   /**
-   * Update bin
+   * Update feed
    *
    * @param feed
    * @returns {Promise<any>}
    */
-  updateFeed(bin): Promise<any> {
+  updateFeed(feed): Promise<any> {
+    this.showLoader();
     return new Promise((resolve, reject) => {
-      this._httpClient
-        .post('api/feeds-feeds/' + bin.id, { ...bin })
-        .subscribe(response => {
-          this.getFeeds();
-          resolve(response);
-        });
+      this._httpClient.post(this.baseURL + '/feeds/', { ...feed }).subscribe(
+        response => {
+          this.getFeeds()
+            .then(res => {})
+            .finally(() => {
+              this.hideLoader();
+              resolve(response);
+            });
+        },
+        err => {
+          this.hideLoader();
+          reject(err);
+        }
+      );
     });
   }
 
@@ -222,9 +238,15 @@ export class FeedsService implements Resolve<any> {
    * @param bin
    */
   deleteFeed(feed): void {
-    const index = this.feeds.indexOf(feed);
-    this.feeds.splice(index, 1);
-    this.onFeedsChanged.next(this.feeds);
+    this.showLoader();
+    this._httpClient
+      .delete(this.baseURL + '/feeds/' + feed.id, {})
+      .subscribe(response => {
+        const index = this.feeds.indexOf(feed);
+        this.feeds.splice(index, 1);
+        this.onFeedsChanged.next(this.feeds);
+        this.hideLoader();
+      });
   }
 
   /**
@@ -235,10 +257,23 @@ export class FeedsService implements Resolve<any> {
       const feed = this.feeds.find(_feed => {
         return _feed.id === id;
       });
-      const index = this.feeds.indexOf(feed);
-      this.feeds.splice(index, 1);
+
+      this._httpClient
+        .delete(this.baseURL + '/feeds/' + feed.id, {})
+        .subscribe(response => {
+          const index = this.feeds.indexOf(feed);
+          this.feeds.splice(index, 1);
+        });
     }
     this.onFeedsChanged.next(this.feeds);
     this.deselectFeeds();
+  }
+
+  private showLoader(): void {
+    this.loaderService.show();
+  }
+
+  private hideLoader(): void {
+    this.loaderService.hide();
   }
 }

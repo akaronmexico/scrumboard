@@ -148,7 +148,6 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
       const formData: FormGroup = response.form;
       const targets: Target[] = response.targets;
       contact.name = formData.get('name').value;
-      console.log('actionType: ' + actionType);
       contact.targets = targets;
       switch (actionType) {
         /**
@@ -195,21 +194,6 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
    */
   onSelectedChange(contactId): void {
     this._contactsService.toggleSelectedContact(contactId);
-  }
-
-  /**
-   * Toggle star
-   *
-   * @param contactId
-   */
-  toggleStar(contactId): void {
-    if (this.user.starred.includes(contactId)) {
-      this.user.starred.splice(this.user.starred.indexOf(contactId), 1);
-    } else {
-      this.user.starred.push(contactId);
-    }
-
-    this._contactsService.updateUserData(this.user);
   }
 }
 

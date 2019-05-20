@@ -23,12 +23,6 @@ export class GetByIdPipe implements PipeTransform {
     });
 
     if (foundItem) {
-      console.log(
-        'returning:  ' +
-          foundItem[property] +
-          ' found item: ' +
-          JSON.stringify(foundItem, null, 2)
-      );
       return foundItem[property];
     }
   }

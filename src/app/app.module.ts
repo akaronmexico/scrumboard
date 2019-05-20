@@ -16,6 +16,13 @@ import { AppComponent } from 'app/app.component';
 import { FakeDbService } from 'app/fake-db/fake-db.service';
 import { fuseConfig } from 'app/fuse-config';
 import { LayoutModule } from 'app/layout/layout.module';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from 'environments/environment';
+
+const socketConfig: SocketIoConfig = {
+  url: environment.socketUrl,
+  options: {}
+};
 
 const appRoutes: Routes = [
   {
@@ -38,6 +45,7 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    // SocketIoModule.forRoot(socketConfig),
     RouterModule.forRoot(appRoutes),
 
     TranslateModule.forRoot(),

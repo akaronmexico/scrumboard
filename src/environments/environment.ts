@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: false,
-    hmr       : false
+  production: false,
+  hmr: false,
+  baseUrl: 'http://192.168.20.110:4000/api',
+  socketUrl: 'http://192.168.20.110:4444'
 };
 
 /*

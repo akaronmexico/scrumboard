@@ -51,7 +51,6 @@ export class ScrumboardBoardListComponent implements OnInit, OnDestroy {
     private _scrumboardService: ScrumboardService,
     private _matDialog: MatDialog
   ) {
-    console.log('list:  ' + JSON.stringify(this.list, null, 2));
     // Set the private defaults
     this._unsubscribeAll = new Subject();
   }

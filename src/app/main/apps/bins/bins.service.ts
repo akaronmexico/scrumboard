@@ -10,6 +10,8 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { FuseUtils } from '@fuse/utils';
 
 import { Bin } from 'app/main/apps/bins/bin.model';
+import { FuseProgressBarService } from '@fuse/components/progress-bar/progress-bar.service';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class BinsService implements Resolve<any> {
   onSelectedBinsChanged: BehaviorSubject<any>;
   onSearchTextChanged: Subject<any>;
   onFilterChanged: Subject<any>;
-
+  baseURL = environment.baseUrl;
   bins: Bin[];
   user: any;
   selectedBins: string[] = [];
@@ -32,7 +34,10 @@ export class BinsService implements Resolve<any> {
    *
    * @param {HttpClient} _httpClient
    */
-  constructor(private _httpClient: HttpClient) {
+  constructor(
+    private _httpClient: HttpClient,
+    private loaderService: FuseProgressBarService
+  ) {
     // Set the defaults
     this.onBinsChanged = new BehaviorSubject([]);
     this.onSelectedBinsChanged = new BehaviorSubject([]);
@@ -78,9 +83,10 @@ export class BinsService implements Resolve<any> {
    * @returns {Promise<any>}
    */
   getBins(): Promise<any> {
+    this.showLoader();
     return new Promise((resolve, reject) => {
       this._httpClient
-        .get('http://192.168.20.110:4000/api/bins')
+        .get(this.baseURL + '/bins')
         .subscribe((response: any) => {
           this.bins = response;
 
@@ -96,6 +102,7 @@ export class BinsService implements Resolve<any> {
           });
 
           this.onBinsChanged.next(this.bins);
+          this.hideLoader();
           resolve(this.bins);
         }, reject);
     });
@@ -168,12 +175,17 @@ export class BinsService implements Resolve<any> {
    * @returns {Promise<any>}
    */
   updateBin(bin): Promise<any> {
+    this.showLoader();
     return new Promise((resolve, reject) => {
       this._httpClient
-        .post('api/bins-bins/' + bin.id, { ...bin })
+        .post(this.baseURL + '/bins', { ...bin })
         .subscribe(response => {
-          this.getBins();
-          resolve(response);
+          this.getBins()
+            .then(res => {})
+            .finally(() => {
+              this.hideLoader();
+              resolve(response);
+            });
         });
     });
   }
@@ -194,9 +206,15 @@ export class BinsService implements Resolve<any> {
    * @param bin
    */
   deleteBin(bin): void {
-    const binIndex = this.bins.indexOf(bin);
-    this.bins.splice(binIndex, 1);
-    this.onBinsChanged.next(this.bins);
+    this.showLoader();
+    this._httpClient
+      .delete(this.baseURL + '/bins/' + bin.id, {})
+      .subscribe(response => {
+        const binIndex = this.bins.indexOf(bin);
+        this.bins.splice(binIndex, 1);
+        this.onBinsChanged.next(this.bins);
+        this.hideLoader();
+      });
   }
 
   /**
@@ -212,5 +230,13 @@ export class BinsService implements Resolve<any> {
     }
     this.onBinsChanged.next(this.bins);
     this.deselectBins();
+  }
+
+  private showLoader(): void {
+    this.loaderService.show();
+  }
+
+  private hideLoader(): void {
+    this.loaderService.hide();
   }
 }

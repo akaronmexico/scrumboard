@@ -4,6 +4,7 @@ export class Card {
   id: string;
   name: string;
   description: string;
+  date: Date;
   idAttachmentCover: string;
   idMembers: string[];
   idBins: string[];
@@ -35,6 +36,7 @@ export class Card {
     this.checkItemsChecked = card.checkItemsChecked || 0;
     this.comments = card.comments || [];
     this.activities = card.activities || [];
+    console.log('card: ' + JSON.stringify(card, null, 2));
     this.due = card.due || '';
   }
 }

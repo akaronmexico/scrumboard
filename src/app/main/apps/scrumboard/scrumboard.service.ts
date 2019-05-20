@@ -6,6 +6,9 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Socket } from 'ngx-socket-io';
+
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +17,23 @@ export class ScrumboardService implements Resolve<any> {
   boards: any[];
   routeParams: any;
   board: any;
-
+  baseURL = environment.baseUrl;
   onBoardsChanged: BehaviorSubject<any>;
   onBoardChanged: BehaviorSubject<any>;
-
+  // currentEvent = this.socket.fromEvent<any>('article');
   /**
    * Constructor
    *
    * @param {HttpClient} _httpClient
    */
-  constructor(private _httpClient: HttpClient) {
+  constructor(private _httpClient: HttpClient, private socket: Socket) {
     // Set the defaults
     this.onBoardsChanged = new BehaviorSubject([]);
     this.onBoardChanged = new BehaviorSubject([]);
+    // this.currentEvent.subscribe(
+    //   event => {}
+    // got socket event
+    // );
   }
 
   /**
@@ -57,7 +64,7 @@ export class ScrumboardService implements Resolve<any> {
   getBoards(): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient
-        .get('http://192.168.20.110:4000/api/partnerboards')
+        .get(this.baseURL + '/partnerboards')
         .subscribe((response: any) => {
           this.boards = response;
           this.onBoardsChanged.next(this.boards);
@@ -75,9 +82,10 @@ export class ScrumboardService implements Resolve<any> {
   getBoard(boardUri): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient
-        .get('http://192.168.20.110:4000/api/partnerdata/' + boardUri)
+        .get(this.baseURL + '/partnerdata/' + boardUri)
         .subscribe((response: any) => {
           this.board = response;
+          // this.socket.emit('subscribe', boardUri);
           this.onBoardChanged.next(this.board);
           resolve(this.board);
         }, reject);

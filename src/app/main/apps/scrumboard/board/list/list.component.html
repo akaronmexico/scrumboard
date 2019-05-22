@@ -19,7 +19,12 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #listMenu="matMenu">
-        <button mat-menu-item (click)="removeList(list.id)">Remove List</button>
+        <button mat-menu-item (click)="syncData(list.id)">
+          <mat-icon>autorenew</mat-icon>Sync Articles
+        </button>
+        <button mat-menu-item (click)="removeList(list.id)">
+          <mat-icon>clear</mat-icon>Remove List
+        </button>
       </mat-menu>
     </div>
   </div>

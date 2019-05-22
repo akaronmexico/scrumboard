@@ -28,8 +28,7 @@ export class ScrumboardBoardListComponent implements OnInit, OnDestroy {
   board: any;
   dialogRef: any;
 
-  @Input()
-  list;
+  @Input() list;
 
   @ViewChild(FusePerfectScrollbarDirective)
   listScroll: FusePerfectScrollbarDirective;
@@ -109,6 +108,21 @@ export class ScrumboardBoardListComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.listScroll.scrollToBottom(0, 400);
+    });
+  }
+
+  syncData(listId): void {
+    this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
+      disableClose: false
+    });
+
+    this.confirmDialogRef.componentInstance.confirmMessage =
+      'Send these articles to partner?';
+
+    this.confirmDialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this._scrumboardService.removeList(listId);
+      }
     });
   }
 

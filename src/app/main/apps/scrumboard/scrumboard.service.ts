@@ -6,7 +6,7 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Socket } from 'ngx-socket-io';
+// import { Socket } from 'ngx-socket-io';
 
 import { environment } from '../../../../environments/environment';
 
@@ -26,7 +26,7 @@ export class ScrumboardService implements Resolve<any> {
    *
    * @param {HttpClient} _httpClient
    */
-  constructor(private _httpClient: HttpClient, private socket: Socket) {
+  constructor(private _httpClient: HttpClient) {
     // Set the defaults
     this.onBoardsChanged = new BehaviorSubject([]);
     this.onBoardChanged = new BehaviorSubject([]);
@@ -63,32 +63,52 @@ export class ScrumboardService implements Resolve<any> {
    */
   getBoards(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._httpClient
-        .get(this.baseURL + '/partnerboards')
-        .subscribe((response: any) => {
+      this._httpClient.get(this.baseURL + '/partnerboards').subscribe(
+        (response: any) => {
           this.boards = response;
           this.onBoardsChanged.next(this.boards);
           resolve(this.boards);
-        }, reject);
+        },
+        err => {
+          console.log('caught err:' + err);
+          reject(err);
+        }
+      );
     });
-  }
-
-  /**
-   * Get board
-   *
-   * @param boardUri
-   * @returns {Promise<any>}
-   */
+  } /** 
   getBoard(boardUri): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient
-        .get(this.baseURL + '/partnerdata/' + boardUri)
+        .get(this.baseURL + '/alldata')
         .subscribe((response: any) => {
           this.board = response;
           // this.socket.emit('subscribe', boardUri);
           this.onBoardChanged.next(this.board);
           resolve(this.board);
         }, reject);
+    });
+  }
+  */
+
+  /**
+   * Get board
+   *
+   * @param boardUri
+   * @returns {Promise<any>}
+   */ getBoard(boardUri): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let url = this.baseURL;
+      if (boardUri === 'all') {
+        url += '/allbypartner';
+      } else {
+        url += '/partnerdata/' + boardUri;
+      }
+      this._httpClient.get(url).subscribe((response: any) => {
+        this.board = response;
+        // this.socket.emit('subscribe', boardUri);
+        this.onBoardChanged.next(this.board);
+        resolve(this.board);
+      }, reject);
     });
   }
 

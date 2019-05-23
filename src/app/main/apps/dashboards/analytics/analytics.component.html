@@ -212,50 +212,24 @@
             <div class="p-16" fxLayout="row" fxLayoutAlign="space-between center">
               <div class="h1 pr-16">Top Keywords</div>
 
-              <div>
-                <button mat-icon-button [matMenuTriggerFor]="card20Menu" aria-label="more">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-
-                <mat-menu #card20Menu="matMenu">
-                  <button fxLayout="row" fxLayoutAlign="start center" mat-menu-item>
-                    <mat-icon color="accent">check_box</mat-icon>
-                    <span>Show Clicks</span>
-                  </button>
-                  <button fxLayout="row" fxLayoutAlign="start center" mat-menu-item>
-                    <mat-icon color="accent">check_box</mat-icon>
-                    <span>Show Conversion</span>
-                  </button>
-                  <button fxLayout="row" fxLayoutAlign="start center" mat-menu-item>
-                    <mat-icon>check_box_outline_blank</mat-icon>
-                    <span>Show CPC</span>
-                  </button>
-                </mat-menu>
-              </div>
+              
             </div>
 
             <table class="simple clickable">
               <thead>
                 <tr>
-                  <th></th>
+                  <th>Keyword</th>
                   <th class="text-right">Articles</th>
-                  <th class="text-right">Prompts Used</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let row of widgets.widget9.rows">
-                  <td>{{ row.title }}</td>
-                  <td class="text-right">{{ row.clicks }}</td>
-                  <td class="text-right">{{ row.conversion }}</td>
+                <tr *ngFor="let row of keywordMetrics">
+                  <td>{{ row.keyword }}</td>
+                  <td class="text-right">{{ row.count }}</td>
                 </tr>
               </tbody>
             </table>
 
-            <div class="card-divider full-width"></div>
-
-            <div class="p-8 pt-16" fxLayout="row" fxLayoutAlign="start center">
-              <button mat-button color="accent">GO TO KEYWORDS</button>
-            </div>
           </div>
         </div>
         <!-- / widget 9 -->

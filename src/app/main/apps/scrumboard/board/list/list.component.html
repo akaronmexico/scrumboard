@@ -12,20 +12,21 @@
     </h3>
     <div fxFlex="0 1 auto">
       <button
+        color="accent"
         mat-icon-button
-        class="list-header-option-button"
-        [matMenuTriggerFor]="listMenu"
+        matTooltip="Sync Data"
+        (click)="syncData(list.id)"
       >
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon>autorenew</mat-icon>
       </button>
-      <mat-menu #listMenu="matMenu">
-        <button mat-menu-item (click)="syncData(list.id)">
-          <mat-icon>autorenew</mat-icon>Sync Articles
-        </button>
-        <button mat-menu-item (click)="removeList(list.id)">
-          <mat-icon>clear</mat-icon>Remove List
-        </button>
-      </mat-menu>
+      <button
+        color="accent"
+        mat-icon-button
+        matTooltip="Send Data"
+        (click)="syncData(list.id)"
+      >
+        <mat-icon>mail</mat-icon>
+      </button>
     </div>
   </div>
   <!-- / LIST HEADER -->

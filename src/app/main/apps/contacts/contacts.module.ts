@@ -27,6 +27,8 @@ import { ContactsContactFormDialogComponent } from 'app/main/apps/contacts/conta
 import { CommonModule } from '@angular/common';
 import { TargetsModule } from '../targets/targets.module';
 import { BinsService } from '../bins/bins.service';
+import { ChartsModule } from 'ng2-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const routes: Routes = [
   {
@@ -61,7 +63,8 @@ const routes: Routes = [
     MatRippleModule,
     MatTableModule,
     MatToolbarModule,
-
+    ChartsModule,
+    NgxChartsModule,
     FuseSharedModule,
     FuseConfirmDialogModule,
     FuseSidebarModule

@@ -1,12 +1,3 @@
-<!-- CARD COVER -->
-<div
-  *ngIf="board.settings.cardCoverImages && card.idAttachmentCover"
-  class="list-card-cover"
->
-  <img [src]="card.attachments | getById: card.idAttachmentCover:'src'" />
-</div>
-<!-- / CARD COVER -->
-
 <!-- CARD DETAILS -->
 <div class="list-card-details">
   <!-- CARD SORT HANDLE -->
@@ -33,9 +24,11 @@
 
   <!-- CARD NAME -->
 
-  <div class="list-card-name">{{ card.title }}</div>
-
-  <div class="list-card-summary">{{ card.summary }}</div>
+  <div class="list-card-name" [innerHTML]="card.title"></div>
+  <div *ngIf="card.imageUrl" class="article-image">
+    <img [src]="card.imageUrl" />
+  </div>
+  <div class="list-card-summary" [innerHTML]="card.summary"></div>
 
   <!-- / CARD NAME -->
 
@@ -54,9 +47,7 @@
   <div class="list-card-date">
     {{ card.timestamp | date: 'dd MMM yyyy HH:mm' }}
   </div>
-  <div *ngIf="card.imageUrl" class="article-image">
-    <img [src]="card.imageUrl" />
-  </div>
+
   <!-- CARD MEMBERS -->
   <div
     *ngIf="card.idMembers.length > 0"

@@ -83,6 +83,40 @@
     </mat-cell>
   </ng-container>
 
+  <!-- HITS Column -->
+  <ng-container matColumnDef="count">
+    <mat-header-cell *matHeaderCellDef># Hits</mat-header-cell>
+    <mat-cell *matCellDef="let contact">
+      <p class="text-truncate font-weight-600">{{ contact.count }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- HISTOGRAM Column -->
+  <ng-container matColumnDef="histogram">
+    <mat-header-cell *matHeaderCellDef>Activity</mat-header-cell>
+    <mat-cell *matCellDef="let contact">
+      <div
+        *ngIf="
+          contact &&
+          contact.chart &&
+          contact.chart.datasets &&
+          contact.count > 0
+        "
+        class="h-46 w-100-p pr-8"
+      >
+        <canvas
+          baseChart
+          [datasets]="contact.chart.datasets"
+          [labels]="contact.chart.labels"
+          [colors]="contact.chart.colors"
+          [options]="contact.chart.options"
+          chartType="line"
+        >
+        </canvas>
+      </div>
+    </mat-cell>
+  </ng-container>
+
   <!-- Buttons Column -->
   <ng-container matColumnDef="buttons">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>

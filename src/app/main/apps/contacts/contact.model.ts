@@ -39,6 +39,24 @@ export class Contact {
   flag: string;
   bins: any[];
 
+  count: number;
+  chart: any;
+  histogram: any[];
+
+  buildChartData(): void {
+    const data = [0];
+    const labels = ['Start'];
+    if (this.histogram && this.histogram.length > 0) {
+      this.histogram[0].buckets.forEach(bucket => {
+        data.push(bucket.count);
+        labels.push(bucket.key);
+      });
+    } else {
+    }
+    this.chart.datasets[0].data = data;
+    this.chart.labels = labels;
+  }
+
   buildKeywords(): any[] {
     const k = [];
     const num = getRandomInt(1, 6);
@@ -76,6 +94,57 @@ export class Contact {
       this.population = contact.population || '';
       this.latlng = contact.latlng || '';
       this.targets = contact.targets || [];
+      this.histogram = contact.histogram || [];
+      this.count = contact.count || 0;
+      this.chart = {
+        datasets: [
+          {
+            label: 'Hits',
+            data: [],
+            fill: false
+          }
+        ],
+        labels: [],
+        colors: [
+          {
+            borderColor: '#2196f3'
+          }
+        ],
+        altColors: [
+          {
+            borderColor: '#fff'
+          }
+        ],
+        options: {
+          spanGaps: false,
+          legend: {
+            display: false
+          },
+          maintainAspectRatio: false,
+          layout: {
+            padding: {
+              top: 4,
+              left: 4,
+              right: 4,
+              bottom: 4
+            }
+          },
+          scales: {
+            xAxes: [
+              {
+                display: false
+              }
+            ],
+            yAxes: [
+              {
+                display: false,
+                ticks: {}
+              }
+            ]
+          }
+        }
+      };
+      this.buildChartData();
     }
   }
 }

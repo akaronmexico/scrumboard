@@ -25,6 +25,8 @@ import { FeedsService } from './feeds.service';
 import { FeedsComponent } from './feeds.component';
 import { FeedsFeedListComponent } from './feed-list/feed-list.component';
 import { FeedsFeedFormDialogComponent } from './feed-form/feed-form.component';
+import { ChartsModule } from 'ng2-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const routes: Routes = [
   {
@@ -57,7 +59,8 @@ const routes: Routes = [
     MatRippleModule,
     MatTableModule,
     MatToolbarModule,
-
+    ChartsModule,
+    NgxChartsModule,
     FuseSharedModule,
     FuseConfirmDialogModule,
     FuseSidebarModule

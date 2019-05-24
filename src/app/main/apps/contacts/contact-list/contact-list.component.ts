@@ -40,6 +40,8 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
     'name',
     'nativeName',
     'region',
+    'count',
+    'histogram',
     'targets',
     'buttons'
   ];

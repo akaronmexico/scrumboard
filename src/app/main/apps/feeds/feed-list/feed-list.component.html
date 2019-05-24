@@ -28,6 +28,35 @@
     </mat-cell>
   </ng-container>
 
+  <!-- HITS Column -->
+  <ng-container matColumnDef="count">
+    <mat-header-cell *matHeaderCellDef># Hits</mat-header-cell>
+    <mat-cell *matCellDef="let feed">
+      <p class="text-truncate font-weight-600">{{ feed.count }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- HISTOGRAM Column -->
+  <ng-container matColumnDef="histogram">
+    <mat-header-cell *matHeaderCellDef>Activity</mat-header-cell>
+    <mat-cell *matCellDef="let feed">
+      <div
+        *ngIf="feed && feed.chart && feed.chart.datasets && feed.count > 0"
+        class="h-36 w-100-p"
+      >
+        <canvas
+          baseChart
+          [datasets]="feed.chart.datasets"
+          [labels]="feed.chart.labels"
+          [colors]="feed.chart.colors"
+          [options]="feed.chart.options"
+          chartType="line"
+        >
+        </canvas>
+      </div>
+    </mat-cell>
+  </ng-container>
+
   <!-- Buttons Column -->
   <ng-container matColumnDef="buttons">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>

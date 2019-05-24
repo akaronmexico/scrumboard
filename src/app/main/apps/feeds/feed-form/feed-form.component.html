@@ -17,6 +17,20 @@
       fxLayoutAlign="center center"
     >
       <div class="feed-name mt-8">{{ feed.rssname }}</div>
+      <div
+        *ngIf="feed && feed.chart && feed.chart.datasets && feed.count > 0"
+        class="p-24 pb-8 h-96 w-100-p"
+      >
+        <canvas
+          baseChart
+          [datasets]="feed.chart.datasets"
+          [labels]="feed.chart.labels"
+          [colors]="feed.chart.altColors"
+          [options]="feed.chart.options"
+          chartType="line"
+        >
+        </canvas>
+      </div>
     </mat-toolbar-row>
   </mat-toolbar>
 

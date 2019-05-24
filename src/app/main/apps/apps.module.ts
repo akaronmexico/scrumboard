@@ -13,14 +13,6 @@ const routes = [
     loadChildren: './dashboards/project/project.module#ProjectDashboardModule'
   },
   {
-    path: 'mail',
-    loadChildren: './mail/mail.module#MailModule'
-  },
-  {
-    path: 'todo',
-    loadChildren: './todo/todo.module#TodoModule'
-  },
-  {
     path: 'file-manager',
     loadChildren: './file-manager/file-manager.module#FileManagerModule'
   },

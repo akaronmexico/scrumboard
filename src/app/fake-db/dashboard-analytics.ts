@@ -25,7 +25,20 @@ export class AnalyticsDashboardDb {
           }
         ]
       },
-      labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      labels: [
+        'JAN',
+        'FEB',
+        'MAR',
+        'APR',
+        'MAY',
+        'JUN',
+        'JUL',
+        'AUG',
+        'SEP',
+        'OCT',
+        'NOV',
+        'DEC'
+      ],
       colors: [
         {
           borderColor: '#42a5f5',
@@ -106,7 +119,15 @@ export class AnalyticsDashboardDb {
           data: [221, 428, 492, 471, 413, 344, 294]
         }
       ],
-      labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      labels: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+      ],
       colors: [
         {
           borderColor: '#42a5f5',
@@ -154,7 +175,23 @@ export class AnalyticsDashboardDb {
       datasets: [
         {
           label: 'Impression',
-          data: [67000, 54000, 82000, 57000, 72000, 57000, 87000, 72000, 89000, 98700, 112000, 136000, 110000, 149000, 98000],
+          data: [
+            67000,
+            54000,
+            82000,
+            57000,
+            72000,
+            57000,
+            87000,
+            72000,
+            89000,
+            98700,
+            112000,
+            136000,
+            110000,
+            149000,
+            98000
+          ],
           fill: false
         }
       ],
@@ -188,10 +225,10 @@ export class AnalyticsDashboardDb {
         maintainAspectRatio: false,
         elements: {
           point: {
-            radius: 2,
+            radius: 3,
             borderWidth: 1,
-            hoverRadius: 2,
-            hoverBorderWidth: 1
+            hoverRadius: 5,
+            hoverBorderWidth: 3
           },
           line: {
             tension: 0
@@ -235,7 +272,15 @@ export class AnalyticsDashboardDb {
           data: [432, 428, 327, 363, 456, 267, 231]
         }
       ],
-      labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      labels: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+      ],
       colors: [
         {
           borderColor: '#f44336',
@@ -277,18 +322,6 @@ export class AnalyticsDashboardDb {
     widget5: {
       chartType: 'line',
       datasets: {
-        yesterday: [
-          {
-            label: 'Articles',
-            data: [190, 300, 340, 220, 290, 390, 250, 380, 410, 380, 320, 290],
-            fill: 'start'
-          },
-          {
-            label: 'Page views',
-            data: [2200, 2900, 3900, 2500, 3800, 3200, 2900, 1900, 3000, 3400, 4100, 3800],
-            fill: 'start'
-          }
-        ],
         today: [
           {
             label: 'Articles',
@@ -297,12 +330,38 @@ export class AnalyticsDashboardDb {
           },
           {
             label: 'Page Views',
-            data: [3000, 3400, 4100, 3800, 2200, 3200, 2900, 1900, 2900, 3900, 2500, 3800],
+            data: [
+              3000,
+              3400,
+              4100,
+              3800,
+              2200,
+              3200,
+              2900,
+              1900,
+              2900,
+              3900,
+              2500,
+              3800
+            ],
             fill: 'start'
           }
         ]
       },
-      labels: ['12am', '2am', '4am', '6am', '8am', '10am', '12pm', '2pm', '4pm', '6pm', '8pm', '10pm'],
+      labels: [
+        '12am',
+        '2am',
+        '4am',
+        '6am',
+        '8am',
+        '10am',
+        '12pm',
+        '2pm',
+        '4pm',
+        '6pm',
+        '8pm',
+        '10pm'
+      ],
       colors: [
         {
           borderColor: '#3949ab',

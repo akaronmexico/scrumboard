@@ -84,9 +84,7 @@ $typography: mat-typography-config(
 @import 'src/app/main/apps/contacts/contacts.theme';
 @import 'src/app/main/apps/dashboards/project/project.theme';
 @import 'src/app/main/apps/file-manager/file-manager.theme';
-@import 'src/app/main/apps/mail/mail.theme';
 @import 'src/app/main/apps/scrumboard/scrumboard.theme';
-@import 'src/app/main/apps/todo/todo.theme';
 
 // Define a mixin for easier access
 @mixin components-theme($theme) {
@@ -94,9 +92,7 @@ $typography: mat-typography-config(
   @include contacts-theme($theme);
   @include dashboards-project-theme($theme);
   @include file-manager-theme($theme);
-  @include mail-theme($theme);
   @include scrumboard-theme($theme);
-  @include todo-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------
@@ -109,7 +105,11 @@ $default-accent-palette: mat-palette($mat-light-blue, 600, 400, 700);
 $default-warn-palette: mat-palette($mat-red);
 
 // Create the Material theme object
-$theme: mat-light-theme($default-primary-palette, $default-accent-palette, $default-warn-palette);
+$theme: mat-light-theme(
+  $default-primary-palette,
+  $default-accent-palette,
+  $default-warn-palette
+);
 
 // Add ".theme-default" class to the body to activate this theme.
 // Class name must start with "theme-" !!!

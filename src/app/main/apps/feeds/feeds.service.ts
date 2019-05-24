@@ -100,7 +100,7 @@ export class FeedsService implements Resolve<any> {
           this.feeds = this.feeds.map(feed => {
             return new Feed(feed);
           });
-
+          // console.log('feeds: ' + JSON.stringify(this.feeds, null, 2));
           this.onFeedsChanged.next(this.feeds);
           this.hideLoader();
           resolve(this.feeds);

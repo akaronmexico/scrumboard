@@ -12,6 +12,7 @@ import { environment } from 'environments/environment';
 export class AnalyticsDashboardService implements Resolve<any> {
   widgets: any[];
   keywordMetrics: any[];
+  totals: any;
   baseURL = environment.baseUrl;
   /**
    * Constructor
@@ -32,7 +33,11 @@ export class AnalyticsDashboardService implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
     return new Promise((resolve, reject) => {
-      Promise.all([this.getWidgets(), this.getKeywordMetrics()]).then(() => {
+      Promise.all([
+        this.getWidgets(),
+        this.getTotals(),
+        this.getKeywordMetrics()
+      ]).then(() => {
         resolve();
       }, reject);
     });
@@ -49,6 +54,17 @@ export class AnalyticsDashboardService implements Resolve<any> {
         .get('api/analytics-dashboard-widgets')
         .subscribe((response: any) => {
           this.widgets = response;
+          resolve(response);
+        }, reject);
+    });
+  }
+
+  getTotals(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._httpClient
+        .get(this.baseURL + '/totals')
+        .subscribe((response: any) => {
+          this.totals = response;
           resolve(response);
         }, reject);
     });

@@ -135,7 +135,7 @@ export class AnalyticsDashboardDb {
         }
       ],
       options: {
-        spanGaps: false,
+        spanGaps: true,
         legend: {
           display: false
         },
@@ -157,10 +157,7 @@ export class AnalyticsDashboardDb {
           yAxes: [
             {
               display: false,
-              ticks: {
-                min: 100,
-                max: 500
-              }
+              ticks: {}
             }
           ]
         }

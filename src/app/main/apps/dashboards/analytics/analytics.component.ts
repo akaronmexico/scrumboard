@@ -14,9 +14,13 @@ import { AnalyticsDashboardService } from 'app/main/apps/dashboards/analytics/an
 export class AnalyticsDashboardComponent implements OnInit {
   widgets: any;
   keywordMetrics: any[];
+  totals: any;
+  ranges: any[];
+  chartData: any[];
+  chartLabels: any[];
   widget1SelectedYear = '2016';
   widget5SelectedDay = 'today';
-
+  currentRange: any;
   /**
    * Constructor
    *
@@ -38,6 +42,43 @@ export class AnalyticsDashboardComponent implements OnInit {
     // Get the widgets from the service
     this.widgets = this._analyticsDashboardService.widgets;
     this.keywordMetrics = this._analyticsDashboardService.keywordMetrics;
+    this.totals = this._analyticsDashboardService.totals;
+    this.buildWeeklyChart();
+    this.ranges = [
+      { key: 'today', value: 'Today' },
+      { key: 'yesterday', value: 'Yesterday' }
+    ];
+    this.currentRange = { key: 'today', value: 'Today' };
+  }
+
+  buildWeeklyChart(): void {
+    this.chartData = [];
+    this.chartLabels = [];
+    const data = [];
+    const checkedData = [];
+    if (
+      this.totals &&
+      this.totals.histogram &&
+      this.totals.histogram.length > 0
+    ) {
+      this.totals.histogram.forEach(bucket => {
+        data.push(bucket.count);
+        this.chartLabels.push(bucket.label);
+      });
+      console.log('# of buckets: ' + data.length);
+    }
+    this.chartData.push({ label: 'Matched Articles', data: data });
+    if (
+      this.totals &&
+      this.totals.checkedHistogram &&
+      this.totals.checkedHistogram.length > 0
+    ) {
+      this.totals.checkedHistogram.forEach(bucket => {
+        checkedData.push(bucket.count);
+      });
+      console.log('# of checked buckets: ' + checkedData.length);
+    }
+    this.chartData.push({ label: 'Checked Articles', data: checkedData });
   }
 
   // -----------------------------------------------------------------------------------------------------

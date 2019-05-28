@@ -90,22 +90,26 @@ export class ContactsService implements Resolve<any> {
       this._httpClient
         .get(this.baseURL + '/partnerconfig')
         .subscribe((response: any) => {
-          this.contacts = response;
+          try {
+            this.contacts = response;
 
-          if (this.searchText && this.searchText !== '') {
-            this.contacts = FuseUtils.filterArrayByString(
-              this.contacts,
-              this.searchText
-            );
+            if (this.searchText && this.searchText !== '') {
+              this.contacts = FuseUtils.filterArrayByString(
+                this.contacts,
+                this.searchText
+              );
+            }
+
+            this.contacts = this.contacts.map(contact => {
+              return new Contact(contact);
+            });
+
+            this.onContactsChanged.next(this.contacts);
+            this.hideLoader();
+            resolve(this.contacts);
+          } catch (err) {
+            console.log('err: ' + JSON.stringify(err, null, 2));
           }
-
-          this.contacts = this.contacts.map(contact => {
-            return new Contact(contact);
-          });
-
-          this.onContactsChanged.next(this.contacts);
-          this.hideLoader();
-          resolve(this.contacts);
         }, reject);
     });
   }
@@ -176,21 +180,32 @@ export class ContactsService implements Resolve<any> {
    * @param contact
    * @returns {Promise<any>}
    */
-  updateContact(contact): Promise<any> {
+  updateContact(contact: Contact): Promise<any> {
     this.showLoader();
     return new Promise((resolve, reject) => {
-      this._httpClient
-        .post(this.baseURL + '/partnerconfig/' + contact.id, {
-          ...contact
-        })
-        .subscribe(response => {
-          this.getContacts()
-            .then(res => {})
-            .finally(() => {
+      delete contact['chart'];
+      delete contact['histogram'];
+      try {
+        this._httpClient
+          .post(this.baseURL + '/partnerconfig/' + contact.id, { ...contact })
+          .subscribe(
+            response => {
+              this.getContacts()
+                .then(res => {})
+                .finally(() => {
+                  this.hideLoader();
+                  resolve(response);
+                });
+            },
+            err => {
               this.hideLoader();
-              resolve(response);
-            });
-        });
+              console.log('error: ' + JSON.stringify(err, null, 2));
+              reject(null);
+            }
+          );
+      } catch (e) {
+        console.log('e2: ' + JSON.stringify(e, null, 2));
+      }
     });
   }
 

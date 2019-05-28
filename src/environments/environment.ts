@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   hmr: false,
-  baseUrl: 'http://192.168.20.110:4000/api',
-  socketUrl: 'http://192.168.20.110:4444'
+  baseUrl: 'http://127.0.0.1:4000/api',
+  socketUrl: 'http://localhost:4444'
 };
 
 /*

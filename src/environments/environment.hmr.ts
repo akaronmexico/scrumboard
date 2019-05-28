@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
   hmr: true,
-  baseUrl: 'http://192.168.20.110:4000/api',
-  socketUrl: 'http://192.168.20.110:4444'
+  baseUrl: 'http://localhost:4000/api',
+  socketUrl: 'http://localhost:4444'
 };

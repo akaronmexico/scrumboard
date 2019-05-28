@@ -151,10 +151,15 @@ export class ContactsContactListComponent implements OnInit, OnDestroy {
       const targets: Target[] = response.targets;
       contact.name = formData.get('name').value;
       contact.targets = targets;
+      console.log('targets: ' + JSON.stringify(contact.targets, null, 2));
       switch (actionType) {
         /**
          * Save
          */
+        case 'edit':
+          this._contactsService.updateContact(contact);
+
+          break;
         case 'save':
           this._contactsService.updateContact(contact);
 

@@ -1,46 +1,76 @@
 <div id="dashboard-analytics" class="page-layout blank">
   <div class="main-widget">
-    <div class="position-relative p-24 blue-600" fxLayout="row" fxLayoutAlign="space-between center">
+    <div
+      class="position-relative p-24 blue-600"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
       <div fxLayout="column" fxLayoutAlign="start start">
         <span class="h2">Articles</span>
         <span class="h5 secondary-text">Unique articles by month</span>
       </div>
       <div fxLayout="row" fxLayoutAlign="start center">
-        <div class="py-8 px-12 border-radius-2 line-height-1 cursor-pointer" (click)="widget1SelectedYear = '2018'"
-          [ngClass]="{ 'blue-700': widget1SelectedYear === '2018' }">
+        <div
+          class="py-8 px-12 border-radius-2 line-height-1 cursor-pointer"
+          (click)="widget1SelectedYear = '2018'"
+          [ngClass]="{ 'blue-700': widget1SelectedYear === '2018' }"
+        >
           2018
         </div>
-        <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer" (click)="widget1SelectedYear = '2017'"
-          [ngClass]="{ 'blue-700': widget1SelectedYear === '2017' }">
+        <div
+          class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+          (click)="widget1SelectedYear = '2017'"
+          [ngClass]="{ 'blue-700': widget1SelectedYear === '2017' }"
+        >
           2017
         </div>
-        <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer" (click)="widget1SelectedYear = '2016'"
-          [ngClass]="{ 'blue-700': widget1SelectedYear === '2016' }">
+        <div
+          class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+          (click)="widget1SelectedYear = '2016'"
+          [ngClass]="{ 'blue-700': widget1SelectedYear === '2016' }"
+        >
           2016
         </div>
       </div>
     </div>
 
     <div class="position-relative h-256 pb-16 blue-600">
-      <canvas baseChart [datasets]="widgets.widget1.datasets[widget1SelectedYear]" [labels]="widgets.widget1.labels"
-        [colors]="widgets.widget1.colors" [options]="widgets.widget1.options" [chartType]="widgets.widget1.chartType">
+      <canvas
+        baseChart
+        [datasets]="widgets.widget1.datasets[widget1SelectedYear]"
+        [labels]="widgets.widget1.labels"
+        [colors]="widgets.widget1.colors"
+        [options]="widgets.widget1.options"
+        [chartType]="widgets.widget1.chartType"
+      >
       </canvas>
     </div>
   </div>
 
   <div class="content">
     <div class="left mr-lg-32">
-      <div fxLayout="column" fxLayoutAlign="space-between center" fxLayout.gt-sm="row"
-        fxLayoutAlign.gt-sm="space-between center">
+      <div
+        fxLayout="column"
+        fxLayoutAlign="space-between center"
+        fxLayout.gt-sm="row"
+        fxLayoutAlign.gt-sm="space-between center"
+      >
         <!-- Widget 2 -->
         <div class="widget" fxFlex="100" fxFlex.gt-sm="100">
-          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-
-            <div class="p-16 pb-16" fxLayout="row wrap" fxLayoutAlign="center center">
+          <div
+            class="fuse-card auto-width mb-32"
+            [ngClass.gt-sm]="'mb-0 mr-32'"
+          >
+            <div
+              class="p-16 pb-16"
+              fxLayout="row wrap"
+              fxLayoutAlign="center center"
+            >
               <div>
-
-                <div class="font-size-72 light-blue-fg font-weight-300 line-height-1 mt-8"
-                  fxLayoutAlign="center center">
+                <div
+                  class="font-size-72 light-blue-fg font-weight-300 line-height-1 mt-8"
+                  fxLayoutAlign="center center"
+                >
                   {{ totals.count }}
                 </div>
                 <div class="h2 secondary-text">Articles Matched</div>
@@ -50,24 +80,40 @@
         </div>
         <!-- / Widget 2 -->
         <div class="widget" fxFlex="100" fxFlex.gt-sm="100">
-          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-            <div class="p-16 pb-16" fxLayout="row wrap" fxLayoutAlign="center center">
-
-
-              <div class="font-size-72 orange-fg font-weight-300 line-height-1 mt-8" fxLayoutAlign="center center">
+          <div
+            class="fuse-card auto-width mb-32"
+            [ngClass.gt-sm]="'mb-0 mr-32'"
+          >
+            <div
+              class="p-16 pb-16"
+              fxLayout="row wrap"
+              fxLayoutAlign="center center"
+            >
+              <div
+                class="font-size-72 orange-fg font-weight-300 line-height-1 mt-8"
+                fxLayoutAlign="center center"
+              >
                 {{ totals.checked }}
               </div>
               <div class="h2 secondary-text">Articles Checked</div>
-
             </div>
           </div>
         </div>
         <div class="widget" fxFlex="100" fxFlex.gt-sm="100">
-          <div class="fuse-card auto-width mb-32" [ngClass.gt-sm]="'mb-0 mr-32'">
-            <div class="p-16 pb-16" fxLayout="row wrap" fxLayoutAlign="center center">
+          <div
+            class="fuse-card auto-width mb-32"
+            [ngClass.gt-sm]="'mb-0 mr-32'"
+          >
+            <div
+              class="p-16 pb-16"
+              fxLayout="row wrap"
+              fxLayoutAlign="center center"
+            >
               <div>
-
-                <div class="font-size-72 red-fg font-weight-300 line-height-1 mt-8" fxLayoutAlign="center center">
+                <div
+                  class="font-size-72 red-fg font-weight-300 line-height-1 mt-8"
+                  fxLayoutAlign="center center"
+                >
                   {{ totals.feeds }}
                 </div>
                 <div class="h2 secondary-text">RSS Feeds</div>
@@ -75,32 +121,46 @@
             </div>
           </div>
         </div>
-
-
       </div>
 
       <!-- Widget 5 -->
 
       <div class="fuse-card auto-width">
-        <div class="position-relative p-24" fxLayout="row" fxLayoutAlign="space-between center">
+        <div
+          class="position-relative p-24"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+        >
           <div fxLayout="column" fxLayoutAlign="start start">
-            <span class="h2">Articles & Page views</span>
+            <span class="h2">Article Matches</span>
           </div>
           <div fxLayout="row" fxLayoutAlign="start center">
-            <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
-              (click)="widget5SelectedDay = 'yesterday'" [ngClass]="{ accent: widget5SelectedDay === 'yesterday' }">
+            <div
+              class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+              (click)="widget5SelectedDay = 'yesterday'"
+              [ngClass]="{ accent: widget5SelectedDay === 'yesterday' }"
+            >
               Yesterday
             </div>
-            <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
-              (click)="widget5SelectedDay = 'today'" [ngClass]="{ accent: widget5SelectedDay === 'today' }">
+            <div
+              class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+              (click)="widget5SelectedDay = 'today'"
+              [ngClass]="{ accent: widget5SelectedDay === 'today' }"
+            >
               Today
             </div>
           </div>
         </div>
 
         <div class="position-relative h-368 pb-16">
-          <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [colors]="widgets.widget5.colors"
-            [options]="widgets.widget5.options" [chartType]="widgets.widget5.chartType">
+          <canvas
+            baseChart
+            [datasets]="chartData"
+            [labels]="chartLabels"
+            [colors]="widgets.widget5.colors"
+            [options]="widgets.widget5.options"
+            [chartType]="widgets.widget5.chartType"
+          >
           </canvas>
         </div>
       </div>
@@ -112,10 +172,12 @@
         <!-- Widget 9 -->
         <div class="mb-48" [ngClass.lt-lg]="'mr-32'" [ngClass.xs]="'mr-0'">
           <div class="fuse-card">
-            <div class="p-16" fxLayout="row" fxLayoutAlign="space-between center">
+            <div
+              class="p-16"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
               <div class="h1 pr-16">Top Keywords</div>
-
-
             </div>
 
             <table class="simple clickable">
@@ -132,7 +194,6 @@
                 </tr>
               </tbody>
             </table>
-
           </div>
         </div>
         <!-- / widget 9 -->

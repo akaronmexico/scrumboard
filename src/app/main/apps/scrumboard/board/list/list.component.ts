@@ -17,6 +17,7 @@ import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scr
 import { ScrumboardService } from 'app/main/apps/scrumboard/scrumboard.service';
 import { Card } from 'app/main/apps/scrumboard/card.model';
 import { ScrumboardCardDialogComponent } from 'app/main/apps/scrumboard/board/dialogs/card/card.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'scrumboard-board-list',
@@ -48,6 +49,7 @@ export class ScrumboardBoardListComponent implements OnInit, OnDestroy {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _scrumboardService: ScrumboardService,
+    private toastr: ToastrService,
     private _matDialog: MatDialog
   ) {
     // Set the private defaults
@@ -91,57 +93,25 @@ export class ScrumboardBoardListComponent implements OnInit, OnDestroy {
     this.list.name = newListName;
   }
 
-  /**
-   * On card added
-   *
-   * @param newCardName
-   */
-  onCardAdd(newCardName): void {
-    if (newCardName === '') {
-      return;
-    }
-
-    this._scrumboardService.addCard(
-      this.list.id,
-      new Card({ name: newCardName })
-    );
-
-    setTimeout(() => {
-      this.listScroll.scrollToBottom(0, 400);
-    });
-  }
-
-  syncData(listId): void {
+  syncData(listId: string): void {
     this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
       disableClose: false
     });
 
     this.confirmDialogRef.componentInstance.confirmMessage =
-      'Send these articles to partner?';
+      'Send these articles to ' + this.board.name + '?';
 
     this.confirmDialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this._scrumboardService.removeList(listId);
-      }
-    });
-  }
-
-  /**
-   * Remove list
-   *
-   * @param listId
-   */
-  removeList(listId): void {
-    this.confirmDialogRef = this._matDialog.open(FuseConfirmDialogComponent, {
-      disableClose: false
-    });
-
-    this.confirmDialogRef.componentInstance.confirmMessage =
-      "Are you sure you want to delete the list and it's all cards?";
-
-    this.confirmDialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this._scrumboardService.removeList(listId);
+        this._scrumboardService
+          .sendList(this.board.name, listId)
+          .then((resp: any) => {
+            if (resp.success) {
+              this.toastr.success('Exported Data for ' + this.board.name);
+            } else {
+              this.toastr.error('Could not export data for ' + this.board.name);
+            }
+          });
       }
     });
   }

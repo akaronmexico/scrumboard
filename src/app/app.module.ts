@@ -18,6 +18,7 @@ import { fuseConfig } from 'app/fuse-config';
 import { LayoutModule } from 'app/layout/layout.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'environments/environment';
+import { ToastrModule } from 'ngx-toastr';
 
 const socketConfig: SocketIoConfig = {
   url: environment.socketUrl,
@@ -47,7 +48,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     // SocketIoModule.forRoot(socketConfig),
     RouterModule.forRoot(appRoutes),
-
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    }),
     TranslateModule.forRoot(),
     InMemoryWebApiModule.forRoot(FakeDbService, {
       delay: 0,

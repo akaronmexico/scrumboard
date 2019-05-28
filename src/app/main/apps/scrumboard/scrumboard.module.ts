@@ -41,6 +41,7 @@ import { ScrumboardLabelSelectorComponent } from 'app/main/apps/scrumboard/board
 import { ScrumboardEditBoardNameComponent } from 'app/main/apps/scrumboard/board/edit-board-name/edit-board-name.component';
 import { ScrumboardBoardSettingsSidenavComponent } from 'app/main/apps/scrumboard/board/sidenavs/settings/settings.component';
 import { ScrumboardBoardColorSelectorComponent } from 'app/main/apps/scrumboard/board/sidenavs/settings/board-color-selector/board-color-selector.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 const routes: Routes = [
   {

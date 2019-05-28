@@ -131,6 +131,16 @@ export class ScrumboardService implements Resolve<any> {
     return this.updateBoard();
   }
 
+  sendList(boardUri: string, listId: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._httpClient
+        .get(this.baseURL + '/output/' + boardUri)
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
+  }
+
   /**
    * Add list
    *

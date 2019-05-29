@@ -15,7 +15,8 @@ import {
   MatRippleModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatTabsModule
 } from '@angular/material';
 import { NgxDnDModule } from '@swimlane/ngx-dnd';
 
@@ -27,7 +28,8 @@ import {
 
 import {
   BoardResolve,
-  ScrumboardService
+  ScrumboardService,
+  ArticleResolve
 } from 'app/main/apps/scrumboard/scrumboard.service';
 import { ScrumboardComponent } from 'app/main/apps/scrumboard/scrumboard.component';
 import { ScrumboardBoardComponent } from 'app/main/apps/scrumboard/board/board.component';
@@ -37,6 +39,8 @@ import { ScrumboardBoardAddCardComponent } from 'app/main/apps/scrumboard/board/
 import { ScrumboardCardDialogComponent } from 'app/main/apps/scrumboard/board/dialogs/card/card.component';
 import { ScrumboardLabelSelectorComponent } from 'app/main/apps/scrumboard/board/dialogs/card/label-selector/label-selector.component';
 import { MatRadioModule } from '@angular/material';
+import { ActivitysModule } from '../activities/activitys.module';
+import { ArticleComponent } from './board/list/article/article.component';
 
 const routes: Routes = [
   {
@@ -54,6 +58,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'boards/:boardId/:boardUri/:articleId',
+    component: ArticleComponent,
+    resolve: {
+      article: ArticleResolve
+    }
+  },
+  {
     path: '**',
     redirectTo: 'boards'
   }
@@ -67,13 +78,15 @@ const routes: Routes = [
     ScrumboardBoardCardComponent,
     ScrumboardBoardAddCardComponent,
     ScrumboardCardDialogComponent,
-    ScrumboardLabelSelectorComponent
+    ScrumboardLabelSelectorComponent,
+    ArticleComponent
   ],
   imports: [
     RouterModule.forChild(routes),
-
+    ActivitysModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatTabsModule,
     MatChipsModule,
     MatDatepickerModule,
     MatDialogModule,
@@ -95,7 +108,7 @@ const routes: Routes = [
     FuseConfirmDialogModule,
     FuseMaterialColorPickerModule
   ],
-  providers: [BoardResolve],
+  providers: [BoardResolve, ArticleResolve],
   entryComponents: [ScrumboardCardDialogComponent]
 })
 export class ScrumboardModule {}

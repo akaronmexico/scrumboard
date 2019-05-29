@@ -8,6 +8,7 @@ import { ProfileFakeDb } from 'app/fake-db/profile';
 import { ScrumboardFakeDb } from 'app/fake-db/scrumboard';
 import { BinsFakeDb } from './bins';
 import { FeedsFakeDb } from './feeds';
+import { ArtriclesFakeDB } from './articles';
 
 export class FakeDbService implements InMemoryDbService {
   createDb(): any {
@@ -29,6 +30,7 @@ export class FakeDbService implements InMemoryDbService {
       // Contacts
       'contacts-contacts': ContactsFakeDb.contacts,
       'contacts-user': ContactsFakeDb.user,
+      'articles-article': ArtriclesFakeDB.article,
 
       // Scrumboard
       'scrumboard-boards': ScrumboardFakeDb.boards,

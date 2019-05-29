@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material';
 import { ScrumboardCardDialogComponent } from '../../dialogs/card/card.component';
@@ -26,6 +26,7 @@ export class ScrumboardBoardCardComponent implements OnInit {
    * @param {ActivatedRoute} _activatedRoute
    */
   constructor(
+    private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _matDialog: MatDialog,
     private _scrumboardService: ScrumboardService
@@ -59,7 +60,7 @@ export class ScrumboardBoardCardComponent implements OnInit {
     return moment() > moment(new Date(cardDate));
   }
 
-  viewArticle(url) {
+  viewArticle(url): void {
     window.open(url, '_blank');
   }
 
@@ -73,14 +74,8 @@ export class ScrumboardBoardCardComponent implements OnInit {
    * @param cardId
    */
   openCardDialog(type: string): void {
-    this.dialogRef = this._matDialog.open(ScrumboardCardDialogComponent, {
-      panelClass: 'scrumboard-card-dialog',
-      data: {
-        status: this.card.status,
-        cardId: this.cardId,
-        listId: this.listId
-      }
+    this._router.navigate([this.cardId], {
+      relativeTo: this._activatedRoute
     });
-    this.dialogRef.afterClosed().subscribe(response => {});
   }
 }

@@ -17,9 +17,11 @@ export class ScrumboardService implements Resolve<any> {
   boards: any[];
   routeParams: any;
   board: any;
+  article: any;
   baseURL = environment.baseUrl;
   onBoardsChanged: BehaviorSubject<any>;
   onBoardChanged: BehaviorSubject<any>;
+  onArticleChanged: BehaviorSubject<any>;
   // currentEvent = this.socket.fromEvent<any>('article');
   /**
    * Constructor
@@ -30,6 +32,7 @@ export class ScrumboardService implements Resolve<any> {
     // Set the defaults
     this.onBoardsChanged = new BehaviorSubject([]);
     this.onBoardChanged = new BehaviorSubject([]);
+    this.onArticleChanged = new BehaviorSubject([]);
     // this.currentEvent.subscribe(
     //   event => {}
     // got socket event
@@ -90,12 +93,42 @@ export class ScrumboardService implements Resolve<any> {
   }
   */
 
+  getArticle(articleId: string): Promise<any> {
+    /** return new Promise((resolve, reject) => {
+      this._httpClient.get(this.baseURL + '/articles/' + articleId).subscribe(
+        (response: any) => {
+          this.article = response;
+          this.onArticleChanged.next(this.article);
+          resolve(this.article);
+        },
+        err => {
+          console.log('caught err getting article:' + err);
+          reject(err);
+        }
+      );
+    });*/
+    return new Promise((resolve, reject) => {
+      this._httpClient.get('api/articles-article').subscribe(
+        (response: any) => {
+          this.article = response;
+          this.onArticleChanged.next(this.article);
+          resolve(this.article);
+        },
+        err => {
+          console.log('caught err getting article:' + err);
+          reject(err);
+        }
+      );
+    });
+  }
+
   /**
    * Get board
    *
    * @param boardUri
    * @returns {Promise<any>}
-   */ getBoard(boardUri): Promise<any> {
+   **/
+  getBoard(boardUri): Promise<any> {
     return new Promise((resolve, reject) => {
       let url = this.baseURL;
       if (boardUri === 'all') {
@@ -274,5 +307,25 @@ export class BoardResolve implements Resolve<any> {
    */
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return this._scrumboardService.getBoard(route.paramMap.get('boardUri'));
+  }
+}
+
+@Injectable()
+export class ArticleResolve implements Resolve<any> {
+  /**
+   * Constructor
+   *
+   * @param {ScrumboardService} _scrumboardService
+   */
+  constructor(private _scrumboardService: ScrumboardService) {}
+
+  /**
+   * Resolver
+   *
+   * @param {ActivatedRouteSnapshot} route
+   * @returns {Promise<any>}
+   */
+  resolve(route: ActivatedRouteSnapshot): Promise<any> {
+    return this._scrumboardService.getArticle(route.paramMap.get('articleId'));
   }
 }

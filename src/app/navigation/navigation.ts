@@ -11,12 +11,14 @@ export const navigation: FuseNavigation[] = [
         id: 'analytics',
         title: 'Analytics',
         type: 'item',
+        icon: 'assessment',
         url: '/apps/dashboards/analytics'
       },
       {
         id: 'project',
         title: 'Partner Stats',
         type: 'item',
+        icon: 'assessment',
         url: '/apps/dashboards/project'
       }
     ]

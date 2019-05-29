@@ -1,11 +1,5 @@
 <div class="dialog-content-wrapper">
-  <mat-toolbar
-    *ngIf="card"
-    matDialogTitle
-    class="accent m-0"
-    fxFlex="1 0 auto"
-    fxLayout="row"
-  >
+  <mat-toolbar *ngIf="card" matDialogTitle class="accent m-0" fxFlex="1 0 auto" fxLayout="row">
     <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
       <div fxFlex fxLayout="row" fxLayoutAlign="start center">
         <!-- OPTIONS -->
@@ -24,23 +18,14 @@
       </div>
 
       <!-- CLOSE DIALOG BUTTON -->
-      <button
-        mat-icon-button
-        (click)="matDialogRef.close()"
-        aria-label="Close Dialog"
-      >
+      <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close Dialog">
         <mat-icon>close</mat-icon>
       </button>
       <!-- / CLOSE DIALOG BUTTON -->
     </div>
   </mat-toolbar>
 
-  <div
-    *ngIf="card"
-    mat-dialog-content
-    class="py-24 px-0 m-0"
-    fusePerfectScrollbar
-  >
+  <div *ngIf="card" mat-dialog-content class="py-24 px-0 m-0" fusePerfectScrollbar>
     <!-- DESCRIPTION -->
     <div class="description px-24 mb-16">
       <div class="list-card-name" [innerHTML]="card.title"></div>
@@ -55,12 +40,40 @@
     <div class="sections">
       <!-- COMMENTS SECTION -->
       <div class="section">
+        <div>
+          <div class="section-header" fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="mr-8">comment</mat-icon>
+            <span class="section-title">Usage</span>
+          </div>
+          <div class="section-content">
+            <form name="cardUsageForm" (submit)="addUsage(cardUsageForm)" #usageForm="ngForm" fxLayout="column" fxLayoutAlign="start" no-validate>
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <mat-form-field appearance="outline" fxFlex>
+                  <input matInput [matDatepicker]="usageDatePicker" placeholder="Date Used" ngModel #usageDate="ngModel" required />
+                  <mat-datepicker-toggle matSuffix [for]="usageDatePicker"></mat-datepicker-toggle>
+                  <mat-datepicker #usageDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                  <mat-label>Type of Action Taken</mat-label>
+                  <mat-radio-group class="radio-group pt-1" name="usageType" ngModel #usageType="ngModel" required>
+                    <mat-radio-button class="pr-1" *ngFor="let usage of usageTypes" [value]="usage">
+                      {{ usage }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex>
+                  <mat-label>Link</mat-label>
+                  <input matInput name="usageLink" ngModel #usageLink="ngModel" required />
+                </mat-form-field>
+              </div>
+              <button mat-raised-button class="mat-accent" [disabled]="!cardUsageForm.valid || cardUsageForm.pristine" aria-label="Add">
+                <mat-icon>add</mat-icon>
+              </button>
+            </form>
+          </div>
+        </div>
         <div class="comments">
-          <div
-            class="section-header"
-            fxLayout="row"
-            fxLayoutAlign="start center"
-          >
+          <div class="section-header" fxLayout="row" fxLayoutAlign="start center">
             <mat-icon class="mr-8">comment</mat-icon>
             <span class="section-title">Comments</span>
           </div>
@@ -76,43 +89,21 @@
               no-validate
             >
               <div fxLayout="row" fxLayoutAlign="center center">
-                <img
-                  class="comment-member-avatar"
-                  src="assets/images/avatars/profile.jpg"
-                />
+                <img class="comment-member-avatar" src="assets/images/avatars/profile.jpg" />
 
                 <mat-form-field class="mr-12" appearance="outline" fxFlex>
                   <mat-label>Comment</mat-label>
-                  <input
-                    matInput
-                    name="newComment"
-                    ngModel
-                    #newComment="ngModel"
-                    required
-                  />
+                  <input matInput name="newComment" ngModel #newComment="ngModel" required />
                 </mat-form-field>
 
-                <button
-                  mat-mini-fab
-                  class="mat-accent"
-                  [disabled]="!newCommentForm.valid || newCommentForm.pristine"
-                  aria-label="Add"
-                >
+                <button mat-mini-fab class="mat-accent" [disabled]="!newCommentForm.valid || newCommentForm.pristine" aria-label="Add">
                   <mat-icon>add</mat-icon>
                 </button>
               </div>
             </form>
 
-            <div
-              class="comment"
-              fxLayout="row"
-              fxLayoutAlign="start center"
-              *ngFor="let comment of card.comments"
-            >
-              <img
-                class="comment-member-avatar"
-                src="assets/images/avatars/profile.jpg"
-              />
+            <div class="comment" fxLayout="row" fxLayoutAlign="start center" *ngFor="let comment of card.comments">
+              <img class="comment-member-avatar" src="assets/images/avatars/profile.jpg" />
 
               <div fxLayout="column">
                 <div class="comment-member-name">

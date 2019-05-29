@@ -20,28 +20,18 @@ import {
 import { NgxDnDModule } from '@swimlane/ngx-dnd';
 
 import { FuseSharedModule } from '@fuse/shared.module';
-import {
-  FuseConfirmDialogModule,
-  FuseMaterialColorPickerModule
-} from '@fuse/components';
+import { FuseConfirmDialogModule, FuseMaterialColorPickerModule } from '@fuse/components';
 
-import {
-  BoardResolve,
-  ScrumboardService
-} from 'app/main/apps/scrumboard/scrumboard.service';
+import { BoardResolve, ScrumboardService } from 'app/main/apps/scrumboard/scrumboard.service';
 import { ScrumboardComponent } from 'app/main/apps/scrumboard/scrumboard.component';
 import { ScrumboardBoardComponent } from 'app/main/apps/scrumboard/board/board.component';
 import { ScrumboardBoardListComponent } from 'app/main/apps/scrumboard/board/list/list.component';
 import { ScrumboardBoardCardComponent } from 'app/main/apps/scrumboard/board/list/card/card.component';
 import { ScrumboardBoardEditListNameComponent } from 'app/main/apps/scrumboard/board/list/edit-list-name/edit-list-name.component';
 import { ScrumboardBoardAddCardComponent } from 'app/main/apps/scrumboard/board/list/add-card/add-card.component';
-import { ScrumboardBoardAddListComponent } from 'app/main/apps/scrumboard/board/add-list/add-list.component';
 import { ScrumboardCardDialogComponent } from 'app/main/apps/scrumboard/board/dialogs/card/card.component';
 import { ScrumboardLabelSelectorComponent } from 'app/main/apps/scrumboard/board/dialogs/card/label-selector/label-selector.component';
-import { ScrumboardEditBoardNameComponent } from 'app/main/apps/scrumboard/board/edit-board-name/edit-board-name.component';
-import { ScrumboardBoardSettingsSidenavComponent } from 'app/main/apps/scrumboard/board/sidenavs/settings/settings.component';
-import { ScrumboardBoardColorSelectorComponent } from 'app/main/apps/scrumboard/board/sidenavs/settings/board-color-selector/board-color-selector.component';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { MatRadioModule } from '@angular/material';
 
 const routes: Routes = [
   {
@@ -72,12 +62,8 @@ const routes: Routes = [
     ScrumboardBoardCardComponent,
     ScrumboardBoardEditListNameComponent,
     ScrumboardBoardAddCardComponent,
-    ScrumboardBoardAddListComponent,
     ScrumboardCardDialogComponent,
-    ScrumboardLabelSelectorComponent,
-    ScrumboardEditBoardNameComponent,
-    ScrumboardBoardSettingsSidenavComponent,
-    ScrumboardBoardColorSelectorComponent
+    ScrumboardLabelSelectorComponent
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -88,6 +74,7 @@ const routes: Routes = [
     MatDatepickerModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatRadioModule,
     MatIconModule,
     MatInputModule,
     MatListModule,

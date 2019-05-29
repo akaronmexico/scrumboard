@@ -33,18 +33,25 @@
         <!-- / BOARD SELECTION BUTTON -->
 
         <!-- BOARD NAME -->
+
         <div
           class="header-board-name mb-8 mb-md-0"
-          fxLayout="row"
+          fxLayout="column"
           fxLayoutAlign="center center"
-          fxLayout.gt-xs="row"
+          fxLayout.gt-xs="column"
           fxLayoutAlign.gt-xs="center center"
           fxFlex="1 0 100%"
           fxFlex.gt-xs="1 0 auto"
           fxFlexOrder="1"
           fxFlexOrder.gt-xs="2"
         >
-          <h1>{{ board.name }}</h1>
+          <img
+            *ngIf="board.avatar"
+            [src]="board.avatar"
+            class="avatar huge m-0"
+            [alt]="board.name"
+          />
+          <h1 class="no-top-margin">{{ board.name }}</h1>
         </div>
         <!-- / BOARD NAME -->
       </div>
@@ -58,7 +65,8 @@
         fxLayout="row"
         ngxDroppable="list"
         [model]="board.lists"
-        (out)="onDrop($event)"
+        (drop)="onDrop($event)"
+        (remove)="onRemove($event)"
         [@animateStagger]="{ value: '50' }"
       >
         <!-- LIST -->
@@ -67,6 +75,7 @@
           ngxDraggable
           *ngFor="let list of board.lists"
           [model]="list"
+          (remove)="onRemove($event)"
           [list]="list"
           [@animate]="{ value: '*', params: { duration: '350ms', x: '100%' } }"
         >

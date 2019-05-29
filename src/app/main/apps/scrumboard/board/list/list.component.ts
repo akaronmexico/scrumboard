@@ -138,7 +138,11 @@ export class ScrumboardBoardListComponent implements OnInit, OnDestroy {
    * @param ev
    */
   onDrop(ev): void {
-    console.log('drop event: ' + JSON.stringify(ev, null, 2));
+    console.log('drop event: ' + ev.value + ' is now in ' + this.list.name);
     this._scrumboardService.updateBoard();
+  }
+
+  onRemove(ev): void {
+    console.log(ev.value + ' was removed from board: ' + this.board.uri);
   }
 }

@@ -34,7 +34,13 @@
       fxLayoutAlign="center center"
       [@animate]="{ value: '*', params: { y: '100%' } }"
     >
-      <mat-icon class="s-56">assessment</mat-icon>
+      <img
+        *ngIf="board.avatar"
+        [src]="board.avatar"
+        class="avatar huge m-0"
+        [alt]="board.name"
+      />
+      <mat-icon *ngIf="!board.avatar" class="s-56">apps</mat-icon>
       <div class="board-name">{{ board.name }}</div>
     </div>
     <!-- / BOARD -->

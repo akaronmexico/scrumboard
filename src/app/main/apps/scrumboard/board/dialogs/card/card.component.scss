@@ -45,10 +45,32 @@
     .mat-dialog-content {
       position: relative;
 
+      .full-width {
+        width: 100%;
+      }
+
+      .mat-icon-button {
+        padding-top: 16px !important;
+      }
+
       .list-card-name {
         font-size: 16px;
         font-weight: 900;
         margin-bottom: 4px;
+      }
+
+      .usage-card-name {
+        font-size: 20px;
+        font-weight: 900;
+        margin-bottom: 4px;
+      }
+
+      .article-image {
+        max-height: 360px;
+      }
+
+      .radio-button {
+        padding-right: 8px;
       }
 
       .list-card-date {
@@ -105,7 +127,7 @@
           }
 
           .section-header {
-            font-size: 16px;
+            font-size: 18px;
 
             .section-title {
               font-weight: 600;
@@ -113,7 +135,7 @@
           }
 
           .section-content {
-            padding: 24px 16px 32px 32px;
+            padding: 0 0 32px 32px;
           }
 
           .labels {

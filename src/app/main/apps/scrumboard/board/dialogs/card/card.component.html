@@ -9,7 +9,7 @@
     <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
       <div fxFlex fxLayout="row" fxLayoutAlign="start center">
         <!-- OPTIONS -->
-        <div>Article Usage</div>
+        <div>Edit Article Details</div>
         <div class="options " fxFlex="0 1 auto">
           <mat-menu #optionsMenu="matMenu" [overlapTrigger]="false">
             <button mat-menu-item (click)="removeCard()">
@@ -47,13 +47,6 @@
       <!-- COMMENTS SECTION -->
       <div class="section">
         <div>
-          <div
-            class="section-header mb-16"
-            fxLayout="row"
-            fxLayoutAlign="start center"
-          >
-            <span class="section-title">How as this article used?</span>
-          </div>
           <div *ngIf="usageForm">
             <form
               [formGroup]="usageForm"
@@ -61,6 +54,13 @@
               fxLayoutAlign="start"
               no-validate
             >
+              <div
+                class="section-header mt-16 mb-16"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+              >
+                <span class="section-title">How was this article used?</span>
+              </div>
               <div fxLayout="column" fxLayoutAlign="center start">
                 <mat-radio-group
                   class="radio-group pt-1 mr-1 mb-16"
@@ -76,6 +76,8 @@
                     {{ usage }}
                   </mat-radio-button>
                 </mat-radio-group>
+              </div>
+              <div fxLayout="column" fxLayoutAlign="center start">
                 <div
                   class="mt-16 section-header"
                   fxLayout="row"

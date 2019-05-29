@@ -37,10 +37,12 @@ export class ScrumboardCardDialogComponent implements OnInit, OnDestroy {
   board: any;
   list: any;
   usageTypes: string[] = ['Used as Prompt', 'Amplified'];
+  statuses: string[] = ['New', 'In Work', 'Amplifed', 'Published'];
   toggleInArray = FuseUtils.toggleInArray;
   confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
   date = new Date();
   usageForm: FormGroup;
+  type: string;
   // Private
   private _unsubscribeAll: Subject<any>;
 
@@ -117,9 +119,6 @@ export class ScrumboardCardDialogComponent implements OnInit, OnDestroy {
     const usageDate = this.usageForm.value.usageDatePicker;
     const usageType = this.usageForm.value.usageType;
     const usageLink = this.usageForm.value.usageLink;
-    console.log('type: ' + JSON.stringify(usageType, null, 2));
-    console.log('date: ' + JSON.stringify(usageDate, null, 2));
-    console.log('link: ' + JSON.stringify(usageLink, null, 2));
     this.card.usageDate = usageDate;
     this.card.usageType = usageType;
     this.card.usageLink = usageLink;

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material';
 import { ScrumboardCardDialogComponent } from '../../dialogs/card/card.component';
+import { ScrumboardService } from '../../../scrumboard.service';
 
 @Component({
   selector: 'scrumboard-board-card',
@@ -26,7 +27,8 @@ export class ScrumboardBoardCardComponent implements OnInit {
    */
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _matDialog: MatDialog
+    private _matDialog: MatDialog,
+    private _scrumboardService: ScrumboardService
   ) {}
 
   // -----------------------------------------------------------------------------------------------------
@@ -61,15 +63,20 @@ export class ScrumboardBoardCardComponent implements OnInit {
     window.open(url, '_blank');
   }
 
+  updateCardStatus(status: string): void {
+    this._scrumboardService.updateCardStatus(this.card, status);
+  }
+
   /**
    * Open card dialog
    *
    * @param cardId
    */
-  openCardDialog(): void {
+  openCardDialog(type: string): void {
     this.dialogRef = this._matDialog.open(ScrumboardCardDialogComponent, {
       panelClass: 'scrumboard-card-dialog',
       data: {
+        status: this.card.status,
         cardId: this.cardId,
         listId: this.listId
       }

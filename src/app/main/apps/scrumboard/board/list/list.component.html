@@ -37,7 +37,7 @@
       class="list-cards ngx-dnd-container"
       [model]="list.idCards"
       ngxDroppable="card"
-      (out)="onDrop($event)"
+      (drop)="onDrop($event)"
       fusePerfectScrollbar
       #listScroll
     >

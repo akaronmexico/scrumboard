@@ -99,30 +99,26 @@
   </div>
 
   <div fxLayout="row" fxLayoutAlign="end center">
-    <!-- CARD ATTACHMENT -->
+    <!-- CARD USAGE DETAILS -->
     <span
-      *ngIf="card.attachments"
+      *ngIf="card.status === 'New'"
       class="list-card-footer-item"
+      (click)="updateCardStatus('In Work')"
       fxLayout="row"
       fxLayoutAlign="start center"
     >
-      <mat-icon class="s-18">attachment</mat-icon>
-      <span class="value">{{ card.attachments.length }}</span>
+      <mat-icon class="s-18">trending_flat</mat-icon>
     </span>
-    <!-- / CARD ATTACHMENT -->
-
-    <!-- CARD COMMENTS -->
     <span
-      *ngIf="card.comments"
+      *ngIf="card.status !== 'New'"
       class="list-card-footer-item"
-      (click)="openCardDialog()"
+      (click)="openCardDialog('link')"
       fxLayout="row"
       fxLayoutAlign="start center"
     >
-      <mat-icon class="s-18">comment</mat-icon>
-      <span class="value">{{ card.comments.length }}</span>
+      <mat-icon class="s-18">insert_link</mat-icon>
     </span>
-    <!-- / CARD COMMENTS -->
+    <!-- / CARD USAGE DETAILS -->
   </div>
 </div>
 <!-- CARD FOOTER -->

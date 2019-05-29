@@ -1,78 +1,81 @@
-<div id="board">
-  <!-- HEADER -->
-  <div
-    class="header p-16 p-md-24"
-    [ngClass]="board.settings.color"
-    fxLayout="column"
-  >
+<mat-sidenav-container>
+  <div id="board">
+    <!-- HEADER -->
     <div
-      class="header-content"
-      fxLayout="row wrap"
-      fxLayoutAlign="space-between"
-      fxFlex="1 0 auto"
+      class="header p-16 p-md-24"
+      [ngClass]="board.settings.color"
+      fxLayout="column"
     >
-      <!-- BOARD SELECTION BUTTON -->
       <div
-        fxLayout="row"
-        fxLayoutAlign="center center"
-        fxFlexOrder="2"
-        fxFlexOrder.gt-xs="1"
+        class="header-content"
+        fxLayout="row wrap"
+        fxLayoutAlign="space-between"
+        fxFlex="1 0 auto"
       >
-        <button
-          mat-raised-button
-          class="header-boards-button"
-          [ngClass]="board.settings.color + '-800'"
-          routerLink="/apps/scrumboard/boards"
-          aria-label="boards button"
+        <!-- BOARD SELECTION BUTTON -->
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxFlexOrder="2"
+          fxFlexOrder.gt-xs="1"
         >
-          <mat-icon class="mr-8">assessment</mat-icon>
-          <span>BOARDS</span>
-        </button>
-      </div>
-      <!-- / BOARD SELECTION BUTTON -->
+          <button
+            mat-raised-button
+            class="header-boards-button"
+            [ngClass]="board.settings.color + '-800'"
+            routerLink="/apps/scrumboard/boards"
+            aria-label="boards button"
+          >
+            <mat-icon class="mr-8">assessment</mat-icon>
+            <span>BOARDS</span>
+          </button>
+        </div>
+        <!-- / BOARD SELECTION BUTTON -->
 
-      <!-- BOARD NAME -->
+        <!-- BOARD NAME -->
+        <div
+          class="header-board-name mb-8 mb-md-0"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayout.gt-xs="row"
+          fxLayoutAlign.gt-xs="center center"
+          fxFlex="1 0 100%"
+          fxFlex.gt-xs="1 0 auto"
+          fxFlexOrder="1"
+          fxFlexOrder.gt-xs="2"
+        >
+          <h1>{{ board.name }}</h1>
+        </div>
+        <!-- / BOARD NAME -->
+      </div>
+    </div>
+    <!-- / HEADER -->
+
+    <div fxFlex class="board-content-wrapper p-16 p-md-24">
+      <!-- BOARD -->
       <div
-        class="header-board-name mb-8 mb-md-0"
+        class="board-content ngx-dnd-container p-16 p-md-24"
         fxLayout="row"
-        fxLayoutAlign="center center"
-        fxLayout.gt-xs="row"
-        fxLayoutAlign.gt-xs="center center"
-        fxFlex="1 0 100%"
-        fxFlex.gt-xs="1 0 auto"
-        fxFlexOrder="1"
-        fxFlexOrder.gt-xs="2"
+        ngxDroppable="list"
+        [model]="board.lists"
+        (out)="onDrop($event)"
+        [@animateStagger]="{ value: '50' }"
       >
-        <h1>{{ board.name }}</h1>
+        <!-- LIST -->
+        <scrumboard-board-list
+          class="scrumboard-board-list list-wrapper ngx-dnd-item"
+          ngxDraggable
+          *ngFor="let list of board.lists"
+          [model]="list"
+          [list]="list"
+          [@animate]="{ value: '*', params: { duration: '350ms', x: '100%' } }"
+        >
+        </scrumboard-board-list>
+        <!-- / LIST -->
       </div>
-      <!-- / BOARD NAME -->
+      <!-- / BOARD -->
     </div>
+    <!-- primary content -->
   </div>
-  <!-- / HEADER -->
-
-  <div fxFlex class="board-content-wrapper p-16 p-md-24">
-    <!-- BOARD -->
-    <div
-      class="board-content ngx-dnd-container p-16 p-md-24"
-      fxLayout="row"
-      ngxDroppable="list"
-      [model]="board.lists"
-      (out)="onDrop($event)"
-      [@animateStagger]="{ value: '50' }"
-    >
-      <!-- LIST -->
-      <scrumboard-board-list
-        class="scrumboard-board-list list-wrapper ngx-dnd-item"
-        ngxDraggable
-        *ngFor="let list of board.lists"
-        [model]="list"
-        [list]="list"
-        [@animate]="{ value: '*', params: { duration: '350ms', x: '100%' } }"
-      >
-      </scrumboard-board-list>
-      <!-- / LIST -->
-    </div>
-    <!-- / BOARD -->
-  </div>
-  <!-- primary content -->
-</div>
+  <mat-sidenav #settingsSidenav position="end"> </mat-sidenav>
+</mat-sidenav-container>

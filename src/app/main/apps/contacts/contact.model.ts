@@ -1,4 +1,5 @@
 import { FuseUtils } from '@fuse/utils';
+import { Target } from '../targets/target.model';
 
 const keywords = [
   { label: 'Russia', color: 'warn' },
@@ -25,7 +26,7 @@ function getRandomInt(min, max) {
 }
 
 export class Contact {
-  id: string;
+  uuid: string;
   name: string;
   capital: string;
   subregion: string;
@@ -84,7 +85,7 @@ export class Contact {
    */
   constructor(contact) {
     {
-      this.id = contact.id || FuseUtils.generateGUID();
+      this.uuid = contact.uuid || '';
       this.name = contact.name || '';
       this.nativeName = contact.nativeName || '';
       this.avatar = contact.avatar || 'assets/images/avatars/profile.jpg';
@@ -94,6 +95,9 @@ export class Contact {
       this.population = contact.population || '';
       this.latlng = contact.latlng || '';
       this.targets = contact.targets || [];
+      this.targets = this.targets.map(target => {
+        return new Target(target);
+      });
       this.histogram = contact.histogram || [];
       this.count = contact.count || 0;
       this.chart = {

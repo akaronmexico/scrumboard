@@ -1,7 +1,5 @@
-import { FuseUtils } from '@fuse/utils';
-
 export class Feed {
-  id: string;
+  uuid: string;
   rssname: string;
 
   url: string;
@@ -30,7 +28,7 @@ export class Feed {
    */
   constructor(feed) {
     {
-      this.id = feed.id || FuseUtils.generateGUID();
+      this.uuid = feed.uuid || '';
       this.rssname = feed.rssname || '';
       this.url = feed.url || '';
       this.count = feed.count || 0;

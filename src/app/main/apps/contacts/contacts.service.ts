@@ -166,7 +166,7 @@ export class ContactsService implements Resolve<any> {
     if (filterParameter === undefined || filterValue === undefined) {
       this.selectedContacts = [];
       this.contacts.map(contact => {
-        this.selectedContacts.push(contact.id);
+        this.selectedContacts.push(contact.uuid);
       });
     }
 
@@ -187,7 +187,7 @@ export class ContactsService implements Resolve<any> {
       delete contact['histogram'];
       try {
         this._httpClient
-          .post(this.baseURL + '/partnerconfig/' + contact.id, { ...contact })
+          .post(this.baseURL + '/partnerconfig/' + contact.uuid, { ...contact })
           .subscribe(
             response => {
               this.getContacts()
@@ -242,10 +242,10 @@ export class ContactsService implements Resolve<any> {
   deleteSelectedContacts(): void {
     for (const contactId of this.selectedContacts) {
       const contact = this.contacts.find(_contact => {
-        return _contact.id === contactId;
+        return _contact.uuid === contactId;
       });
       this._httpClient
-        .delete(this.baseURL + '/partners/' + contact.id, {})
+        .delete(this.baseURL + '/partners/' + contact.uuid, {})
         .subscribe(response => {
           const contactIndex = this.contacts.indexOf(contact);
           this.contacts.splice(contactIndex, 1);

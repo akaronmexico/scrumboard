@@ -27,14 +27,16 @@
           *ngFor="let targetBin of target.bins; let i = index"
           fxLayoutGap="20px"
           fxLayoutAlign="start center"
-          @fadeIn>
+          @fadeIn
+        >
           <mat-form-field appearance="outline" fxFlex="20">
             <mat-label>Bin</mat-label>
             <mat-select
               [compareWith]="compareBins"
               [(ngModel)]="targetBin.bin"
-              [ngModelOptions]="{ standalone: true }">
-              <mat-option *ngFor="let bin of bins" [value]="bin">
+              [ngModelOptions]="{ standalone: true }"
+            >
+              <mat-option *ngFor="let bin of bins" [value]="bin.uuid">
                 {{ bin.name }}
               </mat-option>
             </mat-select>
@@ -48,7 +50,8 @@
                 *ngFor="let keyword of targetBin.keywords; let i = index"
                 [selectable]="selectable"
                 [removable]="removable"
-                (removed)="removeKeyword(i, targetBin)">
+                (removed)="removeKeyword(i, targetBin)"
+              >
                 {{ keyword }}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
@@ -57,7 +60,8 @@
                 [matChipInputFor]="keywordChipList"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 [matChipInputAddOnBlur]="addOnBlur"
-                (matChipInputTokenEnd)="addKeyword($event, targetBin)" />
+                (matChipInputTokenEnd)="addKeyword($event, targetBin)"
+              />
             </mat-chip-list>
           </mat-form-field>
           <div class="button-group">

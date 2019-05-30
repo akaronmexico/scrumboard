@@ -87,37 +87,43 @@
 
     <!-- CARD DETAILS -->
 
-    <span
+    <button
+      mat-icon-button
+      color="accent"
       *ngIf="card.summary !== ''"
       class="list-card-footer-item"
-      fxLayout="row"
-      fxLayoutAlign="start center"
     >
       <mat-icon class="s-18">summary</mat-icon>
-    </span>
+    </button>
     <!-- / CARD DETAILS -->
   </div>
 
   <div fxLayout="row" fxLayoutAlign="end center">
     <!-- CARD USAGE DETAILS -->
-    <span
+    <button
+      mat-icon-button
+      color="accent"
       *ngIf="card.status === 'New'"
-      class="list-card-footer-item"
       (click)="updateCardStatus('In Work')"
-      fxLayout="row"
-      fxLayoutAlign="start center"
     >
       <mat-icon class="s-18">trending_flat</mat-icon>
-    </span>
-    <span
+    </button>
+    <button
+      mat-icon-button
+      color="accent"
       *ngIf="card.status !== 'New'"
-      class="list-card-footer-item"
-      (click)="openCardDialog('link')"
-      fxLayout="row"
-      fxLayoutAlign="start center"
+      (click)="openArticlePage()"
+    >
+      <mat-icon class="s-18">bar_chart</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      color="accent"
+      *ngIf="card.status !== 'New'"
+      (click)="openActivityDialog()"
     >
       <mat-icon class="s-18">insert_link</mat-icon>
-    </span>
+    </button>
     <!-- / CARD USAGE DETAILS -->
   </div>
 </div>

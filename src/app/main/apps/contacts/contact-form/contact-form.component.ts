@@ -74,7 +74,7 @@ export class ContactsContactFormDialogComponent {
 
   createContactForm(): FormGroup {
     return this._formBuilder.group({
-      id: [this.contact.id],
+      uuid: [this.contact.uuid],
       name: [this.contact.name],
       nativeName: [this.contact.nativeName],
       capital: [this.contact.capital],

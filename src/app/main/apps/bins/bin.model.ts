@@ -1,7 +1,7 @@
 import { FuseUtils } from '@fuse/utils';
 
 export class Bin {
-  id: string;
+  uuid: string;
   name: string;
   description: string;
 
@@ -12,7 +12,7 @@ export class Bin {
    */
   constructor(bin) {
     {
-      this.id = bin.id || FuseUtils.generateGUID();
+      this.uuid = bin.uuid || '';
       this.name = bin.name || bin.bin || '';
       this.description = bin.description || '';
     }
@@ -20,7 +20,7 @@ export class Bin {
 }
 
 export class TargetBin {
-  id: string;
+  uuid: string;
   bin: Bin;
   keywords: string[];
 
@@ -31,8 +31,7 @@ export class TargetBin {
    */
   constructor(targetBin) {
     {
-      this.id = targetBin.id || FuseUtils.generateGUID();
-      this.bin = targetBin.bin || new Bin({});
+      this.uuid = targetBin.uuid;
       this.keywords = targetBin.keywords || [];
     }
   }

@@ -1,6 +1,10 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatChipInputEvent } from '@angular/material';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatChipInputEvent
+} from '@angular/material';
 
 import { Bin } from 'app/main/apps/bins/bin.model';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
@@ -49,15 +53,13 @@ export class BinsBinFormDialogComponent {
     this.binForm = this.createBinForm();
   }
 
-
-
   // -----------------------------------------------------------------------------------------------------
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
   createBinForm(): FormGroup {
     return this._formBuilder.group({
-      id: [this.bin.id],
+      uuid: [this.bin.uuid],
       name: [this.bin.name],
       description: [this.bin.description]
     });

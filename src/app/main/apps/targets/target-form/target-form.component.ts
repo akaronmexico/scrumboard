@@ -100,7 +100,7 @@ export class TargetsTargetFormComponent implements OnInit {
   }
 
   compareBins(o1: any, o2: any): boolean {
-    return o1.name === o2.name;
+    return o1.uuid === o2;
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -109,7 +109,7 @@ export class TargetsTargetFormComponent implements OnInit {
 
   createTargetForm(): FormGroup {
     return this._formBuilder.group({
-      id: [this.target.id],
+      uuid: [this.target.uuid],
       name: [this.target.name]
     });
   }

@@ -100,7 +100,6 @@ export class BinsService implements Resolve<any> {
           this.bins = this.bins.map(bin => {
             return new Bin(bin);
           });
-
           this.onBinsChanged.next(this.bins);
           this.hideLoader();
           resolve(this.bins);
@@ -160,7 +159,7 @@ export class BinsService implements Resolve<any> {
     if (filterParameter === undefined || filterValue === undefined) {
       this.selectedBins = [];
       this.bins.map(bin => {
-        this.selectedBins.push(bin.id);
+        this.selectedBins.push(bin.uuid);
       });
     }
 
@@ -208,7 +207,7 @@ export class BinsService implements Resolve<any> {
   deleteBin(bin): void {
     this.showLoader();
     this._httpClient
-      .delete(this.baseURL + '/bins/' + bin.id, {})
+      .delete(this.baseURL + '/bins/' + bin.uuid, {})
       .subscribe(response => {
         const binIndex = this.bins.indexOf(bin);
         this.bins.splice(binIndex, 1);
@@ -223,7 +222,7 @@ export class BinsService implements Resolve<any> {
   deleteSelectedBins(): void {
     for (const binId of this.selectedBins) {
       const bin = this.bins.find(_bin => {
-        return _bin.id === binId;
+        return _bin.uuid === binId;
       });
       const binIndex = this.bins.indexOf(bin);
       this.bins.splice(binIndex, 1);

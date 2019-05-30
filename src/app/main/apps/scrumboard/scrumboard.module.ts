@@ -51,14 +51,14 @@ const routes: Routes = [
     }
   },
   {
-    path: 'boards/:boardId/:boardUri',
+    path: 'boards/:boardId',
     component: ScrumboardBoardComponent,
     resolve: {
       board: BoardResolve
     }
   },
   {
-    path: 'boards/:boardId/:boardUri/:articleId',
+    path: 'boards/:boardId/:articleId',
     component: ArticleComponent,
     resolve: {
       article: ArticleResolve

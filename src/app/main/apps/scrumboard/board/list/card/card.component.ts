@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { MatDialog } from '@angular/material';
 import { ScrumboardCardDialogComponent } from '../../dialogs/card/card.component';
 import { ScrumboardService } from '../../../scrumboard.service';
+import { ActivitysActivityFormDialogComponent } from 'app/main/apps/activities/activity-form/activity-form.component';
 
 @Component({
   selector: 'scrumboard-board-card',
@@ -73,9 +74,25 @@ export class ScrumboardBoardCardComponent implements OnInit {
    *
    * @param cardId
    */
-  openCardDialog(type: string): void {
+  openArticlePage(): void {
     this._router.navigate([this.cardId], {
       relativeTo: this._activatedRoute
     });
+  }
+
+  openActivityDialog(): void {
+    this.dialogRef = this._matDialog.open(
+      ActivitysActivityFormDialogComponent,
+      {
+        panelClass: 'activitys-activity-form-dialog',
+        width: '85vw',
+        data: {
+          cardId: this.cardId,
+          action: 'edit',
+          articleTitle: this.card.title
+        }
+      }
+    );
+    this.dialogRef.afterClosed().subscribe(response => {});
   }
 }

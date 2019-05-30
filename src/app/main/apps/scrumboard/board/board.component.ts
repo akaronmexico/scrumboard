@@ -79,9 +79,7 @@ export class ScrumboardBoardComponent implements OnInit, OnDestroy {
    */
   onBoardNameChanged(newName): void {
     this._scrumboardService.updateBoard();
-    this._location.go(
-      '/apps/scrumboard/boards/' + this.board.id + '/' + this.board.uri
-    );
+    this._location.go('/apps/scrumboard/boards/' + this.board.uuid);
   }
 
   /**
@@ -94,6 +92,6 @@ export class ScrumboardBoardComponent implements OnInit, OnDestroy {
   }
 
   onRemove(ev): void {
-    console.log(ev.value + ' was removed from board: ' + this.board.uri);
+    console.log(ev.value + ' was removed from board: ' + this.board.uuid);
   }
 }

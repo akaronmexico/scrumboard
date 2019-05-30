@@ -102,7 +102,7 @@ export class TargetsService {
     if (filterParameter === undefined || filterValue === undefined) {
       this.selectedTargets = [];
       this.targets.map(target => {
-        this.selectedTargets.push(target.id);
+        this.selectedTargets.push(target.uuid);
       });
     }
 
@@ -119,7 +119,7 @@ export class TargetsService {
   updateTarget(target): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient
-        .post('api/targets-targets/' + target.id, { ...target })
+        .post('api/targets-targets/' + target.uuid, { ...target })
         .subscribe(response => {
           this.getTargets();
           resolve(response);
@@ -154,7 +154,7 @@ export class TargetsService {
   deleteSelectedTargets(): void {
     for (const targetId of this.selectedTargets) {
       const target = this.targets.find(_target => {
-        return _target.id === targetId;
+        return _target.uuid === targetId;
       });
       const targetIndex = this.targets.indexOf(target);
       this.targets.splice(targetIndex, 1);

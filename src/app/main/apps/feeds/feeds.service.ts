@@ -188,7 +188,7 @@ export class FeedsService implements Resolve<any> {
     if (filterParameter === undefined || filterValue === undefined) {
       this.selectedFeeds = [];
       this.feeds.map(bin => {
-        this.selectedFeeds.push(bin.id);
+        this.selectedFeeds.push(bin.uuid);
       });
     }
 
@@ -253,13 +253,13 @@ export class FeedsService implements Resolve<any> {
    * Delete selected feeds
    */
   deleteSelectedFeeds(): void {
-    for (const id of this.selectedFeeds) {
+    for (const uuid of this.selectedFeeds) {
       const feed = this.feeds.find(_feed => {
-        return _feed.id === id;
+        return _feed.uuid === uuid;
       });
 
       this._httpClient
-        .delete(this.baseURL + '/feeds/' + feed.id, {})
+        .delete(this.baseURL + '/feeds/' + feed.uuid, {})
         .subscribe(response => {
           const index = this.feeds.indexOf(feed);
           this.feeds.splice(index, 1);

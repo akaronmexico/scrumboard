@@ -1,13 +1,11 @@
 import { FuseUtils } from '@fuse/utils';
 import { Bin, TargetBin } from '../bins/bin.model';
 
-
 export class Target {
-  id: string;
+  uuid: string;
   name: string;
   bins: TargetBin[];
 
-  
   /**
    * Constructor
    *
@@ -15,9 +13,12 @@ export class Target {
    */
   constructor(target) {
     {
-      this.id = target.id || FuseUtils.generateGUID();
+      this.uuid = target.uuid || '';
       this.name = target.name || '';
       this.bins = target.bins || [];
+      this.bins = this.bins.map(bin => {
+        return new TargetBin(bin);
+      });
     }
   }
 }

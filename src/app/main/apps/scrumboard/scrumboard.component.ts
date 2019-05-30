@@ -60,9 +60,8 @@ export class ScrumboardComponent implements OnInit, OnDestroy {
   }
 
   openBoard(board: Board): void {
-    this._router.navigate([
-      '/apps/scrumboard/boards/' + board.id + '/' + board.uri
-    ]);
+    console.log('board: ' + JSON.stringify(board, null, 2));
+    this._router.navigate(['/apps/scrumboard/boards/' + board.uuid]);
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -72,12 +71,4 @@ export class ScrumboardComponent implements OnInit, OnDestroy {
   /**
    * New board
    */
-  newBoard(): void {
-    const newBoard = new Board({});
-    this._scrumboardService.createNewBoard(newBoard).then(() => {
-      this._router.navigate([
-        '/apps/scrumboard/boards/' + newBoard.id + '/' + newBoard.uri
-      ]);
-    });
-  }
 }

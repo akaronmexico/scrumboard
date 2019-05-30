@@ -306,7 +306,7 @@ export class BoardResolve implements Resolve<any> {
    * @returns {Promise<any>}
    */
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
-    return this._scrumboardService.getBoard(route.paramMap.get('boardUri'));
+    return this._scrumboardService.getBoard(route.paramMap.get('boardId'));
   }
 }
 

@@ -55,7 +55,7 @@ export class FeedsFeedFormDialogComponent {
 
   createFeedForm(): FormGroup {
     return this._formBuilder.group({
-      id: [this.feed.id],
+      uuid: [this.feed.uuid],
       rssname: [this.feed.rssname],
       url: [this.feed.url]
     });

@@ -1,7 +1,7 @@
 import { FuseUtils } from '@fuse/utils';
 
 export class Card {
-  id: string;
+  uuid: string;
   name: string;
   description: string;
   date: Date;
@@ -23,7 +23,7 @@ export class Card {
    * @param card
    */
   constructor(card) {
-    this.id = card.id || FuseUtils.generateGUID();
+    this.uuid = card.uuid || '';
     this.name = card.name || '';
     this.description = card.description || '';
     this.idAttachmentCover = card.idAttachmentCover || '';
@@ -36,7 +36,6 @@ export class Card {
     this.checkItemsChecked = card.checkItemsChecked || 0;
     this.comments = card.comments || [];
     this.activities = card.activities || [];
-    console.log('card: ' + JSON.stringify(card, null, 2));
     this.due = card.due || '';
   }
 }

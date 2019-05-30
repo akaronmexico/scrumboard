@@ -86,21 +86,6 @@ export class FuseUtils {
   }
 
   /**
-   * Generate a unique GUID
-   *
-   * @returns {string}
-   */
-  public static generateGUID(): string {
-    function S4(): string {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-
-    return S4() + S4();
-  }
-
-  /**
    * Toggle in array
    *
    * @param item

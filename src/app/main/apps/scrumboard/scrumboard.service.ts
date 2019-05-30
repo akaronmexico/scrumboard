@@ -208,8 +208,8 @@ export class ScrumboardService implements Resolve<any> {
       return _list.id === listId;
     });
 
-    for (const cardId of list.idCards) {
-      this.removeCard(cardId);
+    for (const taskId of list.idCards) {
+      this.removeCard(taskId);
     }
 
     const index = this.board.lists.indexOf(list);
@@ -222,19 +222,19 @@ export class ScrumboardService implements Resolve<any> {
   /**
    * Remove card
    *
-   * @param cardId
+   * @param taskId
    * @param listId
    */
-  removeCard(cardId, listId?): void {
+  removeCard(taskId, listId?): void {
     const card = this.board.cards.find(_card => {
-      return _card.id === cardId;
+      return _card.id === taskId;
     });
 
     if (listId) {
       const list = this.board.lists.find(_list => {
         return listId === _list.id;
       });
-      list.idCards.splice(list.idCards.indexOf(cardId), 1);
+      list.idCards.splice(list.idCards.indexOf(taskId), 1);
     }
 
     this.board.cards.splice(this.board.cards.indexOf(card), 1);

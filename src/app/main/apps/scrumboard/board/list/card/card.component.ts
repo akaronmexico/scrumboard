@@ -2,7 +2,6 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material';
-import { ScrumboardCardDialogComponent } from '../../dialogs/card/card.component';
 import { ScrumboardService } from '../../../scrumboard.service';
 import { ActivitysActivityFormDialogComponent } from 'app/main/apps/activities/activity-form/activity-form.component';
 
@@ -14,7 +13,7 @@ import { ActivitysActivityFormDialogComponent } from 'app/main/apps/activities/a
 })
 export class ScrumboardBoardCardComponent implements OnInit {
   @Input()
-  cardId;
+  taskId;
   @Input()
   listId;
   dialogRef: any;
@@ -43,7 +42,7 @@ export class ScrumboardBoardCardComponent implements OnInit {
   ngOnInit(): void {
     this.board = this._activatedRoute.snapshot.data.board;
     this.card = this.board.cards.filter(card => {
-      return this.cardId === card.id;
+      return this.taskId === card.id;
     })[0];
   }
 
@@ -72,10 +71,10 @@ export class ScrumboardBoardCardComponent implements OnInit {
   /**
    * Open card dialog
    *
-   * @param cardId
+   * @param taskId
    */
   openArticlePage(): void {
-    this._router.navigate([this.cardId], {
+    this._router.navigate([this.taskId], {
       relativeTo: this._activatedRoute
     });
   }
@@ -87,7 +86,7 @@ export class ScrumboardBoardCardComponent implements OnInit {
         panelClass: 'activitys-activity-form-dialog',
         width: '85vw',
         data: {
-          cardId: this.cardId,
+          taskId: this.taskId,
           action: 'edit',
           articleTitle: this.card.title
         }

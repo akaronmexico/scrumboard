@@ -36,8 +36,6 @@ import { ScrumboardBoardComponent } from 'app/main/apps/scrumboard/board/board.c
 import { ScrumboardBoardListComponent } from 'app/main/apps/scrumboard/board/list/list.component';
 import { ScrumboardBoardCardComponent } from 'app/main/apps/scrumboard/board/list/card/card.component';
 import { ScrumboardBoardAddCardComponent } from 'app/main/apps/scrumboard/board/list/add-card/add-card.component';
-import { ScrumboardCardDialogComponent } from 'app/main/apps/scrumboard/board/dialogs/card/card.component';
-import { ScrumboardLabelSelectorComponent } from 'app/main/apps/scrumboard/board/dialogs/card/label-selector/label-selector.component';
 import { MatRadioModule } from '@angular/material';
 import { ActivitysModule } from '../activities/activitys.module';
 import { ArticleComponent } from './board/list/article/article.component';
@@ -77,8 +75,6 @@ const routes: Routes = [
     ScrumboardBoardListComponent,
     ScrumboardBoardCardComponent,
     ScrumboardBoardAddCardComponent,
-    ScrumboardCardDialogComponent,
-    ScrumboardLabelSelectorComponent,
     ArticleComponent
   ],
   imports: [
@@ -109,6 +105,6 @@ const routes: Routes = [
     FuseMaterialColorPickerModule
   ],
   providers: [BoardResolve, ArticleResolve],
-  entryComponents: [ScrumboardCardDialogComponent]
+  entryComponents: []
 })
 export class ScrumboardModule {}

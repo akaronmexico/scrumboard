@@ -16,7 +16,6 @@ import { FusePerfectScrollbarDirective } from '@fuse/directives/fuse-perfect-scr
 
 import { ScrumboardService } from 'app/main/apps/scrumboard/scrumboard.service';
 import { Card } from 'app/main/apps/scrumboard/card.model';
-import { ScrumboardCardDialogComponent } from 'app/main/apps/scrumboard/board/dialogs/card/card.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -114,22 +113,6 @@ export class ScrumboardBoardListComponent implements OnInit, OnDestroy {
           });
       }
     });
-  }
-
-  /**
-   * Open card dialog
-   *
-   * @param cardId
-   */
-  openCardDialog(cardId): void {
-    this.dialogRef = this._matDialog.open(ScrumboardCardDialogComponent, {
-      panelClass: 'scrumboard-card-dialog',
-      data: {
-        cardId: cardId,
-        listId: this.list.id
-      }
-    });
-    this.dialogRef.afterClosed().subscribe(response => {});
   }
 
   /**

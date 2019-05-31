@@ -56,6 +56,7 @@ export class AnalyticsDashboardComponent implements OnInit {
     this.chartLabels = [];
     const data = [];
     const checkedData = [];
+
     if (
       this.totals &&
       this.totals.histogram &&
@@ -65,6 +66,20 @@ export class AnalyticsDashboardComponent implements OnInit {
         data.push(bucket.count);
         this.chartLabels.push(bucket.label);
       });
+      if (
+        this.totals.checkedHistogram &&
+        this.totals.checkedHistogram.length > 0
+      ) {
+        if (
+          this.totals.histogram.length < this.totals.checkedHistogram.length
+        ) {
+          const diff =
+            this.totals.checkedHistogram.length - this.totals.histogram.length;
+          for (let i = 0; i < diff; i++) {
+            data.push(0);
+          }
+        }
+      }
     }
     this.chartData.push({ label: 'Matched Articles', data: data });
     if (

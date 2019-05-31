@@ -60,7 +60,7 @@ export class BinsBinFormDialogComponent {
   createBinForm(): FormGroup {
     return this._formBuilder.group({
       uuid: [this.bin.uuid],
-      name: [this.bin.name],
+      bin: [this.bin.bin],
       description: [this.bin.description]
     });
   }

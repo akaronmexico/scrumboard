@@ -1,5 +1,4 @@
-@mixin contacts-theme($theme) {
-
+@mixin bins-theme($theme) {
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
   $is-dark: map-get($theme, is-dark);
@@ -8,7 +7,7 @@
     width: 100%;
   }
 
-  #contacts {
+  #bins {
     .header {
       .search-wrapper {
         background: map-get($background, card);

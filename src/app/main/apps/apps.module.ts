@@ -25,6 +25,10 @@ const routes = [
     loadChildren: './contacts/contacts.module#ContactsModule'
   },
   {
+    path: 'personas',
+    loadChildren: './personas/personas.module#PersonasModule'
+  },
+  {
     path: 'bins',
     loadChildren: './bins/bins.module#BinsModule'
   },

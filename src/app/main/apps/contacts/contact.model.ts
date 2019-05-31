@@ -40,7 +40,7 @@ export class Contact {
   flag: string;
   bins: any[];
 
-  count: number;
+  taskCount: number;
   chart: any;
   histogram: any[];
 
@@ -86,7 +86,7 @@ export class Contact {
   constructor(contact) {
     {
       this.uuid = contact.uuid || '';
-      this.name = contact.name || '';
+      this.name = contact.name || contact.partner || '';
       this.nativeName = contact.nativeName || '';
       this.avatar = contact.avatar || 'assets/images/avatars/profile.jpg';
       this.capital = contact.capital || '';
@@ -99,7 +99,7 @@ export class Contact {
         return new Target(target);
       });
       this.histogram = contact.histogram || [];
-      this.count = contact.count || 0;
+      this.taskCount = contact.taskCount || 0;
       this.chart = {
         datasets: [
           {

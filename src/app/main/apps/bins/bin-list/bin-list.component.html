@@ -3,17 +3,20 @@
   <ng-container matColumnDef="checkbox">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let bin">
-      <mat-checkbox [(ngModel)]="checkboxes[bin.id]" (ngModelChange)="onSelectedChange(bin.id)" (click)="$event.stopPropagation()">
+      <mat-checkbox
+        [(ngModel)]="checkboxes[bin.id]"
+        (ngModelChange)="onSelectedChange(bin.id)"
+        (click)="$event.stopPropagation()"
+      >
       </mat-checkbox>
     </mat-cell>
   </ng-container>
-
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
     <mat-cell *matCellDef="let bin">
-      <p class="text-truncate font-weight-600">{{ bin.name }}</p>
+      <p class="text-truncate font-weight-600">{{ bin.bin }}</p>
     </mat-cell>
   </ng-container>
 
@@ -30,8 +33,12 @@
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let bin">
       <div fxFlex="row" fxLayoutAlign="end center">
-
-        <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More" (click)="$event.stopPropagation()">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="moreMenu"
+          aria-label="More"
+          (click)="$event.stopPropagation()"
+        >
           <mat-icon class="secondary-text">more_vert</mat-icon>
         </button>
 

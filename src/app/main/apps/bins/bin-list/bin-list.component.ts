@@ -1,4 +1,11 @@
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
@@ -25,7 +32,7 @@ export class BinsBinListComponent implements OnInit, OnDestroy {
   bins: any;
   user: any;
   dataSource: FilesDataSource | null;
-  displayedColumns = ['checkbox', 'name', 'description'];
+  displayedColumns = ['checkbox', 'name', 'description', 'buttons'];
   selectedBins: any[];
   checkboxes: {};
   dialogRef: any;
@@ -55,29 +62,35 @@ export class BinsBinListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.dataSource = new FilesDataSource(this._binsService);
 
-    this._binsService.onBinsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(bins => {
-      this.bins = bins;
+    this._binsService.onBinsChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(bins => {
+        this.bins = bins;
 
-      this.checkboxes = {};
-      bins.map(bin => {
-        this.checkboxes[bin.id] = false;
+        this.checkboxes = {};
+        bins.map(bin => {
+          this.checkboxes[bin.id] = false;
+        });
       });
-    });
 
-    this._binsService.onSelectedBinsChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(selectedBins => {
-      for (const id in this.checkboxes) {
-        if (!this.checkboxes.hasOwnProperty(id)) {
-          continue;
+    this._binsService.onSelectedBinsChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(selectedBins => {
+        for (const id in this.checkboxes) {
+          if (!this.checkboxes.hasOwnProperty(id)) {
+            continue;
+          }
+
+          this.checkboxes[id] = selectedBins.includes(id);
         }
+        this.selectedBins = selectedBins;
+      });
 
-        this.checkboxes[id] = selectedBins.includes(id);
-      }
-      this.selectedBins = selectedBins;
-    });
-
-    this._binsService.onFilterChanged.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
-      this._binsService.deselectBins();
-    });
+    this._binsService.onFilterChanged
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(() => {
+        this._binsService.deselectBins();
+      });
   }
 
   /**
@@ -141,7 +154,8 @@ export class BinsBinListComponent implements OnInit, OnDestroy {
       disableClose: false
     });
 
-    this.confirmDialogRef.componentInstance.confirmMessage = 'Are you sure you want to delete?';
+    this.confirmDialogRef.componentInstance.confirmMessage =
+      'Are you sure you want to delete?';
 
     this.confirmDialogRef.afterClosed().subscribe(result => {
       if (result) {

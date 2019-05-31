@@ -77,7 +77,7 @@
           class="target-badge"
           selected
         >
-          {{ target.name }}
+          {{ target.target }}
         </mat-chip>
       </mat-chip-list>
     </mat-cell>
@@ -87,7 +87,7 @@
   <ng-container matColumnDef="count">
     <mat-header-cell *matHeaderCellDef># Hits</mat-header-cell>
     <mat-cell *matCellDef="let contact">
-      <p class="text-truncate font-weight-600">{{ contact.count }}</p>
+      <p class="text-truncate font-weight-600">{{ contact.taskCount }}</p>
     </mat-cell>
   </ng-container>
 

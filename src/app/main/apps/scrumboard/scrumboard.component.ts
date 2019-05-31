@@ -60,7 +60,6 @@ export class ScrumboardComponent implements OnInit, OnDestroy {
   }
 
   openBoard(board: Board): void {
-    console.log('board: ' + JSON.stringify(board, null, 2));
     this._router.navigate(['/apps/scrumboard/boards/' + board.uuid]);
   }
 

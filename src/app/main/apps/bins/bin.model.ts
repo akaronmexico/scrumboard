@@ -2,7 +2,7 @@ import { FuseUtils } from '@fuse/utils';
 
 export class Bin {
   uuid: string;
-  name: string;
+  bin: string;
   description: string;
 
   /**
@@ -13,7 +13,7 @@ export class Bin {
   constructor(bin) {
     {
       this.uuid = bin.uuid || '';
-      this.name = bin.name || bin.bin || '';
+      this.bin = bin.bin || '';
       this.description = bin.description || '';
     }
   }
@@ -21,7 +21,7 @@ export class Bin {
 
 export class TargetBin {
   uuid: string;
-  bin: Bin;
+  binId: string;
   keywords: string[];
 
   /**
@@ -32,6 +32,7 @@ export class TargetBin {
   constructor(targetBin) {
     {
       this.uuid = targetBin.uuid;
+      this.binId = targetBin.binId || '';
       this.keywords = targetBin.keywords || [];
     }
   }

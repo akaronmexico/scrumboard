@@ -32,7 +32,14 @@ export class FeedsFeedListComponent implements OnInit, OnDestroy {
   feeds: any;
   user: any;
   dataSource: FilesDataSource | null;
-  displayedColumns = ['checkbox', 'name', 'url', 'count', 'histogram'];
+  displayedColumns = [
+    'checkbox',
+    'name',
+    'url',
+    'count',
+    'histogram',
+    'buttons'
+  ];
   selectedFeeds: any[];
   checkboxes: {};
   dialogRef: any;

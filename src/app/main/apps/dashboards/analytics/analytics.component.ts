@@ -65,7 +65,6 @@ export class AnalyticsDashboardComponent implements OnInit {
         data.push(bucket.count);
         this.chartLabels.push(bucket.label);
       });
-      console.log('# of buckets: ' + data.length);
     }
     this.chartData.push({ label: 'Matched Articles', data: data });
     if (
@@ -76,7 +75,6 @@ export class AnalyticsDashboardComponent implements OnInit {
       this.totals.checkedHistogram.forEach(bucket => {
         checkedData.push(bucket.count);
       });
-      console.log('# of checked buckets: ' + checkedData.length);
     }
     this.chartData.push({ label: 'Checked Articles', data: checkedData });
   }

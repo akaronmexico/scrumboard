@@ -82,6 +82,10 @@ $typography: mat-typography-config(
 
 // Import app and page component themes here to enable theming for them
 @import 'src/app/main/apps/contacts/contacts.theme';
+@import 'src/app/main/apps/feeds/feeds.theme';
+@import 'src/app/main/apps/bins/bins.theme';
+@import 'src/app/main/apps/targets/targets.theme';
+@import 'src/app/main/apps/personas/personas.theme';
 @import 'src/app/main/apps/dashboards/project/project.theme';
 @import 'src/app/main/apps/file-manager/file-manager.theme';
 @import 'src/app/main/apps/scrumboard/scrumboard.theme';
@@ -90,6 +94,10 @@ $typography: mat-typography-config(
 @mixin components-theme($theme) {
   // Apps
   @include contacts-theme($theme);
+  @include bins-theme($theme);
+  @include feeds-theme($theme);
+  @include targets-theme($theme);
+  @include personas-theme($theme);
   @include dashboards-project-theme($theme);
   @include file-manager-theme($theme);
   @include scrumboard-theme($theme);
@@ -105,11 +113,7 @@ $default-accent-palette: mat-palette($mat-light-blue, 600, 400, 700);
 $default-warn-palette: mat-palette($mat-red);
 
 // Create the Material theme object
-$theme: mat-light-theme(
-  $default-primary-palette,
-  $default-accent-palette,
-  $default-warn-palette
-);
+$theme: mat-light-theme($default-primary-palette, $default-accent-palette, $default-warn-palette);
 
 // Add ".theme-default" class to the body to activate this theme.
 // Class name must start with "theme-" !!!

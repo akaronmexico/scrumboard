@@ -4,6 +4,8 @@ import * as moment from 'moment';
 import { MatDialog } from '@angular/material';
 import { ScrumboardService } from '../../../scrumboard.service';
 import { ActivitysActivityFormDialogComponent } from 'app/main/apps/activities/activity-form/activity-form.component';
+import { Persona } from 'app/main/apps/personas/persona.model';
+import { PersonasService } from 'app/main/apps/personas/personas.service';
 
 @Component({
   selector: 'scrumboard-board-card',
@@ -29,7 +31,8 @@ export class ScrumboardBoardCardComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _matDialog: MatDialog,
-    private _scrumboardService: ScrumboardService
+    private _scrumboardService: ScrumboardService,
+    private _personasService: PersonasService
   ) {}
 
   // -----------------------------------------------------------------------------------------------------
@@ -80,18 +83,23 @@ export class ScrumboardBoardCardComponent implements OnInit {
   }
 
   openActivityDialog(): void {
-    this.dialogRef = this._matDialog.open(
-      ActivitysActivityFormDialogComponent,
-      {
-        panelClass: 'activitys-activity-form-dialog',
-        width: '85vw',
-        data: {
-          taskId: this.taskId,
-          action: 'edit',
-          articleTitle: this.card.title
+    let personas = [];
+    this._personasService.getPersonas().then((p: Persona[]) => {
+      personas = p;
+      this.dialogRef = this._matDialog.open(
+        ActivitysActivityFormDialogComponent,
+        {
+          panelClass: 'activitys-activity-form-dialog',
+          width: '85vw',
+          data: {
+            taskId: this.taskId,
+            action: 'edit',
+            articleTitle: this.card.title,
+            personas: personas
+          }
         }
-      }
-    );
-    this.dialogRef.afterClosed().subscribe(response => {});
+      );
+      this.dialogRef.afterClosed().subscribe(response => {});
+    });
   }
 }

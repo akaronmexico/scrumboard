@@ -3,7 +3,7 @@ import { Bin, TargetBin } from '../bins/bin.model';
 
 export class Target {
   uuid: string;
-  name: string;
+  target: string;
   bins: TargetBin[];
 
   /**
@@ -14,7 +14,7 @@ export class Target {
   constructor(target) {
     {
       this.uuid = target.uuid || '';
-      this.name = target.name || '';
+      this.target = target.target || '';
       this.bins = target.bins || [];
       this.bins = this.bins.map(bin => {
         return new TargetBin(bin);

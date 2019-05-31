@@ -59,6 +59,13 @@ export const navigation: FuseNavigation[] = [
         url: '/apps/partners'
       },
       {
+        id: 'personas',
+        title: 'Personas',
+        type: 'item',
+        icon: 'person',
+        url: '/apps/personas'
+      },
+      {
         id: 'bins',
         title: 'Bins',
         type: 'item',

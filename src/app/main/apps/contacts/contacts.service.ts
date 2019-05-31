@@ -80,6 +80,27 @@ export class ContactsService implements Resolve<any> {
   }
 
   /**
+   * used to populate dropdowns to select a partner
+   */
+  getContactNames(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this._httpClient
+        .get(this.baseURL + '/partners')
+        .subscribe((response: any) => {
+          try {
+            this.contacts = response;
+            this.contacts = this.contacts.map(contact => {
+              return new Contact(contact);
+            });
+            resolve(this.contacts);
+          } catch (err) {
+            console.log('getContactNames err: ' + JSON.stringify(err, null, 2));
+          }
+        }, reject);
+    });
+  }
+
+  /**
    * Get contacts
    *
    * @returns {Promise<any>}

@@ -7,7 +7,7 @@
           <input
             name="name"
             placeholder="Target Name"
-            [(ngModel)]="target.name"
+            [(ngModel)]="target.target"
             [ngModelOptions]="{ standalone: true }"
             matInput
             required
@@ -33,11 +33,11 @@
             <mat-label>Bin</mat-label>
             <mat-select
               [compareWith]="compareBins"
-              [(ngModel)]="targetBin.bin"
+              [(ngModel)]="targetBin.binId"
               [ngModelOptions]="{ standalone: true }"
             >
               <mat-option *ngFor="let bin of bins" [value]="bin.uuid">
-                {{ bin.name }}
+                {{ bin.bin }}
               </mat-option>
             </mat-select>
           </mat-form-field>

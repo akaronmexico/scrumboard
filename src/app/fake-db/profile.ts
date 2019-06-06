@@ -292,7 +292,7 @@ export class ProfileFakeDb
                 }
             ]
         },
-        'contact': {
+        'partner': {
             'address' : 'Ut pharetra luctus est quis sodales. Duis nisi tortor, bibendum eget tincidunt, aliquam ac elit. Mauris nec euismod odio.',
             'tel'     : [
                 '+6 555 6600',

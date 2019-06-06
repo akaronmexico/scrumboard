@@ -28,7 +28,7 @@ export class FeedsComponent implements OnInit, OnDestroy {
   /**
    * Constructor
    *
-   * @param {ContactsService} _feedsService
+   * @param {PartnersService} _feedsService
    * @param {FuseSidebarService} _fuseSidebarService
    * @param {MatDialog} _matDialog
    */

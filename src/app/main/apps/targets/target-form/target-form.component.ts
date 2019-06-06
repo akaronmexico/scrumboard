@@ -68,6 +68,19 @@ export class TargetsTargetFormComponent implements OnInit {
     this.remove.emit({ index: this.targetIndex });
   }
 
+  paste(event: ClipboardEvent, targetBin: TargetBin): void {
+    console.log('paste!!!');
+    event.preventDefault();
+    event.clipboardData
+      .getData('Text')
+      .split(/;|,|\n/)
+      .forEach(value => {
+        if (value.trim()) {
+          targetBin.keywords.push(value.trim());
+        }
+      });
+  }
+
   addTargetBin(): void {
     if (!this.target.bins) {
       this.target.bins = [];

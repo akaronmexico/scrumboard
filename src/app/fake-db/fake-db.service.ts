@@ -1,5 +1,5 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { ContactsFakeDb } from 'app/fake-db/contacts';
+import { PartnersFakeDb } from 'app/fake-db/partners';
 import { AnalyticsDashboardDb } from 'app/fake-db/dashboard-analytics';
 import { ProjectDashboardDb } from 'app/fake-db/dashboard-project';
 import { FileManagerFakeDb } from 'app/fake-db/file-manager';
@@ -27,9 +27,9 @@ export class FakeDbService implements InMemoryDbService {
       // Feeds
       'feeds-feeds': FeedsFakeDb.feeds,
 
-      // Contacts
-      'contacts-contacts': ContactsFakeDb.contacts,
-      'contacts-user': ContactsFakeDb.user,
+      // Partners
+      'partners-partners': PartnersFakeDb.partners,
+      'partners-user': PartnersFakeDb.user,
       'articles-article': ArtriclesFakeDB.article,
 
       // Scrumboard

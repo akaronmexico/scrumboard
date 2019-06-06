@@ -1057,24 +1057,24 @@ export class IconsFakeDb
             'tags'    : ['confirmation_number']
         },
         {
-            'name'    : 'contact_mail',
-            'ligature': 'contact_mail',
-            'tags'    : ['contact_mail']
+            'name'    : 'partner_mail',
+            'ligature': 'partner_mail',
+            'tags'    : ['partner_mail']
         },
         {
-            'name'    : 'contact_phone',
-            'ligature': 'contact_phone',
-            'tags'    : ['contact_phone']
+            'name'    : 'partner_phone',
+            'ligature': 'partner_phone',
+            'tags'    : ['partner_phone']
         },
         {
-            'name'    : 'contact_support',
-            'ligature': 'contact_support',
-            'tags'    : ['contact_support']
+            'name'    : 'partner_support',
+            'ligature': 'partner_support',
+            'tags'    : ['partner_support']
         },
         {
-            'name'    : 'contacts',
-            'ligature': 'contacts',
-            'tags'    : ['contacts']
+            'name'    : 'partners',
+            'ligature': 'partners',
+            'tags'    : ['partners']
         },
         {
             'name'    : 'control_camera',
@@ -2232,9 +2232,9 @@ export class IconsFakeDb
             'tags'    : ['image']
         },
         {
-            'name'    : 'import_contacts',
-            'ligature': 'import_contacts',
-            'tags'    : ['import_contacts']
+            'name'    : 'import_partners',
+            'ligature': 'import_partners',
+            'tags'    : ['import_partners']
         },
         {
             'name'    : 'import_export',
@@ -3222,9 +3222,9 @@ export class IconsFakeDb
             'tags'    : ['perm_camera_mic']
         },
         {
-            'name'    : 'perm_contact_calendar',
-            'ligature': 'perm_contact_calendar',
-            'tags'    : ['perm_contact_calendar']
+            'name'    : 'perm_partner_calendar',
+            'ligature': 'perm_partner_calendar',
+            'tags'    : ['perm_partner_calendar']
         },
         {
             'name'    : 'perm_data_setting',

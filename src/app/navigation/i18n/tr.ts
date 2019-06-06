@@ -17,7 +17,7 @@ export const locale = {
             },
             'CHAT'        : 'Sohbet',
             'FILE_MANAGER': 'Dosya Yöneticisi',
-            'CONTACTS'    : 'Kişiler',
+            'partners'    : 'Kişiler',
             'TODO'        : 'Yapılacaklar',
             'SCRUMBOARD'  : 'Proje'
         }

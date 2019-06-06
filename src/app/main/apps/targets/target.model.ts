@@ -9,7 +9,7 @@ export class Target {
   /**
    * Constructor
    *
-   * @param contact
+   * @param partner
    */
   constructor(target) {
     {

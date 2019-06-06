@@ -22,7 +22,7 @@ const routes = [
   },
   {
     path: 'partners',
-    loadChildren: './contacts/contacts.module#ContactsModule'
+    loadChildren: './partners/partners.module#PartnersModule'
   },
   {
     path: 'personas',

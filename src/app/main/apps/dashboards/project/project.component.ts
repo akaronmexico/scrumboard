@@ -160,8 +160,8 @@ export class ProjectDashboardComponent implements OnInit
         /**
          * Widget 11
          */
-        this.widget11.onContactsChanged = new BehaviorSubject({});
-        this.widget11.onContactsChanged.next(this.widgets.widget11.table.rows);
+        this.widget11.onPartnersChanged = new BehaviorSubject({});
+        this.widget11.onPartnersChanged.next(this.widgets.widget11.table.rows);
         this.widget11.dataSource = new FilesDataSource(this.widget11);
     }
 
@@ -199,7 +199,7 @@ export class FilesDataSource extends DataSource<any>
      */
     connect(): Observable<any[]>
     {
-        return this._widget11.onContactsChanged;
+        return this._widget11.onPartnersChanged;
     }
 
     /**

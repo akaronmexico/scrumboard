@@ -17,7 +17,7 @@ export const locale = {
             },
             'CHAT'        : 'Chat',
             'FILE_MANAGER': 'File Manager',
-            'CONTACTS'    : 'Contacts',
+            'partners'    : 'Partners',
             'TODO'        : 'To-Do',
             'SCRUMBOARD'  : 'Scrumboard'
         }

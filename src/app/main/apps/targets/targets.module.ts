@@ -19,13 +19,12 @@ import {
   MatCardModule
 } from '@angular/material';
 
-import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseConfirmDialogModule, FuseSidebarModule } from '@fuse/components';
-
 import { CommonModule } from '@angular/common';
 import { TargetsComponent } from './targets.component';
 import { TargetsTargetListComponent } from './target-list/target-list.component';
 import { TargetsTargetFormComponent } from './target-form/target-form.component';
+import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseConfirmDialogModule, FuseSidebarModule } from '@fuse/components';
 
 @NgModule({
   declarations: [

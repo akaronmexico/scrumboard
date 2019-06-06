@@ -28,7 +28,7 @@ export class BinsComponent implements OnInit, OnDestroy {
   /**
    * Constructor
    *
-   * @param {ContactsService} _binsService
+   * @param {PartnersService} _binsService
    * @param {FuseSidebarService} _fuseSidebarService
    * @param {MatDialog} _matDialog
    */

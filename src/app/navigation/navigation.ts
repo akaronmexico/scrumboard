@@ -52,7 +52,7 @@ export const navigation: FuseNavigation[] = [
         url: '/apps/feeds'
       },
       {
-        id: 'contacts',
+        id: 'partners',
         title: 'Partners',
         type: 'item',
         icon: 'people',

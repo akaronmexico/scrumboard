@@ -26,7 +26,7 @@
           fxLayout="row"
           *ngFor="let targetBin of target.bins; let i = index"
           fxLayoutGap="20px"
-          fxLayoutAlign="start center"
+          fxLayoutAlign="start start"
           @fadeIn
         >
           <mat-form-field appearance="outline" fxFlex="20">
@@ -60,6 +60,7 @@
                 [matChipInputFor]="keywordChipList"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 [matChipInputAddOnBlur]="addOnBlur"
+                (paste)="paste($event, targetBin)"
                 (matChipInputTokenEnd)="addKeyword($event, targetBin)"
               />
             </mat-chip-list>

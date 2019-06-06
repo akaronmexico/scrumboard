@@ -117,9 +117,9 @@ export class FeedsFeedListComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   /**
-   * Edit contact
+   * Edit partner
    *
-   * @param contact
+   * @param partner
    */
   editFeed(feed): void {
     this.dialogRef = this._matDialog.open(FeedsFeedFormDialogComponent, {
@@ -178,10 +178,10 @@ export class FeedsFeedListComponent implements OnInit, OnDestroy {
   /**
    * On selected change
    *
-   * @param contactId
+   * @param partnerId
    */
-  onSelectedChange(contactId): void {
-    this._feedsService.toggleSelectedFeed(contactId);
+  onSelectedChange(partnerId): void {
+    this._feedsService.toggleSelectedFeed(partnerId);
   }
 }
 

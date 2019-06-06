@@ -81,7 +81,7 @@ $typography: mat-typography-config(
 // -----------------------------------------------------------------------------------------------------
 
 // Import app and page component themes here to enable theming for them
-@import 'src/app/main/apps/contacts/contacts.theme';
+@import 'src/app/main/apps/partners/partners.theme';
 @import 'src/app/main/apps/feeds/feeds.theme';
 @import 'src/app/main/apps/bins/bins.theme';
 @import 'src/app/main/apps/targets/targets.theme';
@@ -93,7 +93,7 @@ $typography: mat-typography-config(
 // Define a mixin for easier access
 @mixin components-theme($theme) {
   // Apps
-  @include contacts-theme($theme);
+  @include partners-theme($theme);
   @include bins-theme($theme);
   @include feeds-theme($theme);
   @include targets-theme($theme);

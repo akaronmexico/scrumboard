@@ -107,9 +107,9 @@ export class BinsBinListComponent implements OnInit, OnDestroy {
   // -----------------------------------------------------------------------------------------------------
 
   /**
-   * Edit contact
+   * Edit partner
    *
-   * @param contact
+   * @param partner
    */
   editBin(bin): void {
     this.dialogRef = this._matDialog.open(BinsBinFormDialogComponent, {

@@ -1,7 +1,8 @@
 <mat-sidenav-container>
-  <div id="board">
+  <div id="board" *ngIf="board">
     <!-- HEADER -->
     <div
+      *ngIf="board && board.settings"
       class="header p-16 p-md-24"
       [ngClass]="board.settings.color"
       fxLayout="column"

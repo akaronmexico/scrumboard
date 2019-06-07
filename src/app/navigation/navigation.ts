@@ -2,26 +2,11 @@ import { FuseNavigation } from '@fuse/types';
 
 export const navigation: FuseNavigation[] = [
   {
-    id: 'dashboards',
-    title: 'Dashboards',
-    type: 'collapsable',
-    icon: 'apps',
-    children: [
-      {
-        id: 'analytics',
-        title: 'Analytics',
-        type: 'item',
-        icon: 'assessment',
-        url: '/apps/dashboards/analytics'
-      },
-      {
-        id: 'project',
-        title: 'Partner Stats',
-        type: 'item',
-        icon: 'assessment',
-        url: '/apps/dashboards/project'
-      }
-    ]
+    id: 'analytics',
+    title: 'Dashboard',
+    type: 'item',
+    icon: 'assessment',
+    url: '/apps/dashboards/analytics'
   },
   {
     id: 'scrumboard',
@@ -30,13 +15,13 @@ export const navigation: FuseNavigation[] = [
     icon: 'widgets',
     url: '/apps/scrumboard'
   },
-  {
+  /** {
     id: 'file-manager',
     title: 'File Manager',
     type: 'item',
     icon: 'folder',
     url: '/apps/file-manager'
-  },
+  }, */
   {
     id: 'configuration',
     title: 'Configuration',

@@ -6,6 +6,7 @@ import { ScrumboardService } from '../../../scrumboard.service';
 import { ActivitysActivityFormDialogComponent } from 'app/main/apps/activities/activity-form/activity-form.component';
 import { Persona } from 'app/main/apps/personas/persona.model';
 import { PersonasService } from 'app/main/apps/personas/personas.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'scrumboard-board-card',
@@ -31,6 +32,7 @@ export class ScrumboardBoardCardComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _matDialog: MatDialog,
+    private toastr: ToastrService,
     private _scrumboardService: ScrumboardService,
     private _personasService: PersonasService
   ) {}
@@ -99,7 +101,11 @@ export class ScrumboardBoardCardComponent implements OnInit {
           }
         }
       );
-      this.dialogRef.afterClosed().subscribe(response => {});
+      this.dialogRef.afterClosed().subscribe(response => {
+        if (response.success) {
+          this.toastr.success('Activity Log Saved!');
+        }
+      });
     });
   }
 }

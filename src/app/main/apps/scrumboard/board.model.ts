@@ -71,6 +71,7 @@ export class Board {
    * @param board
    */
   constructor(board) {
+    console.log('board constructor: ' + JSON.stringify(board, null, 2));
     this.name = board.name || 'Untitled Board';
     this.uuid = board.uuid || '';
     this.settings = board.settings || {

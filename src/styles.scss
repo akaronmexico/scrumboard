@@ -1,10 +1,19 @@
 // Import Fuse core library
-@import "@fuse/scss/core";
+@import '@fuse/scss/core';
 
 // Import app.theme.scss
-@import "app/app.theme";
+@import 'app/app.theme';
 
 :focus {
-    outline: 0 !important;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
-  }
+  outline: 0 !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 59px !important;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-input > input {
+  padding-top: 16px !important;
+  margin-left: -16px !important;
+}

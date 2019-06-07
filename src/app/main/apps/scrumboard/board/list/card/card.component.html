@@ -100,28 +100,23 @@
 
   <div fxLayout="row" fxLayoutAlign="end center">
     <!-- CARD USAGE DETAILS -->
-    <button
+    <!--<button
       mat-icon-button
       color="accent"
       *ngIf="card.status === 'New'"
       (click)="updateCardStatus('In Work')"
     >
       <mat-icon class="s-18">trending_flat</mat-icon>
-    </button>
-    <button
+    </button>-->
+    <!--  <button
       mat-icon-button
       color="accent"
       *ngIf="card.status !== 'New'"
       (click)="openArticlePage()"
     >
       <mat-icon class="s-18">bar_chart</mat-icon>
-    </button>
-    <button
-      mat-icon-button
-      color="accent"
-      *ngIf="card.status !== 'New'"
-      (click)="openActivityDialog()"
-    >
+    </button>-->
+    <button mat-icon-button color="accent" (click)="openActivityDialog()">
       <mat-icon class="s-18">insert_link</mat-icon>
     </button>
     <!-- / CARD USAGE DETAILS -->

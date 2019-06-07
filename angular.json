@@ -27,7 +27,11 @@
               "src/assets",
               "src/app/main/angular-material-elements"
             ],
-            "styles": ["src/styles.scss", "node_modules/ngx-toastr/toastr.css"],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css"
+            ],
             "scripts": [],
             "showCircularDependencies": false
           },

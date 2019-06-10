@@ -1,0 +1,114 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">{{ dialogTitle }}</span>
+      <button
+        mat-icon-button
+        (click)="matDialogRef.close()"
+        aria-label="Close dialog"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row
+      class="toolbar-bottom py-16"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
+      <div class="persona-name mt-8">{{ persona.name }}</div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+    <form *ngIf="personaForm" [formGroup]="personaForm">
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Partner</mat-label>
+          <mat-select formControlName="partnerId" required>
+            <mat-option *ngFor="let partner of partners" [value]="partner.uuid">
+              {{ partner.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Name</mat-label>
+          <input name="name" formControlName="name" placeholder="Given Name(s)"  matInput required />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Service</mat-label>
+          <input name="service" formControlName="service" placeholder="e.g. Facebook, Twitter, Instagram" matInput required />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Selector</mat-label>
+          <input name="selector" formControlName="selector" placeholder="e.g. username, handle" matInput required />
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Comments</mat-label>
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            formControlName="comments"
+            placeholder="Comments"
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="2"
+            cdkAutosizeMaxRows="6"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+
+  <div
+    *ngIf="personaForm"
+    mat-dialog-actions
+    class="m-0 p-16"
+    fxLayout="row"
+    fxLayoutAlign="end center"
+  >
+    <button
+      *ngIf="action === 'edit'"
+      mat-button
+      color="warn"
+      class="mr-8"
+      (click)="matDialogRef.close(['delete', personaForm])"
+      aria-label="Delete"
+      matTooltip="Delete"
+    >
+      DELETE
+    </button>
+
+    <button
+      *ngIf="action !== 'edit'"
+      mat-raised-button
+      color="accent"
+      class="save-button"
+      (click)="matDialogRef.close(personaForm)"
+      [disabled]="personaForm.invalid"
+      aria-label="SAVE"
+    >
+      ADD
+    </button>
+
+    <button
+      *ngIf="action === 'edit'"
+      mat-raised-button
+      color="accent"
+      class="save-button"
+      (click)="matDialogRef.close(['save', personaForm])"
+      [disabled]="personaForm.invalid"
+      aria-label="SAVE"
+    >
+      SAVE
+    </button>
+  </div>
+</div>

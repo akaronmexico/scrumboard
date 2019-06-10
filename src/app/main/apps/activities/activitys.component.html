@@ -1,0 +1,25 @@
+<div
+  id="activitys"
+  class="page-layout simple left-sidebar inner-sidebar inner-scroll"
+>
+  <!-- CONTENT -->
+  <div class="content">
+    <!-- CENTER -->
+    <div class="center" fusePerfectScrollbar>
+      <!-- CONTENT -->
+      <div ffxLayout="row" fxLayoutAlign="space-between center">
+        <h2>Activity</h2>
+        <button class="mat-button" color="accent" (click)="newActivity()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <activitys-activity-list
+        [activitys]="activitys"
+        [personas]="personas"
+      ></activitys-activity-list>
+      <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
+  </div>
+  <!-- / CONTENT-->
+</div>

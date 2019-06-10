@@ -1,0 +1,65 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title" [innerHTML]="articleTitle"></span>
+      <button
+        mat-icon-button
+        (click)="matDialogRef.close()"
+        aria-label="Close dialog"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row
+      class="toolbar-bottom py-16"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <!-- CONTENT -->
+  <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+    <!-- CENTER -->
+    <div class="center" fusePerfectScrollbar>
+      <!-- CONTENT -->
+      <div ffxLayout="row" fxLayoutAlign="start center">
+        <h4>Activity Log</h4>
+        <button mat-button class="ml-16" color="accent" (click)="newActivity()">
+          Add
+        </button>
+      </div>
+      <div
+        class="activity-list-dialog"
+        style="margin-top:-2.5rem !important"
+        fusePerfectScrollbar
+      >
+        <activitys-activity-list
+          [activitys]="activitys"
+          [personas]="personas"
+        ></activitys-activity-list>
+      </div>
+      <!-- / CONTENT -->
+    </div>
+    <!-- / CENTER -->
+  </div>
+  <!-- / CONTENT-->
+  <div
+    fxLayoutAlign="end center"
+    fxLayoutGap="8px"
+    mat-dialog-actions
+    class="mt-24"
+  >
+    <button mat-button color="warn" (click)="matDialogRef.close()">
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="saveActivitys()"
+      cdkFocusInitial
+    >
+      Save
+    </button>
+  </div>
+</div>

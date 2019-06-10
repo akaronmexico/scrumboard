@@ -1,0 +1,150 @@
+<div fxFlex>
+  <mat-table
+    #table
+    [dataSource]="dataSource"
+    [@animateStagger]="{ value: '50' }"
+    style="max-height: 50vh !important; overflow: auto"
+  >
+    <!-- Name Column -->
+    <ng-container matColumnDef="persona">
+      <mat-header-cell *matHeaderCellDef>Persona</mat-header-cell>
+      <mat-cell *matCellDef="let activity">
+        <p *ngIf="!activity.editMode" class="name font-weight-600">
+          {{ activity.persona.name }}
+        </p>
+        <div *ngIf="activity.editMode" fxFlex class="persona-select">
+          <ng-select
+            [items]="activity.personas"
+            bindLabel="name"
+            placeholder="Select Persona"
+            appendTo="body"
+            [(ngModel)]="activity.persona"
+            [loading]="personasLoading"
+            [searchFn]="personaSearch"
+          >
+            <ng-template ng-option-tmp let-item="item">
+              {{ item.name }} <br />
+              <small>{{ item.selector }}</small>
+            </ng-template>
+          </ng-select>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-cell *matCellDef="let activity">
+        <p *ngIf="!activity.editMode" class="font-weight-600">
+          {{ activity.action }}
+        </p>
+        <div *ngIf="activity.editMode" fxFlex class="row-padding-top">
+          <mat-form-field class="full-width" fxFlex="90" appearance="outline">
+            <mat-label>Action</mat-label>
+            <mat-select
+              [(ngModel)]="activity.action"
+              [ngModelOptions]="{ standalone: true }"
+            >
+              <mat-option value="amplify">Social Media Post</mat-option>
+              <mat-option value="content">Authored Content</mat-option>
+              <mat-option value="other">Other</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <!-- URL Column -->
+    <ng-container matColumnDef="url">
+      <mat-header-cell *matHeaderCellDef>URL</mat-header-cell>
+      <mat-cell *matCellDef="let activity">
+        <p *ngIf="!activity.editMode" class="url text-truncate font-weight-600">
+          {{ activity.url }}
+        </p>
+        <div *ngIf="activity.editMode" fxFlex class="row-padding-top">
+          <mat-form-field class="full-width" fxFlex="90" appearance="outline">
+            <mat-label>URL</mat-label>
+            <input
+              name="url"
+              [(ngModel)]="activity.url"
+              [ngModelOptions]="{ standalone: true }"
+              matInput
+              required
+            />
+          </mat-form-field>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <!-- COMMENTS Column -->
+    <ng-container matColumnDef="comments">
+      <mat-header-cell *matHeaderCellDef>Comments</mat-header-cell>
+      <mat-cell *matCellDef="let activity">
+        <p *ngIf="!activity.editMode" class="url text-truncate font-weight-600">
+          {{ activity.comments }}
+        </p>
+        <div *ngIf="activity.editMode" fxFlex class="row-padding-top">
+          <mat-form-field class="full-width" fxFlex="90" appearance="outline">
+            <mat-label>Comments</mat-label>
+            <textarea
+              matInput
+              [(ngModel)]="activity.comments"
+              [ngModelOptions]="{ standalone: true }"
+              name="comments"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="3"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Buttons Column -->
+    <ng-container matColumnDef="buttons">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let activity" class="row-padding-top">
+        <div class="action-button-row" fxFlex="row" fxLayoutAlign="end center">
+          <button
+            mat-icon-button
+            color="accent"
+            *ngIf="activity.editMode"
+            aria-label="Save"
+            (click)="updateActivity(activity)"
+          >
+            <mat-icon>done</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            color="accent"
+            *ngIf="!activity.editMode"
+            aria-label="Edit"
+            (click)="editActivity(activity)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            aria-label="Edit"
+            (click)="deleteActivity(activity)"
+          >
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="displayedColumns; sticky: true"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="let activity; columns: displayedColumns"
+      class="activity"
+      [@animate]="{ value: '*', params: { y: '100%' } }"
+    >
+    </mat-row>
+  </mat-table>
+</div>

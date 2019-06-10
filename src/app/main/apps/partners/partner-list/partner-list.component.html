@@ -1,0 +1,158 @@
+<mat-table #table [dataSource]="dataSource" [@animateStagger]="{ value: '50' }">
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="checkbox">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let partner">
+      <mat-checkbox
+        [(ngModel)]="checkboxes[partner.id]"
+        (ngModelChange)="onSelectedChange(partner.id)"
+        (click)="$event.stopPropagation()"
+      >
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Avatar Column -->
+  <ng-container matColumnDef="avatar">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let partner">
+      <img
+        class="avatar"
+        *ngIf="partner.avatar"
+        [alt]="partner.name"
+        [src]="partner.avatar"
+      />
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let partner">
+      <p class="text-truncate font-weight-600">{{ partner.name }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Native Name Column -->
+  <ng-container matColumnDef="nativeName">
+    <mat-header-cell *matHeaderCellDef>Native Name</mat-header-cell>
+    <mat-cell *matCellDef="let partner">
+      <p class="text-truncate font-weight-600">{{ partner.nativeName }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Region Column -->
+  <ng-container matColumnDef="region">
+    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm
+      >Region</mat-header-cell
+    >
+    <mat-cell *matCellDef="let partner" fxHide fxShow.gt-sm>
+      <p class="bins">
+        {{ partner.subregion }}
+      </p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Captial Column -->
+  <ng-container matColumnDef="capital">
+    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md
+      >Capital</mat-header-cell
+    >
+    <mat-cell *matCellDef="let partner" fxHide fxShow.gt-md>
+      <p class="capital text-truncate">
+        {{ partner.capital }}
+      </p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Target Column -->
+  <ng-container matColumnDef="targets">
+    <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md
+      >Targets</mat-header-cell
+    >
+    <mat-cell *matCellDef="let partner" fxHide fxShow.gt-md>
+      <mat-chip-list class="mat-chip-list-stacked">
+        <mat-chip
+          *ngFor="let target of partner.targets"
+          class="target-badge"
+          selected
+        >
+          {{ target.target }}
+        </mat-chip>
+      </mat-chip-list>
+    </mat-cell>
+  </ng-container>
+
+  <!-- HITS Column -->
+  <ng-container matColumnDef="count">
+    <mat-header-cell *matHeaderCellDef># Hits</mat-header-cell>
+    <mat-cell *matCellDef="let partner">
+      <p class="text-truncate font-weight-600">{{ partner.taskCount }}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- HISTOGRAM Column -->
+  <ng-container matColumnDef="histogram">
+    <mat-header-cell *matHeaderCellDef>Activity</mat-header-cell>
+    <mat-cell *matCellDef="let partner">
+      <div
+        *ngIf="
+          partner &&
+          partner.chart &&
+          partner.chart.datasets &&
+          partner.count > 0
+        "
+        class="h-46 w-100-p pr-8"
+      >
+        <canvas
+          baseChart
+          [datasets]="partner.chart.datasets"
+          [labels]="partner.chart.labels"
+          [colors]="partner.chart.colors"
+          [options]="partner.chart.options"
+          chartType="line"
+        >
+        </canvas>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Buttons Column -->
+  <ng-container matColumnDef="buttons">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let partner">
+      <div fxFlex="row" fxLayoutAlign="end center">
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="moreMenu"
+          aria-label="More"
+          (click)="$event.stopPropagation()"
+        >
+          <mat-icon class="secondary-text">more_vert</mat-icon>
+        </button>
+
+        <mat-menu #moreMenu="matMenu">
+          <button
+            mat-menu-item
+            aria-label="remove"
+            (click)="deletepartner(partner)"
+          >
+            <mat-icon>delete</mat-icon>
+            <span>Remove</span>
+          </button>
+        </mat-menu>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row
+    *matRowDef="let partner; columns: displayedColumns"
+    class="partner"
+    (click)="editPartner(partner)"
+    [ngClass]="{ 'accent-50': checkboxes[partner.id] }"
+    matRipple
+    [@animate]="{ value: '*', params: { y: '100%' } }"
+  >
+  </mat-row>
+</mat-table>

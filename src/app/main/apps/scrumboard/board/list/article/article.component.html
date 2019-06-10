@@ -1,0 +1,40 @@
+<div id="article">
+  <!-- HEADER -->
+  <div
+    class="header accent p-16 pb-0"
+    fxLayout="column"
+    fxLayoutAlign="space-between"
+  >
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <span
+        class="mat-display-1 my-0 my-sm-24 welcome-message"
+        [@animate]="{ value: '*', params: { x: '50px' } }"
+        >{{ article.title }}
+      </span>
+    </div>
+  </div>
+  <!-- / HEADER -->
+  <div fxFlex class="board-content-wrapper p-16 p-md-24">
+    <!-- BOARD -->
+    <!-- CONTENT -->
+    <div class="content">
+      <mat-tab-group dynamicHeight>
+        <mat-tab label="Details">
+          <div *ngIf="article.imageUrl" class="article-image">
+            <img [src]="article.imageUrl" />
+          </div>
+          <div class="list-card-summary" [innerHTML]="article.summary"></div>
+          <div *fuseIfOnDom [@animateStagger]="{ value: '50' }">
+            <activitys fxFlex [taskId]="article.id"></activitys>
+          </div>
+          <!-- / WIDGET GROUP -->
+        </mat-tab>
+
+        <mat-tab label="Performance"> </mat-tab>
+      </mat-tab-group>
+    </div>
+
+    <!-- / BOARD -->
+  </div>
+  <!-- primary content -->
+</div>

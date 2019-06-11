@@ -10,7 +10,7 @@ export class Feed {
 
   buildChartData(): void {
     const data = [0];
-    const labels = ['Start'];
+    const labels = [''];
     if (this.histogram && this.histogram.length > 0) {
       this.histogram[0].buckets.forEach(bucket => {
         data.push(bucket.count);
@@ -38,7 +38,7 @@ export class Feed {
           {
             label: 'Hits',
             data: [],
-            fill: false
+            fill: true
           }
         ],
         labels: [],
@@ -53,7 +53,7 @@ export class Feed {
           }
         ],
         options: {
-          spanGaps: false,
+          spanGaps: true,
           legend: {
             display: false
           },
@@ -62,8 +62,8 @@ export class Feed {
             padding: {
               top: 4,
               left: 4,
-              right: 4,
-              bottom: 4
+              right: 24,
+              bottom: 24
             }
           },
           scales: {

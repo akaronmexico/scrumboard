@@ -28,6 +28,32 @@
     </mat-cell>
   </ng-container>
 
+  <!-- HISTOGRAM Column -->
+  <ng-container matColumnDef="histogram">
+    <mat-header-cell *matHeaderCellDef>Activity</mat-header-cell>
+    <mat-cell *matCellDef="let bin">
+      <div
+        *ngIf="
+          bin &&
+          bin.chart &&
+          bin.chart.datasets &&
+          bin.taskCount > 0
+        "
+        class="h-26 w-100-p pr-8"
+      >
+        <canvas
+          baseChart
+          [datasets]="bin.chart.datasets"
+          [labels]="bin.chart.labels"
+          [colors]="bin.chart.colors"
+          [options]="bin.chart.options"
+          chartType="line"
+        >
+        </canvas>
+      </div>
+    </mat-cell>
+</ng-container>
+
   <!-- Buttons Column -->
   <ng-container matColumnDef="buttons">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>

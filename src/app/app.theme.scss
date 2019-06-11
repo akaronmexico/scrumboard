@@ -86,7 +86,6 @@ $typography: mat-typography-config(
 @import 'src/app/main/apps/bins/bins.theme';
 @import 'src/app/main/apps/targets/targets.theme';
 @import 'src/app/main/apps/personas/personas.theme';
-@import 'src/app/main/apps/dashboards/project/project.theme';
 @import 'src/app/main/apps/file-manager/file-manager.theme';
 @import 'src/app/main/apps/scrumboard/scrumboard.theme';
 
@@ -98,7 +97,6 @@ $typography: mat-typography-config(
   @include feeds-theme($theme);
   @include targets-theme($theme);
   @include personas-theme($theme);
-  @include dashboards-project-theme($theme);
   @include file-manager-theme($theme);
   @include scrumboard-theme($theme);
 }

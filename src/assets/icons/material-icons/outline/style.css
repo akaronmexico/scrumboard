@@ -666,16 +666,16 @@ i, .icomoon-liga, .material-icons {
 .icon-confirmation_number:before {
   content: "\e9d2";
 }
-.icon-partner_mail:before {
+.icon-contact_mail:before {
   content: "\e9d3";
 }
-.icon-partner_phone:before {
+.icon-contact_phone:before {
   content: "\e9d4";
 }
-.icon-partner_support:before {
+.icon-contact_support:before {
   content: "\e9d5";
 }
-.icon-partners:before {
+.icon-contacts:before {
   content: "\e9d6";
 }
 .icon-control_camera:before {
@@ -1371,7 +1371,7 @@ i, .icomoon-liga, .material-icons {
 .icon-image:before {
   content: "\eabd";
 }
-.icon-import_partners:before {
+.icon-import_contacts:before {
   content: "\eabe";
 }
 .icon-import_export:before {
@@ -1965,7 +1965,7 @@ i, .icomoon-liga, .material-icons {
 .icon-perm_camera_mic:before {
   content: "\eb83";
 }
-.icon-perm_partner_calendar:before {
+.icon-perm_contact_calendar:before {
   content: "\eb84";
 }
 .icon-perm_data_setting:before {

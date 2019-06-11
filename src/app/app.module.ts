@@ -10,20 +10,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { FuseProgressBarModule, FuseSidebarModule } from '@fuse/components';
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { TranslateModule } from '@ngx-translate/core';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppComponent } from 'app/app.component';
 import { FakeDbService } from 'app/fake-db/fake-db.service';
 import { fuseConfig } from 'app/fuse-config';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'environments/environment';
 import { ToastrModule } from 'ngx-toastr';
 
-const socketConfig: SocketIoConfig = {
-  url: environment.socketUrl,
-  options: {}
-};
 
 const appRoutes: Routes = [
   {
@@ -53,7 +47,6 @@ const appRoutes: Routes = [
       positionClass: 'toast-top-right',
       preventDuplicates: true
     }),
-    TranslateModule.forRoot(),
     InMemoryWebApiModule.forRoot(FakeDbService, {
       delay: 0,
       passThruUnknownUrl: true

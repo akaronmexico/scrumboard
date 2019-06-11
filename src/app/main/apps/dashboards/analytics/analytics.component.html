@@ -7,38 +7,16 @@
     >
       <div fxLayout="column" fxLayoutAlign="start start">
         <span class="h2">Articles</span>
-        <span class="h5 secondary-text">Unique articles by month</span>
+        <span class="h5 secondary-text">Matches within last hour</span>
       </div>
-      <div fxLayout="row" fxLayoutAlign="start center">
-        <div
-          class="py-8 px-12 border-radius-2 line-height-1 cursor-pointer"
-          (click)="widget1SelectedYear = '2018'"
-          [ngClass]="{ 'blue-700': widget1SelectedYear === '2018' }"
-        >
-          2018
-        </div>
-        <div
-          class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
-          (click)="widget1SelectedYear = '2017'"
-          [ngClass]="{ 'blue-700': widget1SelectedYear === '2017' }"
-        >
-          2017
-        </div>
-        <div
-          class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
-          (click)="widget1SelectedYear = '2016'"
-          [ngClass]="{ 'blue-700': widget1SelectedYear === '2016' }"
-        >
-          2016
-        </div>
-      </div>
+      
     </div>
 
     <div class="position-relative h-256 pb-16 blue-600">
       <canvas
         baseChart
-        [datasets]="widgets.widget1.datasets[widget1SelectedYear]"
-        [labels]="widgets.widget1.labels"
+        [datasets]="chartData['hourMatches']"
+        [labels]="chartLabels['hourMatches']"
         [colors]="widgets.widget1.colors"
         [options]="widgets.widget1.options"
         [chartType]="widgets.widget1.chartType"
@@ -128,21 +106,37 @@
       <!-- Widget 5 -->
 
       <div class="fuse-card auto-width">
-        <div
-          class="position-relative p-24"
-          fxLayout="row"
-          fxLayoutAlign="space-between center"
-        >
-          <div fxLayout="column" fxLayoutAlign="start start">
-            <span class="h2">Article Matches</span>
-          </div>
-        </div>
+       
+        <div class="position-relative p-24"
+                     fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxLayoutAlign="start start">
+                        <span class="h2">Article Matches</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start center">                        
+                        <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+                             (click)="selectedArticleRange = 'hour'"
+                             [ngClass]="{'accent': selectedArticleRange === 'hour'}">
+                            Past Hour
+                        </div>
+                        <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+                             (click)="selectedArticleRange = 'day'"
+                             [ngClass]="{'accent': selectedArticleRange === 'day'}">
+                            Past Day
+                        </div>
+                        <div class="py-8 px-12 border-radius-2 line-height-1 mr-8 cursor-pointer"
+                             (click)="selectedArticleRange = 'week'"
+                             [ngClass]="{'accent': selectedArticleRange === 'week'}">
+                            Past Week
+                        </div>
+
+                    </div>
+                </div>
 
         <div class="position-relative h-368 pb-16">
           <canvas
             baseChart
-            [datasets]="chartData"
-            [labels]="chartLabels"
+            [datasets]="chartData[selectedArticleRange]"
+            [labels]="chartLabels[selectedArticleRange]"
             [colors]="widgets.widget5.colors"
             [options]="widgets.widget5.options"
             [chartType]="widgets.widget5.chartType"

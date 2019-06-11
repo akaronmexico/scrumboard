@@ -9,10 +9,6 @@ const routes = [
       './dashboards/analytics/analytics.module#AnalyticsDashboardModule'
   },
   {
-    path: 'dashboards/project',
-    loadChildren: './dashboards/project/project.module#ProjectDashboardModule'
-  },
-  {
     path: 'file-manager',
     loadChildren: './file-manager/file-manager.module#FileManagerModule'
   },

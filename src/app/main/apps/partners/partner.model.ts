@@ -45,15 +45,16 @@ export class Partner {
   histogram: any[];
 
   buildChartData(): void {
-    const data = [0];
-    const labels = ['Start'];
+    const data = [];
+    const labels = [];
+
     if (this.histogram && this.histogram.length > 0) {
       this.histogram[0].buckets.forEach(bucket => {
         data.push(bucket.count);
         labels.push(bucket.key);
       });
-    } else {
-    }
+    } 
+
     this.chart.datasets[0].data = data;
     this.chart.labels = labels;
   }
@@ -120,17 +121,17 @@ export class Partner {
           }
         ],
         options: {
-          spanGaps: false,
+          spanGaps: true,
           legend: {
             display: false
           },
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           layout: {
             padding: {
               top: 4,
-              left: 4,
-              right: 4,
-              bottom: 4
+              left: 8,
+              right: 16,
+              bottom: 24
             }
           },
           scales: {

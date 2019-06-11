@@ -26,13 +26,13 @@ import { BinsBinFormDialogComponent } from 'app/main/apps/bins/bin-form/bin-form
   animations: fuseAnimations
 })
 export class BinsBinListComponent implements OnInit, OnDestroy {
-  @ViewChild('dialogContent')
+  @ViewChild('dialogContent', {static:false})
   dialogContent: TemplateRef<any>;
 
   bins: any;
   user: any;
   dataSource: FilesDataSource | null;
-  displayedColumns = ['checkbox', 'name', 'description', 'buttons'];
+  displayedColumns = ['checkbox', 'name', 'histogram', 'buttons'];
   selectedBins: any[];
   checkboxes: {};
   dialogRef: any;

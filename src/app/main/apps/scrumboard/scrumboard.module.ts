@@ -35,7 +35,6 @@ import { ScrumboardComponent } from 'app/main/apps/scrumboard/scrumboard.compone
 import { ScrumboardBoardComponent } from 'app/main/apps/scrumboard/board/board.component';
 import { ScrumboardBoardListComponent } from 'app/main/apps/scrumboard/board/list/list.component';
 import { ScrumboardBoardCardComponent } from 'app/main/apps/scrumboard/board/list/card/card.component';
-import { ScrumboardBoardAddCardComponent } from 'app/main/apps/scrumboard/board/list/add-card/add-card.component';
 import { MatRadioModule } from '@angular/material';
 import { ActivitysModule } from '../activities/activitys.module';
 import { ArticleComponent } from './board/list/article/article.component';
@@ -74,7 +73,6 @@ const routes: Routes = [
     ScrumboardBoardComponent,
     ScrumboardBoardListComponent,
     ScrumboardBoardCardComponent,
-    ScrumboardBoardAddCardComponent,
     ArticleComponent
   ],
   imports: [

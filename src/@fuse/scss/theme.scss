@@ -1,10 +1,28 @@
-@import "src/@fuse/components/countdown/countdown.theme";
-@import "src/@fuse/components/material-color-picker/material-color-picker.theme";
+@import 'src/app/main/apps/partners/partners.theme';
+@import 'src/app/main/apps/feeds/feeds.theme';
+@import 'src/app/main/apps/bins/bins.theme';
+@import 'src/app/main/apps/targets/targets.theme';
+@import 'src/app/main/apps/personas/personas.theme';
+@import 'src/app/main/apps/file-manager/file-manager.theme';
+@import 'src/app/main/apps/scrumboard/scrumboard.theme';
 @import "src/@fuse/components/search-bar/search-bar.theme";
 @import "src/@fuse/components/shortcuts/shortcuts.theme";
 @import "src/@fuse/components/sidebar/sidebar.theme";
 @import "src/@fuse/components/theme-options/theme-options.theme";
 @import "src/@fuse/components/widget/widget.theme";
+
+
+// Define a mixin for easier access
+@mixin components-theme($theme) {
+  // Apps
+  @include partners-theme($theme);
+  @include bins-theme($theme);
+  @include feeds-theme($theme);
+  @include targets-theme($theme);
+  @include personas-theme($theme);
+  @include file-manager-theme($theme);
+  @include scrumboard-theme($theme);
+}
 
 @mixin fuse-core-theme($theme) {
 
@@ -16,15 +34,9 @@
     @include typography-theme($theme);
 
     // Theming for Fuse components
-    @include fuse-countdown-theme($theme);
     @include fuse-search-bar-theme($theme);
     @include fuse-shortcuts-theme($theme);
     @include fuse-sidebar-theme($theme);
-    @include fuse-theme-options-theme($theme);
-    @include fuse-material-color-picker-theme($theme);
     @include fuse-widget-theme($theme);
 
-    // Theming for 3rd party components
-    @include ngx-datatable-theme($theme);
 }
-

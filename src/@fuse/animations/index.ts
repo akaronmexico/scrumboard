@@ -51,37 +51,34 @@ export const fuseAnimations = [
     ]),
 
     trigger('fadeInOut', [
-        state('0', style({
-            display: 'none',
+        state('0, void', style({
             opacity: 0
         })),
-        state('1', style({
-            display: 'block',
+        state('1, *', style({
             opacity: 1
         })),
         transition('1 => 0', animate('300ms ease-out')),
-        transition('0 => 1', animate('300ms ease-in'))
+        transition('0 => 1', animate('300ms ease-in')),
+        transition('void <=> *', animate('300ms ease-in'))
     ]),
 
     trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: '0' }),
-        animate('.5s ease-out', style({ opacity: '1' })),
+        transition(':enter', [
+          style({ opacity: '0' }),
+          animate('.5s ease-out', style({ opacity: '1' })),
+        ]),
+         transition(':leave', [
+          style({ opacity: '1' }),
+          animate('.25s ease-out', style({ opacity: '0' })),
+        ]),
       ]),
-       transition(':leave', [
-        style({ opacity: '1' }),
-        animate('.25s ease-out', style({ opacity: '0' })),
-      ]),
-    ]),
 
     trigger('slideInOut', [
         state('0', style({
-            height : '0px',
-            display: 'none'
+            height: '0px'
         })),
         state('1', style({
-            height : '*',
-            display: 'block'
+            height: '*'
         })),
         transition('1 => 0', animate('300ms ease-out')),
         transition('0 => 1', animate('300ms ease-in'))
@@ -131,17 +128,15 @@ export const fuseAnimations = [
                     })
                 )
             ]
-        ),
+        )
     ]),
 
     trigger('slideInLeft', [
         state('void', style({
             transform: 'translateX(-100%)',
-            display  : 'none'
         })),
         state('*', style({
             transform: 'translateX(0)',
-            display  : 'flex'
         })),
         transition('void => *', animate('300ms')),
         transition('* => void', animate('300ms'))
@@ -150,11 +145,9 @@ export const fuseAnimations = [
     trigger('slideInRight', [
         state('void', style({
             transform: 'translateX(100%)',
-            display  : 'none'
         })),
         state('*', style({
             transform: 'translateX(0)',
-            display  : 'flex'
         })),
         transition('void => *', animate('300ms')),
         transition('* => void', animate('300ms'))
@@ -163,11 +156,9 @@ export const fuseAnimations = [
     trigger('slideInTop', [
         state('void', style({
             transform: 'translateY(-100%)',
-            display  : 'none'
         })),
         state('*', style({
             transform: 'translateY(0)',
-            display  : 'flex'
         })),
         transition('void => *', animate('300ms')),
         transition('* => void', animate('300ms'))
@@ -177,11 +168,9 @@ export const fuseAnimations = [
         state('void',
             style({
                 transform: 'translateY(100%)',
-                display  : 'none'
             })),
         state('*', style({
             transform: 'translateY(0)',
-            display  : 'flex'
         })),
         transition('void => *', animate('300ms')),
         transition('* => void', animate('300ms'))
@@ -201,7 +190,7 @@ export const fuseAnimations = [
     // -----------------------------------------------------------------------------------------------------
     // @ Router animations
     // -----------------------------------------------------------------------------------------------------
-    
+
     trigger('routerTransitionLeft', [
 
         transition('* => *', [

@@ -25,6 +25,7 @@ import { BinsComponent } from './bins.component';
 import { BinsBinFormDialogComponent } from './bin-form/bin-form.component';
 import { BinsBinListComponent } from './bin-list/bin-list.component';
 import { BinsSelectedBarComponent } from './selected-bar/selected-bar.component';
+import { ChartsModule } from 'ng2-charts';
 
 const routes: Routes = [
   {
@@ -45,6 +46,7 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forChild(routes),
+    ChartsModule,
     CommonModule,
     MatButtonModule,
     MatCheckboxModule,

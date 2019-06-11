@@ -27,7 +27,6 @@ import { ActivitysComponent } from './activitys.component';
 import { ActivitysActivityListComponent } from './activity-list/activity-list.component';
 import { ActivitysActivityFormDialogComponent } from './activity-form/activity-form.component';
 import { ChartsModule } from 'ng2-charts';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -53,7 +52,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatTableModule,
     MatToolbarModule,
     ChartsModule,
-    NgxChartsModule,
     FuseSharedModule,
     FuseConfirmDialogModule,
     FuseSidebarModule

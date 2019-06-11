@@ -28,7 +28,6 @@ import { CommonModule } from '@angular/common';
 import { TargetsModule } from '../targets/targets.module';
 import { BinsService } from '../bins/bins.service';
 import { ChartsModule } from 'ng2-charts';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const routes: Routes = [
   {
@@ -64,7 +63,6 @@ const routes: Routes = [
     MatTableModule,
     MatToolbarModule,
     ChartsModule,
-    NgxChartsModule,
     FuseSharedModule,
     FuseConfirmDialogModule,
     FuseSidebarModule

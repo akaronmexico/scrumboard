@@ -38,8 +38,6 @@ export class PartnersPartnerListComponent implements OnInit, OnDestroy {
     'checkbox',
     'avatar',
     'name',
-    'nativeName',
-    'region',
     'count',
     'histogram',
     'targets',

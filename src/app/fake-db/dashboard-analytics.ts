@@ -66,11 +66,11 @@ export class AnalyticsDashboardDb {
           point: {
             radius: 4,
             borderWidth: 2,
-            hoverRadius: 4,
+            hoverRadius: 14,
             hoverBorderWidth: 2
           },
           line: {
-            tension: 0
+            tension: 0.4
           }
         },
         scales: {
@@ -82,7 +82,8 @@ export class AnalyticsDashboardDb {
                 tickMarkLength: 18
               },
               ticks: {
-                fontColor: '#ffffff'
+                fontColor: '#ffffff',
+                stepSize: 50
               }
             }
           ],
@@ -90,16 +91,16 @@ export class AnalyticsDashboardDb {
             {
               display: false,
               ticks: {
-                min: 1.5,
-                max: 5,
-                stepSize: 0.5
+                stepSize: 50,
+                min: 0,
+                max: 200
               }
             }
           ]
         },
         plugins: {
           filler: {
-            propagate: false
+            propagate: true
           },
           xLabelsOnTop: {
             active: true
@@ -395,13 +396,17 @@ export class AnalyticsDashboardDb {
           }
         },
         elements: {
-          point: {
-            radius: 4,
-            borderWidth: 2,
-            hoverRadius: 4,
-            hoverBorderWidth: 2
-          }
-        },
+            point: {
+              radius: 3,
+              borderWidth: 1,
+              hoverRadius: 6,
+              hoverBorderWidth: 3
+            },
+            line: {
+              tension: 0.4
+            }
+          },
+        
         scales: {
           xAxes: [
             {

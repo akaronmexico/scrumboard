@@ -26,7 +26,7 @@ import { FeedsService } from '../feeds.service';
   animations: fuseAnimations
 })
 export class FeedsFeedListComponent implements OnInit, OnDestroy {
-  @ViewChild('dialogContent')
+  @ViewChild('dialogContent', {static:false})
   dialogContent: TemplateRef<any>;
 
   feeds: any;
